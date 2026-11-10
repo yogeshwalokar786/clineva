@@ -64,40 +64,40 @@
 
     <div class="wrapper">
         <!-- Top-bar -->
-        <div class="top-bar">
+        <div class="top-bar top-bar-modern">
             <div class="top-bar-inner flex align-items-center justify-content-between mx-30">
                 <div class="tf-tb-left flex align-items-center">
-                    <span class="text-topbar">Need professional medical & health Care?</span>
-                    <div class="top-bar-item phone-topbar">
-                        <i class="icon-phone-volume"></i>
-                        <div class="content">
-                            <span>Call : </span>
-                            <a href="#">+1 (234) 5688 9990</a>
-                        </div>
+                    <div class="topbar-tagline flex align-items-center">
+                        <span class="tagline-badge"><i class="icon-atom-simple"></i> CRO Excellence</span>
+                        <span class="tagline-text">ISO 9001 & GCP Compliant Clinical Research Laboratories</span>
                     </div>
-                    <span class="dot-topbar dot bg-paragraph"></span>
-                    <div class="top-bar-item email-topbar">
-                        <i class="icon-envelope"></i>
-                        <div class="content">
-                            <span>Email : </span>
-                            <a href="#">support@gmail.com</a>
-                        </div>
+                    <span class="topbar-separator"></span>
+                    <div class="topbar-contact-group flex align-items-center">
+                        <a href="tel:+12345688990" class="topbar-item topbar-link">
+                            <span class="icon-wrap"><i class="icon-phone-volume"></i></span>
+                            <span class="content"><span>Call:</span> +1 (234) 5688 9990</span>
+                        </a>
+                        <span class="topbar-separator"></span>
+                        <a href="mailto:info@clineva.com" class="topbar-item topbar-link">
+                            <span class="icon-wrap"><i class="icon-envelope"></i></span>
+                            <span class="content"><span>Email:</span> info@clineva.com</span>
+                        </a>
                     </div>
                 </div>
                 <div class="tf-tb-right flex align-items-center">
-                    <div class="top-bar-item time-topbar">
-                        <i class="icon-clock"></i>
+                    <div class="topbar-item time-topbar">
+                        <span class="icon-wrap"><i class="icon-clock"></i></span>
                         <div class="content">
-                            <span>Working Hours : </span>
-                            <span class="color-title">Mon-Friday, 08am - 09pm</span>
+                            <span>Hours:</span>
+                            <span class="time-value">Mon – Fri: 08:30 AM – 06:00 PM</span>
                         </div>
                     </div>
-                    <span class="dot-topbar dot bg-paragraph"></span>
-                    <ul class="post-social">
-                        <li><a href="#" class="icon-social"><i class="icon-facebook"></i></a></li>
-                        <li><a href="#" class="icon-social"><i class="icon-twitter"></i></a></li>
-                        <li><a href="#" class="icon-social"><i class="icon-linkedin2"></i></a></li>
-                        <li><a href="#" class="icon-social"><i class="icon-instagram"></i></a></li>
+                    <span class="topbar-separator"></span>
+                    <ul class="topbar-social">
+                        <li><a href="#" class="social-btn" title="Facebook" aria-label="Facebook"><i class="icon-facebook"></i></a></li>
+                        <li><a href="#" class="social-btn" title="Twitter" aria-label="Twitter"><i class="icon-twitter"></i></a></li>
+                        <li><a href="#" class="social-btn" title="LinkedIn" aria-label="LinkedIn"><i class="icon-linkedin2"></i></a></li>
+                        <li><a href="#" class="social-btn" title="Instagram" aria-label="Instagram"><i class="icon-instagram"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -119,15 +119,10 @@
                                     <span>Home</span>
                                 </a>
                             </li>
-                            <li class="menu-item menu-item-has-children position-relative {{ request()->routeIs('about*') || request()->routeIs('history') || request()->routeIs('faq') ? 'current-menu-item' : '' }}">
+                            <li class="menu-item {{ request()->routeIs('about*') || request()->routeIs('history') || request()->routeIs('faq') ? 'current-menu-item' : '' }}">
                                 <a href="{{ route('about') }}" class="item-link body-2">
                                     <span>About Us</span>
                                 </a>
-                                <ul class="sub-menu">
-                                    <li class="sub-menu-item"><a href="{{ route('about') }}" class="item-link-2 body-2">About Clineva</a></li>
-                                    <li class="sub-menu-item"><a href="{{ route('history') }}" class="item-link-2 body-2">Our History</a></li>
-                                    <li class="sub-menu-item"><a href="{{ route('faq') }}" class="item-link-2 body-2">FAQs</a></li>
-                                </ul>
                             </li>
                             <li class="menu-item menu-item-has-children menu-item-services position-relative {{ request()->routeIs('services*') ? 'current-menu-item' : '' }}">
                                 <a href="{{ route('services') }}" class="item-link body-2">
@@ -191,13 +186,8 @@
                     </nav>
                 </div>
                 <div class="header-right">
-                    <div class="nav-icon">
-                        <div class="nav-search nav-item">
-                            <a class="search-btn" href="#canvasSearch" data-bs-toggle="offcanvas">
-                                <i class="icon-magnifying-glass"></i>
-                            </a>
-                        </div>
-                        <div class="mobile-button nav-item d-xl-none">
+                    <div class="nav-icon d-xl-none">
+                        <div class="mobile-button nav-item">
                             <a href="#canvasMobile" data-bs-toggle="offcanvas">
                                 <span></span>
                                 <span></span>
@@ -235,15 +225,10 @@
                                     <span>Home</span>
                                 </a>
                             </li>
-                            <li class="menu-item menu-item-has-children position-relative {{ request()->routeIs('about*') || request()->routeIs('history') || request()->routeIs('faq') ? 'current-menu-item' : '' }}">
+                            <li class="menu-item {{ request()->routeIs('about*') || request()->routeIs('history') || request()->routeIs('faq') ? 'current-menu-item' : '' }}">
                                 <a href="{{ route('about') }}" class="item-link body-2">
                                     <span>About Us</span>
                                 </a>
-                                <ul class="sub-menu">
-                                    <li class="sub-menu-item"><a href="{{ route('about') }}" class="item-link-2 body-2">About Clineva</a></li>
-                                    <li class="sub-menu-item"><a href="{{ route('history') }}" class="item-link-2 body-2">Our History</a></li>
-                                    <li class="sub-menu-item"><a href="{{ route('faq') }}" class="item-link-2 body-2">FAQs</a></li>
-                                </ul>
                             </li>
                             <li class="menu-item menu-item-has-children menu-item-services position-relative {{ request()->routeIs('services*') ? 'current-menu-item' : '' }}">
                                 <a href="{{ route('services') }}" class="item-link body-2">
@@ -307,13 +292,8 @@
                     </nav>
                 </div>
                 <div class="header-right">
-                    <div class="nav-icon">
-                        <div class="nav-search nav-item">
-                            <a class="search-btn" href="#canvasSearch" data-bs-toggle="offcanvas">
-                                <i class="icon-magnifying-glass"></i>
-                            </a>
-                        </div>
-                        <div class="mobile-button nav-item d-xl-none">
+                    <div class="nav-icon d-xl-none">
+                        <div class="mobile-button nav-item">
                             <a href="#canvasMobile" data-bs-toggle="offcanvas">
                                 <span></span>
                                 <span></span>
@@ -512,15 +492,8 @@
                         <li class="menu-item {{ request()->routeIs('home') ? 'current-menu-mobile-item' : '' }}">
                             <a href="{{ route('home') }}">Home</a>
                         </li>
-                        <li class="menu-item menu-item-has-children-mobile">
-                            <a href="#dropdown-menu-about-mob" data-bs-toggle="collapse" class="collapsed">About Us</a>
-                            <div id="dropdown-menu-about-mob" class="collapse" data-bs-parent="#menu-mobile">
-                                <ul class="sub-menu-mobile">
-                                    <li class="menu-item"><a href="{{ route('about') }}">About Clineva</a></li>
-                                    <li class="menu-item"><a href="{{ route('history') }}">Our History</a></li>
-                                    <li class="menu-item"><a href="{{ route('faq') }}">FAQs</a></li>
-                                </ul>
-                            </div>
+                        <li class="menu-item {{ request()->routeIs('about*') ? 'current-menu-mobile-item' : '' }}">
+                            <a href="{{ route('about') }}">About Us</a>
                         </li>
                         <li class="menu-item menu-item-has-children-mobile">
                             <a href="#dropdown-menu-services-mob" data-bs-toggle="collapse" class="collapsed">Services</a>
@@ -591,22 +564,6 @@
             </div>
         </div>
         <!-- /.mobile-nav-wrap -->
-
-        <div class="offcanvas offcanvas-top offcanvas-search" id="canvasSearch">
-            <button class="btn-close-popup" data-bs-dismiss="offcanvas" aria-label="Close">
-                <i class="icon-close"></i>
-            </button>
-            <div class="tf-container">
-                <div class="wg-box-search">
-                    <form action="javascript:void(0)" class="form-search-siderbar">
-                        <fieldset>
-                            <input type="text" placeholder="Keywords">
-                            <button type="submit" class="tf-btn-search"><i class="icon-magnifying-glass"></i></button>
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
-        </div>
 
         <!-- OffcanvasMegamenu -->
         <div class="offcanvas offcanvas-end offcanvasMegamenu" id="canvnasMegamenu">
