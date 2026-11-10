@@ -19,58 +19,58 @@
 /*--------- Abstracts variable ---------- */
 @import url("https://fonts.googleapis.com/css2?family=Rethink+Sans:ital,wght@0,400..800;1,400..800&amp;display=swap");
 :root {
-  --red: #FF3F25;
-  --red-2: #FF6347;
-  --gray-light: #D6E8EB;
-  --black: #0C171A;
-  --black-2: #4B168C;
-  --black-3: #171717;
-  --black-4: #20265B;
-  --black-5: #020D2B;
-  --gray-dark: #EEF0F2;
-  --gray-1: #EFF8FA;
-  --gray-2: #FAF7EF;
-  --gray-3: #EEF1F9;
-  --gray-4: #F1FAFB;
-  --gray-5: #D7ECE4;
-  --gray-6: #F0F4F8;
+  --red: #0077C8;
+  --red-2: #005FA3;
+  --gray-light: #DCECF7;
+  --black: #06121E;
+  --black-2: #0A1C32;
+  --black-3: #111A24;
+  --black-4: #0C2340;
+  --black-5: #06101D;
+  --gray-dark: #EEF3F8;
+  --gray-1: #F0F6FB;
+  --gray-2: #F5FAFD;
+  --gray-3: #EAF2F9;
+  --gray-4: #F2F8FD;
+  --gray-5: #D4E8F5;
+  --gray-6: #EDF4FA;
   --white: #FFFFFF;
-  --cayent: #BE8FEB;
-  --yellow: #FFEC21;
-  --yellow-2: #EFD813;
-  --yellow-3: #FDB517;
-  --green: #4CAF80;
-  --green-2: #38A0A7;
-  --green-3: #5DB996;
-  --pink: #F1AAFA;
-  --blue: #259CF4;
-  --blue-2: #3744FE;
-  --blue-3: #00A1DE;
-  --blue-4: #0B55E5;
-  --purple: #9588E8;
-  --border: #EEEFEF;
-  --border-2: #EDE8F3;
-  --border-3: #EBEDFF;
+  --cayent: #5DA8EA;
+  --yellow: #00B4D8;
+  --yellow-2: #0096C7;
+  --yellow-3: #0077B6;
+  --green: #2EC4B6;
+  --green-2: #219EBC;
+  --green-3: #48CAE4;
+  --pink: #90E0EF;
+  --blue: #00A3E0;
+  --blue-2: #0B55E5;
+  --blue-3: #2C92C2;
+  --blue-4: #103784;
+  --purple: #0F4C81;
+  --border: #E2ECF5;
+  --border-2: #D4E3F0;
+  --border-3: #DDE8F4;
   --border-4: #FFFFFF1A;
-  --border-5: rgba(2, 13, 43, 0.1);
+  --border-5: rgba(16, 55, 132, 0.1);
   --border-6: #FFFFFF33;
-  --border-7: rgba(12, 23, 26, 0.1);
-  --border-8: rgba(23, 23, 23, 0.1);
-  --border-9: rgba(32, 38, 91, 0.1);
+  --border-7: rgba(10, 28, 50, 0.1);
+  --border-8: rgba(10, 28, 50, 0.1);
+  --border-9: rgba(12, 35, 64, 0.1);
   --border-10: rgba(255, 255, 255, 0.2);
   --border-11: rgba(255, 255, 255, 0.15);
-  --border-12: rgba(93, 50, 34, 0.1);
-  --color-title: #0C171A;
-  --color-paragraph: #666B68;
+  --border-12: rgba(0, 119, 200, 0.1);
+  --color-title: #0A1C32;
+  --color-paragraph: #5A6E82;
   --color-text: #FFFFFFA6;
-  --color-text-2: rgba(12, 23, 26, 0.5);
+  --color-text-2: rgba(10, 28, 50, 0.5);
   --color-text-3: rgba(255, 255, 255, 0.65);
   --color-text-4: rgba(255, 255, 255, 0.75);
-  --color-text-5: rgba(12, 23, 26, 0.2);
+  --color-text-5: rgba(10, 28, 50, 0.2);
   --bg-1: #FFFFFF0D;
-  --bg-2: #F5F5F3;
-  --bg-3: #611DB5;
-  --bg-4: #DBE6FB;
+  --bg-2: #F4F8FC;
+  --bg-3: #0E294B;
+  --bg-4: #D8EAF8;
 }
 
 /*---------- Reset css styles ----------- */
@@ -3577,7 +3577,7 @@ a:hover, a:focus {
   height: 4px;
   box-shadow: none;
   border: 0;
-  background: rgba(255, 63, 37, 0.15);
+  background: rgba(0, 119, 200, 0.15);
 }
 .range-slider .range-two-val .noUi-connects {
   position: relative;
@@ -6074,7 +6074,7 @@ fieldset {
   margin-top: 43px;
 }
 .sw-pagination-tes.style-color-red .swiper-pagination-bullet::before {
-  background: rgba(255, 63, 37, 0.2);
+  background: rgba(0, 119, 200, 0.2);
 }
 .sw-pagination-tes.style-color-red .swiper-pagination-bullet.swiper-pagination-bullet-active::before {
   background: var(--red);
@@ -6122,7 +6122,7 @@ fieldset {
   width: 50px;
   height: 50px;
   border-radius: 7px;
-  background: rgba(255, 63, 37, 0.15);
+  background: rgba(0, 119, 200, 0.15);
   position: relative;
 }
 .according-item .title-according span::before {
@@ -8074,7 +8074,7 @@ a.mapboxgl-ctrl-logo {
   letter-spacing: -0.2px;
 }
 .box-funfact.style-bg-3::before {
-  background: linear-gradient(180deg, rgba(255, 63, 37, 0.15) 0%, rgba(255, 63, 37, 0) 100%);
+  background: linear-gradient(180deg, rgba(0, 119, 200, 0.15) 0%, rgba(0, 119, 200, 0) 100%);
 }
 
 .rating {
