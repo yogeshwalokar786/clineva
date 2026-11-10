@@ -29,40 +29,30 @@
     ("use strict");
 
      var headerSticky = function () {
-        let lastScrollTop = 0;
-        let delta = 5;
         let ticking = false;
         let a = jQuery;
         function updateHeader() {
             let st = a(window).scrollTop();
-            let navbarHeight = a(".header-sticky").outerHeight();
+            let header = a("#header");
+            let sticky = a(".header-sticky");
             let adminBarHeight = a("#wpadminbar").length
                 ? a("#wpadminbar").outerHeight()
                 : 0;
+            let triggerPoint = header.length
+                ? (header.offset().top + header.outerHeight() - 20)
+                : 100;
 
-            if (st < 0) st = 0;
-
-            if (st > navbarHeight + 100) {
-                a(".header-sticky").addClass("header-bg");
-                if (st > lastScrollTop + delta) {
-                    a(".header-sticky").css({
-                        transform: "translateY(-110%)",
-                        top: adminBarHeight,
-                    });
-                } else if (st < lastScrollTop - delta) {
-                    a(".header-sticky").css({
-                        transform: "translateY(0%)",
-                    });
-                }
+            if (st > triggerPoint) {
+                sticky.addClass("header-bg").css({
+                    transform: "translateY(0%)",
+                    top: adminBarHeight,
+                });
             } else {
-                a(".header-sticky").removeClass("header-bg");
-                a(".header-sticky").css({
+                sticky.removeClass("header-bg").css({
                     transform: "translateY(-110%)",
                     top: adminBarHeight,
                 });
             }
-
-            lastScrollTop = st;
             ticking = false;
         }
 
