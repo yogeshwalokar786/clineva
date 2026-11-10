@@ -27,35 +27,51 @@
 
                                 <div class="sidebar-item sidebar-style-2 sidebar-content sidebar-categories px-mobile-sm">
                                     <h4 class="title-content">
-                                        Popular Services
+                                        Clinical Services
                                     </h4>
                                     <ul class="list">
                                         <li class="item">
-                                            <a href="#">Medicine Care</a>
+                                            <a href="{{ route('services.details', ['service' => 'clinical-operations']) }}">Clinical Operations</a>
                                             <i class="icon-arrow-right"></i>
                                         </li>
                                         <li class="item">
-                                            <a href="#">Dental Care</a>
+                                            <a href="{{ route('services.details', ['service' => 'project-management']) }}">Project Management</a>
                                             <i class="icon-arrow-right"></i>
                                         </li>
                                         <li class="item">
-                                            <a href="#">Child Care</a>
+                                            <a href="{{ route('services.details', ['service' => 'clinical-trial-monitoring']) }}">Clinical Trial Monitoring</a>
                                             <i class="icon-arrow-right"></i>
                                         </li>
                                         <li class="item">
-                                            <a href="#">Eye Care</a>
+                                            <a href="{{ route('services.details', ['service' => 'medical-monitoring']) }}">Medical Monitoring</a>
                                             <i class="icon-arrow-right"></i>
                                         </li>
                                         <li class="item">
-                                            <a href="#">Neurology Care</a>
+                                            <a href="{{ route('services.details', ['service' => 'quality-assurance']) }}">Quality Assurance</a>
                                             <i class="icon-arrow-right"></i>
                                         </li>
                                         <li class="item">
-                                            <a href="#">Mental Health Care</a>
+                                            <a href="{{ route('services.details', ['service' => 'medical-writing']) }}">Medical Writing</a>
                                             <i class="icon-arrow-right"></i>
                                         </li>
                                         <li class="item">
-                                            <a href="#">Surgery Care</a>
+                                            <a href="{{ route('services.details', ['service' => 'etmf-management']) }}">eTMF Management</a>
+                                            <i class="icon-arrow-right"></i>
+                                        </li>
+                                        <li class="item">
+                                            <a href="{{ route('services.details', ['service' => 'regulatory-affairs']) }}">Regulatory Affairs</a>
+                                            <i class="icon-arrow-right"></i>
+                                        </li>
+                                        <li class="item">
+                                            <a href="{{ route('services.details', ['service' => 'statistical-services']) }}">Statistical Services</a>
+                                            <i class="icon-arrow-right"></i>
+                                        </li>
+                                        <li class="item">
+                                            <a href="{{ route('services.details', ['service' => 'cro-selection']) }}">BA/BE - CRO Selection</a>
+                                            <i class="icon-arrow-right"></i>
+                                        </li>
+                                        <li class="item">
+                                            <a href="{{ route('services.details', ['service' => 'medical-affairs-medico-marketing']) }}">Medical Affairs & Marketing</a>
                                             <i class="icon-arrow-right"></i>
                                         </li>
                                     </ul>

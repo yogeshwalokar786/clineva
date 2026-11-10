@@ -36,6 +36,11 @@ class PageController extends Controller
         return view('pages.contact');
     }
 
+    public function careers()
+    {
+        return view('pages.careers');
+    }
+
     public function appointment()
     {
         return view('pages.appointment');

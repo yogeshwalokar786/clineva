@@ -119,7 +119,7 @@
                                     <span>Home</span>
                                 </a>
                             </li>
-                            <li class="menu-item menu-item-has-children position-relative {{ request()->routeIs('about*') || request()->routeIs('history') || request()->routeIs('faq') || request()->routeIs('pricing') ? 'current-menu-item' : '' }}">
+                            <li class="menu-item menu-item-has-children position-relative {{ request()->routeIs('about*') || request()->routeIs('history') || request()->routeIs('faq') ? 'current-menu-item' : '' }}">
                                 <a href="{{ route('about') }}" class="item-link body-2">
                                     <span>About Us</span>
                                 </a>
@@ -127,39 +127,64 @@
                                     <li class="sub-menu-item"><a href="{{ route('about') }}" class="item-link-2 body-2">About Clineva</a></li>
                                     <li class="sub-menu-item"><a href="{{ route('history') }}" class="item-link-2 body-2">Our History</a></li>
                                     <li class="sub-menu-item"><a href="{{ route('faq') }}" class="item-link-2 body-2">FAQs</a></li>
-                                    <li class="sub-menu-item"><a href="{{ route('pricing') }}" class="item-link-2 body-2">Pricing Plans</a></li>
                                 </ul>
                             </li>
-                            <li class="menu-item menu-item-has-children position-relative {{ request()->routeIs('services*') || request()->routeIs('clinic*') ? 'current-menu-item' : '' }}">
+                            <li class="menu-item menu-item-has-children menu-item-services position-relative {{ request()->routeIs('services*') ? 'current-menu-item' : '' }}">
                                 <a href="{{ route('services') }}" class="item-link body-2">
                                     <span>Services</span>
                                 </a>
-                                <ul class="sub-menu">
-                                    <li class="sub-menu-item"><a href="{{ route('services') }}" class="item-link-2 body-2">All Services</a></li>
-                                    <li class="sub-menu-item"><a href="{{ route('clinic.healthcare') }}" class="item-link-2 body-2">Health Care Clinic</a></li>
-                                    <li class="sub-menu-item"><a href="{{ route('clinic.dental') }}" class="item-link-2 body-2">Dental Clinic</a></li>
-                                    <li class="sub-menu-item"><a href="{{ route('clinic.childcare') }}" class="item-link-2 body-2">Child Care Clinic</a></li>
-                                    <li class="sub-menu-item"><a href="{{ route('clinic.eyecare') }}" class="item-link-2 body-2">Eye Care Clinic</a></li>
-                                </ul>
+                                <div class="sub-menu sub-menu-services">
+                                    <div class="mega-menu-inner">
+                                        <div class="mega-col mega-col-1">
+                                            <div class="mega-header">
+                                                <i class="icon-stethoscope"></i>
+                                                <h6>Clinical Trial</h6>
+                                            </div>
+                                            <ul class="mega-list">
+                                                <li><a href="{{ route('services.details', ['service' => 'clinical-operations']) }}"><i class="icon-arrow-right"></i><span>Clinical Operations</span></a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'project-management']) }}"><i class="icon-arrow-right"></i><span>Project Management</span></a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'clinical-trial-monitoring']) }}"><i class="icon-arrow-right"></i><span>Clinical Trial Monitoring</span></a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'medical-monitoring']) }}"><i class="icon-arrow-right"></i><span>Medical Monitoring</span></a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'quality-assurance']) }}"><i class="icon-arrow-right"></i><span>Quality Assurance</span></a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'medical-writing']) }}"><i class="icon-arrow-right"></i><span>Medical Writing</span></a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'etmf-management']) }}"><i class="icon-arrow-right"></i><span>eTMF Management</span></a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'regulatory-affairs']) }}"><i class="icon-arrow-right"></i><span>Regulatory Affairs</span></a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'statistical-services']) }}"><i class="icon-arrow-right"></i><span>Statistical services</span></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="mega-col mega-col-2">
+                                            <div class="mega-header">
+                                                <i class="icon-microscope"></i>
+                                                <h6>BA/BE Services</h6>
+                                            </div>
+                                            <ul class="mega-list">
+                                                <li><a href="{{ route('services.details', ['service' => 'cro-selection']) }}"><i class="icon-arrow-right"></i><span>CRO Selection</span></a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'babe-medical-writing']) }}"><i class="icon-arrow-right"></i><span>Medical Writing</span></a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'study-monitoring']) }}"><i class="icon-arrow-right"></i><span>Study Monitoring</span></a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'babe-regulatory-affairs']) }}"><i class="icon-arrow-right"></i><span>Regulatory Affairs</span></a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'gcp-glp-audit']) }}"><i class="icon-arrow-right"></i><span>GCP and GLP Audit</span></a></li>
+                                            </ul>
+                                            <div class="mega-featured-card">
+                                                <a href="{{ route('services.details', ['service' => 'medical-affairs-medico-marketing']) }}" class="featured-service-link">
+                                                    <div class="card-icon"><i class="icon-health-care"></i></div>
+                                                    <div class="card-text">
+                                                        <h6>Medical affairs and Medico marketing</h6>
+                                                        <span>Strategic consulting & communications</span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </li>
-                            <li class="menu-item {{ request()->routeIs('doctors*') ? 'current-menu-item' : '' }}">
-                                <a href="{{ route('doctors') }}" class="item-link body-2">
-                                    <span>Doctors</span>
-                                </a>
-                            </li>
-                            <li class="menu-item {{ request()->routeIs('appointment') ? 'current-menu-item' : '' }}">
-                                <a href="{{ route('appointment') }}" class="item-link body-2">
-                                    <span>Appointment</span>
-                                </a>
-                            </li>
-                            <li class="menu-item {{ request()->routeIs('blog*') ? 'current-menu-item' : '' }}">
-                                <a href="{{ route('blog') }}" class="item-link body-2">
-                                    <span>Blog</span>
+                            <li class="menu-item {{ request()->routeIs('careers') ? 'current-menu-item' : '' }}">
+                                <a href="{{ route('careers') }}" class="item-link body-2">
+                                    <span>Career's</span>
                                 </a>
                             </li>
                             <li class="menu-item {{ request()->routeIs('contact') ? 'current-menu-item' : '' }}">
                                 <a href="{{ route('contact') }}" class="item-link body-2">
-                                    <span>Contact</span>
+                                    <span>Contact Us</span>
                                 </a>
                             </li>
                         </ul>
@@ -210,7 +235,7 @@
                                     <span>Home</span>
                                 </a>
                             </li>
-                            <li class="menu-item menu-item-has-children position-relative {{ request()->routeIs('about*') || request()->routeIs('history') || request()->routeIs('faq') || request()->routeIs('pricing') ? 'current-menu-item' : '' }}">
+                            <li class="menu-item menu-item-has-children position-relative {{ request()->routeIs('about*') || request()->routeIs('history') || request()->routeIs('faq') ? 'current-menu-item' : '' }}">
                                 <a href="{{ route('about') }}" class="item-link body-2">
                                     <span>About Us</span>
                                 </a>
@@ -218,39 +243,64 @@
                                     <li class="sub-menu-item"><a href="{{ route('about') }}" class="item-link-2 body-2">About Clineva</a></li>
                                     <li class="sub-menu-item"><a href="{{ route('history') }}" class="item-link-2 body-2">Our History</a></li>
                                     <li class="sub-menu-item"><a href="{{ route('faq') }}" class="item-link-2 body-2">FAQs</a></li>
-                                    <li class="sub-menu-item"><a href="{{ route('pricing') }}" class="item-link-2 body-2">Pricing Plans</a></li>
                                 </ul>
                             </li>
-                            <li class="menu-item menu-item-has-children position-relative {{ request()->routeIs('services*') || request()->routeIs('clinic*') ? 'current-menu-item' : '' }}">
+                            <li class="menu-item menu-item-has-children menu-item-services position-relative {{ request()->routeIs('services*') ? 'current-menu-item' : '' }}">
                                 <a href="{{ route('services') }}" class="item-link body-2">
                                     <span>Services</span>
                                 </a>
-                                <ul class="sub-menu">
-                                    <li class="sub-menu-item"><a href="{{ route('services') }}" class="item-link-2 body-2">All Services</a></li>
-                                    <li class="sub-menu-item"><a href="{{ route('clinic.healthcare') }}" class="item-link-2 body-2">Health Care Clinic</a></li>
-                                    <li class="sub-menu-item"><a href="{{ route('clinic.dental') }}" class="item-link-2 body-2">Dental Clinic</a></li>
-                                    <li class="sub-menu-item"><a href="{{ route('clinic.childcare') }}" class="item-link-2 body-2">Child Care Clinic</a></li>
-                                    <li class="sub-menu-item"><a href="{{ route('clinic.eyecare') }}" class="item-link-2 body-2">Eye Care Clinic</a></li>
-                                </ul>
+                                <div class="sub-menu sub-menu-services">
+                                    <div class="mega-menu-inner">
+                                        <div class="mega-col mega-col-1">
+                                            <div class="mega-header">
+                                                <i class="icon-stethoscope"></i>
+                                                <h6>Clinical Trial</h6>
+                                            </div>
+                                            <ul class="mega-list">
+                                                <li><a href="{{ route('services.details', ['service' => 'clinical-operations']) }}"><i class="icon-arrow-right"></i><span>Clinical Operations</span></a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'project-management']) }}"><i class="icon-arrow-right"></i><span>Project Management</span></a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'clinical-trial-monitoring']) }}"><i class="icon-arrow-right"></i><span>Clinical Trial Monitoring</span></a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'medical-monitoring']) }}"><i class="icon-arrow-right"></i><span>Medical Monitoring</span></a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'quality-assurance']) }}"><i class="icon-arrow-right"></i><span>Quality Assurance</span></a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'medical-writing']) }}"><i class="icon-arrow-right"></i><span>Medical Writing</span></a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'etmf-management']) }}"><i class="icon-arrow-right"></i><span>eTMF Management</span></a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'regulatory-affairs']) }}"><i class="icon-arrow-right"></i><span>Regulatory Affairs</span></a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'statistical-services']) }}"><i class="icon-arrow-right"></i><span>Statistical services</span></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="mega-col mega-col-2">
+                                            <div class="mega-header">
+                                                <i class="icon-microscope"></i>
+                                                <h6>BA/BE Services</h6>
+                                            </div>
+                                            <ul class="mega-list">
+                                                <li><a href="{{ route('services.details', ['service' => 'cro-selection']) }}"><i class="icon-arrow-right"></i><span>CRO Selection</span></a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'babe-medical-writing']) }}"><i class="icon-arrow-right"></i><span>Medical Writing</span></a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'study-monitoring']) }}"><i class="icon-arrow-right"></i><span>Study Monitoring</span></a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'babe-regulatory-affairs']) }}"><i class="icon-arrow-right"></i><span>Regulatory Affairs</span></a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'gcp-glp-audit']) }}"><i class="icon-arrow-right"></i><span>GCP and GLP Audit</span></a></li>
+                                            </ul>
+                                            <div class="mega-featured-card">
+                                                <a href="{{ route('services.details', ['service' => 'medical-affairs-medico-marketing']) }}" class="featured-service-link">
+                                                    <div class="card-icon"><i class="icon-health-care"></i></div>
+                                                    <div class="card-text">
+                                                        <h6>Medical affairs and Medico marketing</h6>
+                                                        <span>Strategic consulting & communications</span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </li>
-                            <li class="menu-item {{ request()->routeIs('doctors*') ? 'current-menu-item' : '' }}">
-                                <a href="{{ route('doctors') }}" class="item-link body-2">
-                                    <span>Doctors</span>
-                                </a>
-                            </li>
-                            <li class="menu-item {{ request()->routeIs('appointment') ? 'current-menu-item' : '' }}">
-                                <a href="{{ route('appointment') }}" class="item-link body-2">
-                                    <span>Appointment</span>
-                                </a>
-                            </li>
-                            <li class="menu-item {{ request()->routeIs('blog*') ? 'current-menu-item' : '' }}">
-                                <a href="{{ route('blog') }}" class="item-link body-2">
-                                    <span>Blog</span>
+                            <li class="menu-item {{ request()->routeIs('careers') ? 'current-menu-item' : '' }}">
+                                <a href="{{ route('careers') }}" class="item-link body-2">
+                                    <span>Career's</span>
                                 </a>
                             </li>
                             <li class="menu-item {{ request()->routeIs('contact') ? 'current-menu-item' : '' }}">
                                 <a href="{{ route('contact') }}" class="item-link body-2">
-                                    <span>Contact</span>
+                                    <span>Contact Us</span>
                                 </a>
                             </li>
                         </ul>
@@ -336,31 +386,31 @@
 
                             <div class="footer-content our-community footer-col-block">
                                 <h5 class="title-mobile">
-                                    Community
+                                    Quick Links
                                     <i class="icon-chevron-right"></i>
                                 </h5>
                                 <div class="tf-collapse-content" style="display: unset;">
                                     <ul>
-                                        <li class="support-item-footer"><a href="{{ route('doctors') }}">Doctors</a></li>
-                                        <li class="support-item-footer"><a href="#">Testimonials</a></li>
-                                        <li class="support-item-footer"><a href="{{ route('faq') }}">FAQs</a></li>
-                                        <li class="support-item-footer"><a href="{{ route('blog') }}">Blog</a></li>
-                                        <li class="support-item-footer"><a href="#">Site Map</a></li>
+                                        <li class="support-item-footer"><a href="{{ route('home') }}">Home</a></li>
+                                        <li class="support-item-footer"><a href="{{ route('about') }}">About Us</a></li>
+                                        <li class="support-item-footer"><a href="{{ route('services') }}">Services</a></li>
+                                        <li class="support-item-footer"><a href="{{ route('careers') }}">Career's</a></li>
+                                        <li class="support-item-footer"><a href="{{ route('contact') }}">Contact Us</a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="footer-content our-services footer-col-block">
-                                <h5 class="title-mobile  ">
-                                    Services
+                                <h5 class="title-mobile">
+                                    Key Services
                                     <i class="icon-chevron-right"></i>
                                 </h5>
                                 <div class="tf-collapse-content" style="display: unset;">
                                     <ul>
-                                        <li class="support-item-footer"><a href="{{ route('clinic.healthcare') }}">Healthcare</a></li>
-                                        <li class="support-item-footer"><a href="{{ route('home') }}">Medicine Care</a></li>
-                                        <li class="support-item-footer"><a href="#">Advance Lab Test</a></li>
-                                        <li class="support-item-footer"><a href="#">Ambulance Car</a></li>
-                                        <li class="support-item-footer"><a href="#">Schedule & Date</a></li>
+                                        <li class="support-item-footer"><a href="{{ route('services.details', ['service' => 'clinical-operations']) }}">Clinical Operations</a></li>
+                                        <li class="support-item-footer"><a href="{{ route('services.details', ['service' => 'project-management']) }}">Project Management</a></li>
+                                        <li class="support-item-footer"><a href="{{ route('services.details', ['service' => 'cro-selection']) }}">BA/BE - CRO Selection</a></li>
+                                        <li class="support-item-footer"><a href="{{ route('services.details', ['service' => 'medical-writing']) }}">Medical Writing</a></li>
+                                        <li class="support-item-footer"><a href="{{ route('services.details', ['service' => 'regulatory-affairs']) }}">Regulatory Affairs</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -459,74 +509,62 @@
                 </div>
                 <nav class="mobile-main-nav">
                     <ul id="menu-mobile" class="menu">
-                        <li class="menu-item current-menu-mobile-item">
+                        <li class="menu-item {{ request()->routeIs('home') ? 'current-menu-mobile-item' : '' }}">
                             <a href="{{ route('home') }}">Home</a>
                         </li>
                         <li class="menu-item menu-item-has-children-mobile">
-                            <a href="#dropdown-menu-2" data-bs-toggle="collapse" class="collapsed">Services</a>
-                            <div id="dropdown-menu-2" class="collapse" data-bs-parent="#menu-mobile">
+                            <a href="#dropdown-menu-about-mob" data-bs-toggle="collapse" class="collapsed">About Us</a>
+                            <div id="dropdown-menu-about-mob" class="collapse" data-bs-parent="#menu-mobile">
                                 <ul class="sub-menu-mobile">
-                                    <li class="menu-item"><a href="{{ route('services') }}">Our Services</a></li>
-                                    <li class="menu-item"><a href="{{ route('services.details') }}">Services Details</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="menu-item menu-item-has-children-mobile">
-                            <a href="#dropdown-menu-3" data-bs-toggle="collapse" class="collapsed">Doctors</a>
-                            <div id="dropdown-menu-3" class="collapse" data-bs-parent="#menu-mobile">
-                                <ul class="sub-menu-mobile">
-                                    <li class="menu-item"><a href="{{ route('doctors') }}">Doctors</a></li>
-                                    <li class="menu-item"><a href="{{ route('doctors.details') }}">Doctors Details</a></li>
-                                </ul>
-                            </div>
-                        </li>
-
-                        <li class="menu-item menu-item-has-children-mobile">
-                            <a href="#dropdown-menu-4" data-bs-toggle="collapse" class="collapsed">Pages</a>
-                            <div id="dropdown-menu-4" class="collapse" data-bs-parent="#menu-mobile">
-                                <ul class="sub-menu-mobile" id="sub-menu-mobile-1">
-                                    <li class="menu-item"><a href="{{ route('about') }}">About Us</a></li>
-                                    <li class="menu-item"><a href="{{ route('history') }}">History</a></li>
-                                    <li class="menu-item"><a href="{{ route('events') }}">Events Calendar</a></li>
-                                    <li class="menu-item"><a href="{{ route('appointment') }}">Make An Appointment</a></li>
+                                    <li class="menu-item"><a href="{{ route('about') }}">About Clineva</a></li>
+                                    <li class="menu-item"><a href="{{ route('history') }}">Our History</a></li>
                                     <li class="menu-item"><a href="{{ route('faq') }}">FAQs</a></li>
-                                    <li class="menu-item"><a href="{{ route('pricing') }}">Pricing Table</a></li>
-                                    <li class="menu-item"><a href="{{ route('login') }}">Login</a></li>
-                                    <li class="menu-item"><a href="{{ route('signup') }}">Sign up</a></li>
-                                    <li class="menu-item menu-item-has-children-mobile">
-                                        <a href="#sub-menu1" data-bs-toggle="collapse" class="collapsed" aria-expanded="true">Portfolio</a>
-                                        <div id="sub-menu1" class="collapse" data-bs-parent="#sub-menu-mobile-1">
-                                            <ul class="sub-menu-mobile sub-menu-mobile-2">
-                                                <li class="menu-item"><a href="{{ route('portfolio') }}">Portfolio</a></li>
-                                                <li class="menu-item"><a href="{{ route('portfolio.details') }}">Portfolio Details</a></li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li class="menu-item menu-item-has-children-mobile">
-                                        <a href="#sub-menu2" data-bs-toggle="collapse" class="collapsed" aria-expanded="true">Shop</a>
-                                        <div id="sub-menu2" class="collapse" data-bs-parent="#sub-menu-mobile-1">
-                                            <ul class="sub-menu-mobile sub-menu-mobile-2">
-                                                <li class="menu-item"><a href="{{ route('shop') }}">Shop</a></li>
-                                                <li class="menu-item"><a href="{{ route('shop.details') }}">Shop Details</a></li>
-                                                <li class="menu-item"><a href="{{ route('cart') }}">Cart</a></li>
-                                                <li class="menu-item"><a href="{{ route('checkout') }}">Checkout</a></li>
-                                            </ul>
-                                        </div>
-                                    </li>
                                 </ul>
                             </div>
                         </li>
                         <li class="menu-item menu-item-has-children-mobile">
-                            <a href="#dropdown-menu-6" data-bs-toggle="collapse" class="collapsed">Blog</a>
-                            <div id="dropdown-menu-6" class="collapse" data-bs-parent="#menu-mobile">
-                                <ul class="sub-menu-mobile">
-                                    <li class="menu-item"><a href="{{ route('blog') }}">Blog Standard</a></li>
-                                    <li class="menu-item"><a href="{{ route('blog.details') }}">Blog Details</a></li>
+                            <a href="#dropdown-menu-services-mob" data-bs-toggle="collapse" class="collapsed">Services</a>
+                            <div id="dropdown-menu-services-mob" class="collapse" data-bs-parent="#menu-mobile">
+                                <ul class="sub-menu-mobile" id="sub-menu-mob-services">
+                                    <li class="menu-item menu-item-has-children-mobile">
+                                        <a href="#sub-clinical-mob" data-bs-toggle="collapse" class="collapsed font-weight-bold" style="color: var(--primary); font-weight: 700;">Clinical Trial</a>
+                                        <div id="sub-clinical-mob" class="collapse show" data-bs-parent="#sub-menu-mob-services">
+                                            <ul class="sub-menu-mobile sub-menu-mobile-2">
+                                                <li><a href="{{ route('services.details', ['service' => 'clinical-operations']) }}">Clinical Operations</a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'project-management']) }}">Project Management</a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'clinical-trial-monitoring']) }}">Clinical Trial Monitoring</a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'medical-monitoring']) }}">Medical Monitoring</a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'quality-assurance']) }}">Quality Assurance</a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'medical-writing']) }}">Medical Writing</a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'etmf-management']) }}">eTMF Management</a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'regulatory-affairs']) }}">Regulatory Affairs</a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'statistical-services']) }}">Statistical services</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="menu-item menu-item-has-children-mobile">
+                                        <a href="#sub-babe-mob" data-bs-toggle="collapse" class="collapsed font-weight-bold" style="color: var(--primary); font-weight: 700;">BA/BE Services</a>
+                                        <div id="sub-babe-mob" class="collapse show" data-bs-parent="#sub-menu-mob-services">
+                                            <ul class="sub-menu-mobile sub-menu-mobile-2">
+                                                <li><a href="{{ route('services.details', ['service' => 'cro-selection']) }}">CRO Selection</a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'babe-medical-writing']) }}">Medical Writing</a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'study-monitoring']) }}">Study Monitoring</a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'babe-regulatory-affairs']) }}">Regulatory Affairs</a></li>
+                                                <li><a href="{{ route('services.details', ['service' => 'gcp-glp-audit']) }}">GCP and GLP Audit</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="menu-item" style="border-top: 1px dashed var(--border-2); padding-top: 8px;">
+                                        <a href="{{ route('services.details', ['service' => 'medical-affairs-medico-marketing']) }}" style="font-weight: 600; color: var(--color-title);">Medical affairs and Medico marketing</a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
-                        <li class="menu-item">
-                            <a href="{{ route('contact') }}">Contact</a>
+                        <li class="menu-item {{ request()->routeIs('careers') ? 'current-menu-mobile-item' : '' }}">
+                            <a href="{{ route('careers') }}">Career's</a>
+                        </li>
+                        <li class="menu-item {{ request()->routeIs('contact') ? 'current-menu-mobile-item' : '' }}">
+                            <a href="{{ route('contact') }}">Contact Us</a>
                         </li>
                     </ul>
                     <div class="contact-mobile">

@@ -30,8 +30,10 @@ Route::get('/services-details', [PageController::class, 'serviceDetails'])->name
 Route::get('/doctors', [PageController::class, 'doctors'])->name('doctors');
 Route::get('/doctor-details', [PageController::class, 'doctorDetails'])->name('doctors.details');
 
-// Contact & Appointments
+// Contact, Careers & Appointments
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+Route::get('/careers', [PageController::class, 'careers'])->name('careers');
+Route::get('/career', [PageController::class, 'careers']);
 Route::get('/make-an-appointment', [PageController::class, 'appointment'])->name('appointment');
 Route::get('/appointment', [PageController::class, 'appointment']);
 
