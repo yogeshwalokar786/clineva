@@ -143,74 +143,77 @@
                 </div>
             </div>
 
-            <section class="section-about h-1 mt-30 tf-spacing-2 mx-30">
-                <div class="img-item item-1">
-                    <img src="{{ asset('image/section/item-section-about-h1-1.png') }}" data-src="{{ asset('image/section/item-section-about-h1-1.png') }}" alt="" class="lazyload">
-                </div>
-                <div class="img-item item-2">
-                    <img src="{{ asset('image/section/item-section-about-h1-1.png') }}" data-src="{{ asset('image/section/item-section-about-h1-1.png') }}" alt="" class="lazyload">
-                </div>
+            <section class="clineva-commitments-section mx-30 mt-30" id="commitments">
                 <div class="tf-container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="heading-section mb-70">
-                                <h6 class="sub-title mb-10 text-anime">
-                                    Our Commitments
-                                </h6>
-                                <h2 class="title wow fadeInUp" data-wow-delay=".2s">
-                                    Committed to Healthcare Partners
-                                    <br>Through Responsibility, Trust
-                                    <br>and Innovation
-                                </h2>
-                            </div>
+                    <div class="row align-items-center rg-30">
+                        <div class="col-lg-5">
+                            <span class="services-cat-badge" style="margin-bottom: 0;">Our Commitments</span>
+                            <h2 class="commitments-title">
+                                Committed to Healthcare Partners Through Responsibility, Trust &amp; Innovation
+                            </h2>
+                            <p class="commitments-desc">
+                                We are fully committed to our partners in the healthcare industry and our commitment is revealed through our core values – Responsibility, Trust and Innovation. Our mission, is to provide efficient services of the highest quality, credibility, accessibility and modernized in solving your healthcare problems.
+                            </p>
+                            <a href="{{ route('about') }}" class="tf-btn">
+                                <span>Learn More About Us</span>
+                                <i class="icon-arrow-right"></i>
+                            </a>
                         </div>
-                    </div>
-                    <div class="row align-items-center">
-                        <div class="col-lg-6">
-                            <div class="wg-video img-2 tf-animate-1"></div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="section-content">
-                                <h6 class="desc mb-40 fw4 lh-32 wow fadeInUp" data-wow-delay=".3s">
-                                    We are fully committed to our partners in the healthcare industry and our commitment is revealed through our core values – Responsibility, Trust and Innovation. Our mission, is to provide efficient services of the highest quality, credibility, accessibility and modernized in solving your healthcare problems.
-                                </h6>
-                                <div class="list-item flex mb-40 flex-wrap" style="gap: 28px;">
-                                    <div class="about-item">
-                                        <div class="wow fadeInUp" data-wow-delay=".3s">
-                                            <h6 class="number-item">01</h6>
-                                        </div>
-                                        <div class="wow fadeInUp" data-wow-delay=".3s">
-                                            <h6 class="title lh-30">
-                                                Responsibility
-                                            </h6>
-                                        </div>
+                        <div class="col-lg-7">
+                            <div class="commitment-values-stack">
+                                <div class="commitment-value-card">
+                                    <div class="value-icon">
+                                        <i class="icon-safety"></i>
                                     </div>
-                                    <div class="about-item">
-                                        <div class="wow fadeInUp" data-wow-delay=".4s">
-                                            <h6 class="number-item">02</h6>
+                                    <div>
+                                        <div class="value-head">
+                                            <span class="value-num">01</span>
+                                            <h4 class="value-name">Responsibility</h4>
                                         </div>
-                                        <div class="wow fadeInUp" data-wow-delay=".4s">
-                                            <h6 class="title lh-30">
-                                                Trust
-                                            </h6>
-                                        </div>
-                                    </div>
-                                    <div class="about-item">
-                                        <div class="wow fadeInUp" data-wow-delay=".5s">
-                                            <h6 class="number-item">03</h6>
-                                        </div>
-                                        <div class="wow fadeInUp" data-wow-delay=".5s">
-                                            <h6 class="title lh-30">
-                                                Innovation
-                                            </h6>
-                                        </div>
+                                        <p class="value-text">Accountable execution across clinical operations, patient safety, regulatory compliance, and quality deliverables.</p>
                                     </div>
                                 </div>
-                                <div class="wow fadeInUp" data-wow-delay=".4s">
-                                    <a href="{{ route('about') }}" class="tf-btn">
-                                        <span>Learn More About Us</span>
-                                        <i class="icon-arrow-right"></i>
-                                    </a>
+                                <div class="commitment-value-card">
+                                    <div class="value-icon">
+                                        <i class="icon-lock"></i>
+                                    </div>
+                                    <div>
+                                        <div class="value-head">
+                                            <span class="value-num">02</span>
+                                            <h4 class="value-name">Trust</h4>
+                                        </div>
+                                        <p class="value-text">Built through credibility, inspection-ready clinical data integrity, and transparent communication with sponsors worldwide.</p>
+                                    </div>
+                                </div>
+                                <div class="commitment-value-card">
+                                    <div class="value-icon">
+                                        <i class="icon-cutting-edge"></i>
+                                    </div>
+                                    <div>
+                                        <div class="value-head">
+                                            <span class="value-num">03</span>
+                                            <h4 class="value-name">Innovation</h4>
+                                        </div>
+                                        <p class="value-text">Modernized research workflows, digital eTMF management, and agile problem-solving tailored to healthcare challenges.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="commitment-pillars-row">
+                                <div class="commitment-pillar-pill">
+                                    <i class="icon-check"></i>
+                                    <span>Highest Quality</span>
+                                </div>
+                                <div class="commitment-pillar-pill">
+                                    <i class="icon-check"></i>
+                                    <span>Credibility</span>
+                                </div>
+                                <div class="commitment-pillar-pill">
+                                    <i class="icon-check"></i>
+                                    <span>Accessibility</span>
+                                </div>
+                                <div class="commitment-pillar-pill">
+                                    <i class="icon-check"></i>
+                                    <span>Modernized</span>
                                 </div>
                             </div>
                         </div>
