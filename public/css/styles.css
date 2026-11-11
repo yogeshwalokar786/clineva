@@ -14446,4 +14446,155 @@ a.mapboxgl-ctrl-logo {
   }
 }
 
+/* ==========================================================================
+   ABOUT US PAGE - CLINEVA CUSTOM SECTIONS
+   ========================================================================== */
+.clineva-mv-section {
+  background-color: #F4F7FA;
+  padding: 90px 0;
+}
+.clineva-mv-card {
+  height: 100%;
+  border-radius: 18px;
+  padding: 44px 40px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+  display: flex;
+  flex-direction: column;
+}
+.clineva-mv-card:hover {
+  transform: translateY(-6px);
+}
+.clineva-mv-card.card-mission {
+  background: linear-gradient(135deg, #0A1C32 0%, #102B4D 100%);
+  color: #ffffff;
+  box-shadow: 0 18px 40px rgba(10, 28, 50, 0.16);
+}
+.clineva-mv-card.card-vision {
+  background: linear-gradient(135deg, #0077C8 0%, #005FA3 100%);
+  color: #ffffff;
+  box-shadow: 0 18px 40px rgba(0, 119, 200, 0.22);
+}
+.clineva-mv-card .mv-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  color: #ffffff;
+  margin-bottom: 24px;
+}
+.clineva-mv-card .mv-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.72);
+  margin-bottom: 8px;
+}
+.clineva-mv-card .mv-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 18px;
+  line-height: 1.25;
+}
+.clineva-mv-card .mv-desc {
+  font-size: 16.5px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+.clineva-values-section {
+  padding: 95px 0;
+  background-color: var(--white);
+}
+.clineva-value-card {
+  height: 100%;
+  background: #FFFFFF;
+  border: 1px solid var(--border, #E2E8F0);
+  border-radius: 16px;
+  padding: 38px 32px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+.clineva-value-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #0077C8, #00A3E0);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.clineva-value-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0, 119, 200, 0.35);
+  box-shadow: 0 20px 45px rgba(10, 28, 50, 0.08);
+}
+.clineva-value-card:hover::before {
+  opacity: 1;
+}
+.clineva-value-card .value-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.clineva-value-card .value-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: rgba(0, 119, 200, 0.09);
+  color: var(--primary, #0077C8);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  transition: all 0.3s ease;
+}
+.clineva-value-card:hover .value-icon {
+  background: var(--primary, #0077C8);
+  color: #ffffff;
+}
+.clineva-value-card .value-num {
+  font-size: 38px;
+  font-weight: 800;
+  line-height: 1;
+  color: rgba(10, 28, 50, 0.08);
+  letter-spacing: -1px;
+}
+.clineva-value-card .value-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-title, #0A1C32);
+  margin-bottom: 14px;
+}
+.clineva-value-card .value-desc {
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--color-paragraph, #475569);
+  margin: 0;
+}
+
+.about-lead-paragraphs p {
+  font-size: 18px;
+  line-height: 1.75;
+  color: var(--color-paragraph);
+}
+.about-lead-paragraphs p + p {
+  margin-top: 18px;
+}
+
 /*# sourceMappingURL=styles.css.map */
