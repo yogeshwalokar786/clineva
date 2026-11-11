@@ -15442,16 +15442,24 @@ a.mapboxgl-ctrl-logo {
   gap: 14px;
 }
 
-.clineva-hero-minimal .hero-btn-outline {
-  background: #ffffff;
-  color: #0A1C32;
-  border: 1px solid #CBD5E1;
+.clineva-hero-minimal .tf-btn.hero-btn-outline {
+  background-color: #ffffff;
+  border-color: #CBD5E1;
 }
 
-.clineva-hero-minimal .hero-btn-outline:hover {
+.clineva-hero-minimal .tf-btn.hero-btn-outline span,
+.clineva-hero-minimal .tf-btn.hero-btn-outline i {
+  color: #0A1C32;
+}
+
+.clineva-hero-minimal .tf-btn.hero-btn-outline:hover {
   border-color: #0077C8;
-  color: #0077C8;
-  background: #F8FBFF;
+  background-color: #0077C8;
+}
+
+.clineva-hero-minimal .tf-btn.hero-btn-outline:hover span,
+.clineva-hero-minimal .tf-btn.hero-btn-outline:hover i {
+  color: #ffffff;
 }
 
 .hero-industries-card {
