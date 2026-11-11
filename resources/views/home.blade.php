@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Micare - Medical and Health Care')
+@section('title', 'Clineva Research Laboratories - Clinical Research & Healthcare Solutions')
 
 @section('content')
         <div class="page-title-home h-1 mt-30">
@@ -24,13 +24,13 @@
                                     <div class="list-btn flex align-items-center flex-wrap">
                                         <div class="fade-item-3 tf-fade-top">
                                             <a href="{{ route('services') }}" class="tf-btn hover-bg-white">
-                                                <span>Explore Department</span>
+                                                <span>Explore Services</span>
                                                 <i class="icon-arrow-right"></i>
                                             </a>
                                         </div>
                                         <div class="fade-item-4 tf-fade-top">
-                                            <a href="{{ route('doctors') }}" class="tf-btn style-white">
-                                                <span>Meet our Doctors</span>
+                                            <a href="{{ route('contact') }}" class="tf-btn style-white">
+                                                <span>Contact Us</span>
                                                 <i class="icon-arrow-right"></i>
                                             </a>
                                         </div>
@@ -57,13 +57,13 @@
                                     <div class="list-btn flex align-items-center flex-wrap">
                                         <div class="fade-item-3 tf-fade-top">
                                             <a href="{{ route('services') }}" class="tf-btn hover-bg-white">
-                                                <span>Explore Department</span>
+                                                <span>Explore Services</span>
                                                 <i class="icon-arrow-right"></i>
                                             </a>
                                         </div>
                                         <div class="fade-item-4 tf-fade-top">
-                                            <a href="{{ route('doctors') }}" class="tf-btn style-white">
-                                                <span>Meet our Doctors</span>
+                                            <a href="{{ route('contact') }}" class="tf-btn style-white">
+                                                <span>Contact Us</span>
                                                 <i class="icon-arrow-right"></i>
                                             </a>
                                         </div>
@@ -88,14 +88,14 @@
                                     </h1>
                                     <div class="list-btn flex align-items-center flex-wrap">
                                         <div class="fade-item-3 tf-fade-top">
-                                            <a href="#" class="tf-btn hover-bg-white">
-                                                <span>Explore Department</span>
+                                            <a href="{{ route('services') }}" class="tf-btn hover-bg-white">
+                                                <span>Explore Services</span>
                                                 <i class="icon-arrow-right"></i>
                                             </a>
                                         </div>
                                         <div class="fade-item-4 tf-fade-top">
-                                            <a href="#" class="tf-btn style-white">
-                                                <span>Meet our Doctors</span>
+                                            <a href="{{ route('contact') }}" class="tf-btn style-white">
+                                                <span>Contact Us</span>
                                                 <i class="icon-arrow-right"></i>
                                             </a>
                                         </div>
@@ -143,16 +143,16 @@
                                     </text>
                                 </svg>
                                 <div class="icon">
-                                    <i class="icon-looking"></i>
+                                    <i class="icon-stethoscope"></i>
                                 </div>
                                 <h4 class="title">
-                                    <a href="#">
-                                        Looking For Medical & Health Care
+                                    <a href="{{ route('services.details', ['service' => 'clinical-operations']) }}">
+                                        Clinical Trials Management
                                     </a>
                                 </h4>
-                                <div class="desc">Your Health is your greatest asset, and finding trusted medical and healthcare services is essential for quality life.</div>
-                                <a href="{{ route('services') }}" class="tf-btn no-bg">
-                                    <span>Find Medical Services</span>
+                                <div class="desc">End-to-end clinical operations, site monitoring, medical writing, eTMF management, and global regulatory support.</div>
+                                <a href="{{ route('services') }}#clinical-trials" class="tf-btn no-bg">
+                                    <span>Explore Clinical Trials</span>
                                     <i class="icon-arrow-right"></i>
                                 </a>
                             </div>
@@ -172,16 +172,16 @@
                                     </text>
                                 </svg>
                                 <div class="icon">
-                                    <i class="icon-find-professional"></i>
+                                    <i class="icon-atom-simple"></i>
                                 </div>
                                 <h4 class="title">
-                                    <a href="#">
-                                        Find Professional & Quality Doctors
+                                    <a href="{{ route('services.details', ['service' => 'cro-selection']) }}">
+                                        BA / BE Study Services
                                     </a>
                                 </h4>
-                                <div class="desc">Finding professional, highly qualified, and experienced doctors is essential for receiving the best medical treatment.</div>
-                                <a href="{{ route('doctors') }}" class="tf-btn no-bg">
-                                    <span>Find a Doctor</span>
+                                <div class="desc">Independent CRO selection, medical writing, BA/BE study monitoring, regulatory guidance, and GCP/GLP audits.</div>
+                                <a href="{{ route('services') }}#babe-services" class="tf-btn no-bg">
+                                    <span>Explore BA/BE Services</span>
                                     <i class="icon-arrow-right"></i>
                                 </a>
                             </div>
@@ -201,16 +201,16 @@
                                     </text>
                                 </svg>
                                 <div class="icon">
-                                    <i class="icon-need-emergency"></i>
+                                    <i class="icon-globe"></i>
                                 </div>
                                 <h4 class="title">
-                                    <a href="#">
-                                        Need Emergency Ambulance ?
+                                    <a href="{{ route('services.details', ['service' => 'medical-affairs-medico-marketing']) }}">
+                                        Medico-Marketing Services
                                     </a>
                                 </h4>
-                                <div class="desc">In a medical emergency, every second counts. If you need a fast, reliable, and fully equipped ambulance</div>
-                                <a href="{{ route('about') }}" class="tf-btn no-bg">
-                                    <span>Find Ambulance</span>
+                                <div class="desc">Scientific communication, advisory boards, CME programs, KOL engagement, and strategic brand launch support.</div>
+                                <a href="{{ route('services.details', ['service' => 'medical-affairs-medico-marketing']) }}" class="tf-btn no-bg">
+                                    <span>Explore Medico-Marketing</span>
                                     <i class="icon-arrow-right"></i>
                                 </a>
                             </div>
@@ -297,258 +297,169 @@
                 </div>
             </section>
 
-            <section class="section-department h-1 tf-spacing-2 mx-30">
+            <section class="section-department h-1 tf-spacing-2 mx-30" id="home-services">
                 <div class="section-department-inner tf-spacing-2">
                     <div class="tf-container">
-                        <div class="heading-section mb-70 text-center">
+                        <div class="heading-section mb-40 text-center">
                             <h6 class="sub-title mb-10 color-title text-anime">
-                                Explore Medical Department
+                                Our Core Services
                             </h6>
                             <h2 class="title text-anime">
-                                Providing Excellence Across
-                                <br>Medical Fields Departments for
-                                <br>Specialized Healthcare
+                                Comprehensive Clinical Research
+                                <br>&amp; Healthcare Solutions
                             </h2>
                         </div>
-                    </div>
 
-                    <div class="list-item-department">
-                        <div class="swiper tf-swiper sw-department sw-grid" data-swiper='{
-                            "slidesPerView": 1,
-                            "spaceBetween": 0,
-                            "observer": true,
-                            "observeParents": true,
-                             "navigation": {
-                                "clickable": true,
-                                "nextEl": ".department-next",
-                                "prevEl": ".department-prev"
-                            },
-                            "pagination": { "el": ".sw-pagination-department", "clickable": true },
-                            "breakpoints": {
-                                "575": { "slidesPerView": 2, "slidesPerGroup": 2, "allowTouchMove": true},
-                                "1150": { 
-                                    "slidesPerView": 4, "slidesPerGroup": 1, "allowTouchMove": false, "spaceBetween": 0}
-                                }
-                            }'>
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="department-item style-1">
-                                        <div class="top-item">
-                                            <span class="sub-title text-anime-wave">
-                                                Health
-                                            </span>
-                                            <h3 class="title wow fadeInUp">
-                                                <a href="{{ route('services.details') }}">
-                                                    Medicine Care
-                                                </a>
-                                            </h3>
-                                        </div>
-                                        <div class="wow fadeInUp">
-                                            <div class="icon ">
-                                                <i class="icon-medicine-care"></i>
-                                            </div>
-                                        </div>
-                                        <div class="bottom-item">
-                                            <div class="desc wow fadeInUp">
-                                                We are dedicated providing top-quality medicine care to ensure health.
-                                            </div>
-                                            <div class="wow fadeInUp">
-                                                <a href="#" class="tf-btn no-bg">
-                                                    <span class="fw6 lsp-0">View Details</span>
-                                                    <i class="icon-arrow-right"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="department-item style-1">
-                                        <div class="top-item">
-                                            <span class="sub-title wow fadeInUp" data-wow-delay=".2s">
-                                                Dentist
-                                            </span>
-                                            <h3 class="title wow fadeInUp" data-wow-delay=".2s">
-                                                <a href="{{ route('services.details') }}">
-                                                    Dental Care
-                                                </a>
-                                            </h3>
-                                        </div>
-                                        <div class="wow fadeInUp" data-wow-delay=".2s">
-                                            <div class="icon">
-                                                <i class="icon-dental-care"></i>
-                                            </div>
-                                        </div>
-                                        <div class="bottom-item">
-                                            <div class="desc wow fadeInUp" data-wow-delay=".2s">
-                                                We are committed to comprehensive and personalized dental care.
-                                            </div>
-                                            <div class="wow fadeInUp" data-wow-delay=".2s">
-                                                <a href="#" class="tf-btn no-bg">
-                                                    <span class="fw6 lsp-0">View Details</span>
-                                                    <i class="icon-arrow-right"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div class="home-services-tabs" role="tablist" aria-label="Service Categories">
+                            <button type="button" class="home-service-tab-btn active" data-tab="tab-clinical" role="tab" aria-selected="true">
+                                <i class="icon-stethoscope"></i>
+                                <span>Clinical Trials</span>
+                                <span class="tab-count">{{ count($clinicalServices) }}</span>
+                            </button>
+                            <button type="button" class="home-service-tab-btn" data-tab="tab-babe" role="tab" aria-selected="false">
+                                <i class="icon-atom-simple"></i>
+                                <span>BA / BE Services</span>
+                                <span class="tab-count">{{ count($babeServices) }}</span>
+                            </button>
+                            <button type="button" class="home-service-tab-btn" data-tab="tab-medico" role="tab" aria-selected="false">
+                                <i class="icon-globe"></i>
+                                <span>Medical Affairs &amp; Medico-Marketing</span>
+                                <span class="tab-count">{{ count($medicoMarketingServices) }}</span>
+                            </button>
+                        </div>
 
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="department-item style-1">
-                                        <div class="top-item">
-                                            <span class="sub-title wow fadeInUp" data-wow-delay=".3s">
-                                                Surgery
-                                            </span>
-                                            <h3 class="title wow fadeInUp" data-wow-delay=".3s">
-                                                <a href="{{ route('services.details') }}">
-                                                    Plastic Surgery
-                                                </a>
-                                            </h3>
-                                        </div>
-                                        <div class="wow fadeInUp" data-wow-delay=".3s">
-                                            <div class="icon">
-                                                <i class="icon-plastic-surgery"></i>
+                        <div id="tab-clinical" class="home-service-pane active" role="tabpanel">
+                            <div class="home-services-grid">
+                                @foreach ($clinicalServices as $service)
+                                    <div class="clineva-service-card">
+                                        <div class="card-top">
+                                            <div class="service-icon-box">
+                                                <i class="{{ $service['icon'] }}"></i>
                                             </div>
+                                            <span class="services-cat-badge" style="margin-bottom: 0;">{{ $service['category_name'] }}</span>
                                         </div>
-                                        <div class="bottom-item">
-                                            <div class="desc wow fadeInUp" data-wow-delay=".3s">
-                                                We specialize in transformative plastic surgery procedures designed.
-                                            </div>
-                                            <div class="wow fadeInUp" data-wow-delay=".3s">
-                                                <a href="#" class="tf-btn no-bg">
-                                                    <span class="fw6 lsp-0">View Details</span>
-                                                    <i class="icon-arrow-right"></i>
-                                                </a>
-                                            </div>
-                                        </div>
+                                        <h4 class="service-title">
+                                            <a href="{{ route('services.details', ['service' => $service['slug']]) }}">
+                                                {{ $service['title'] }}
+                                            </a>
+                                        </h4>
+                                        <p class="service-desc">{{ \Illuminate\Support\Str::limit($service['short_desc'], 130) }}</p>
+                                        <a href="{{ route('services.details', ['service' => $service['slug']]) }}" class="service-link-btn">
+                                            <span>View Service Details</span>
+                                            <i class="icon-arrow-right"></i>
+                                        </a>
                                     </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="department-item style-1">
-                                        <div class="top-item">
-                                            <span class="sub-title wow fadeInUp" data-wow-delay=".4s">
-                                                Neurology
-                                            </span>
-                                            <h3 class="title wow fadeInUp" data-wow-delay=".4s">
-                                                <a href="{{ route('services.details') }}">
-                                                    Neurology
-                                                </a>
-                                            </h3>
-                                        </div>
-                                        <div class="wow fadeInUp" data-wow-delay=".4s">
-                                            <div class="icon">
-                                                <i class="icon-neurology"></i>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <div id="tab-babe" class="home-service-pane" role="tabpanel">
+                            <div class="home-services-grid">
+                                @foreach ($babeServices as $service)
+                                    <div class="clineva-service-card">
+                                        <div class="card-top">
+                                            <div class="service-icon-box">
+                                                <i class="{{ $service['icon'] }}"></i>
                                             </div>
+                                            <span class="services-cat-badge" style="margin-bottom: 0;">{{ $service['category_name'] }}</span>
                                         </div>
-                                        <div class="bottom-item">
-                                            <div class="desc wow fadeInUp" data-wow-delay=".4s">
-                                                We specialize in comprehends neurology care to diagnose, treat, and manage.
-                                            </div>
-                                            <div class="wow fadeInUp" data-wow-delay=".4s">
-                                                <a href="#" class="tf-btn no-bg">
-                                                    <span class="fw6 lsp-0">View Details</span>
-                                                    <i class="icon-arrow-right"></i>
-                                                </a>
-                                            </div>
-                                        </div>
+                                        <h4 class="service-title">
+                                            <a href="{{ route('services.details', ['service' => $service['slug']]) }}">
+                                                {{ $service['title'] }}
+                                            </a>
+                                        </h4>
+                                        <p class="service-desc">{{ \Illuminate\Support\Str::limit($service['short_desc'], 130) }}</p>
+                                        <a href="{{ route('services.details', ['service' => $service['slug']]) }}" class="service-link-btn">
+                                            <span>View Service Details</span>
+                                            <i class="icon-arrow-right"></i>
+                                        </a>
                                     </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="department-item style-1">
-                                        <div class="top-item">
-                                            <span class="sub-title wow fadeInUp" data-wow-delay=".2s">
-                                                Orthopedic
-                                            </span>
-                                            <h3 class="title wow fadeInUp" data-wow-delay=".2s">
-                                                <a href="{{ route('services.details') }}">
-                                                    Ophthalmology
-                                                </a>
-                                            </h3>
+                                @endforeach
+
+                                <div class="clineva-service-card" style="background: linear-gradient(145deg, #0A1C32 0%, #102B4D 100%); border-color: transparent; color: #ffffff;">
+                                    <div class="card-top">
+                                        <div class="service-icon-box" style="background: rgba(255, 255, 255, 0.14); color: #ffffff;">
+                                            <i class="icon-suitcase"></i>
                                         </div>
-                                        <div class="wow fadeInUp" data-wow-delay=".2s">
-                                            <div class="icon">
-                                                <i class="icon-ophthalmology"></i>
-                                            </div>
-                                        </div>
-                                        <div class="bottom-item">
-                                            <div class="desc wow fadeInUp" data-wow-delay=".2s">
-                                                We provide comprehensive eye care to diagnose, treat, and manage health.
-                                            </div>
-                                            <div class="wow fadeInUp" data-wow-delay=".2s">
-                                                <a href="#" class="tf-btn no-bg">
-                                                    <span class="fw6 lsp-0">View Details</span>
-                                                    <i class="icon-arrow-right"></i>
-                                                </a>
-                                            </div>
-                                        </div>
+                                        <span class="services-cat-badge" style="margin-bottom: 0; background: rgba(0, 163, 224, 0.22); color: #7DD3FC;">Sponsor Support</span>
                                     </div>
+                                    <h4 class="service-title" style="color: #ffffff;">
+                                        <a href="{{ route('contact') }}" style="color: #ffffff;">
+                                            Planning a BA / BE Study?
+                                        </a>
+                                    </h4>
+                                    <p class="service-desc" style="color: rgba(255, 255, 255, 0.82);">Partner with Clineva for independent CRO evaluation, protocol writing, regulatory strategy, and compliant study oversight.</p>
+                                    <a href="{{ route('contact') }}" class="service-link-btn" style="color: #7DD3FC;">
+                                        <span>Request Consultation</span>
+                                        <i class="icon-arrow-right"></i>
+                                    </a>
                                 </div>
-                                <div class="swiper-slide">
-                                    <div class="department-item style-1">
-                                        <div class="top-item">
-                                            <span class="sub-title wow fadeInUp" data-wow-delay=".3s">
-                                                Hematology
+                            </div>
+                        </div>
+
+                        <div id="tab-medico" class="home-service-pane" role="tabpanel">
+                            @foreach ($medicoMarketingServices as $service)
+                                <div class="medico-spotlight-card">
+                                    <div class="row align-items-center rg-30">
+                                        <div class="col-lg-8">
+                                            <span class="services-cat-badge" style="background: rgba(0, 163, 224, 0.22); color: #7DD3FC;">
+                                                {{ $service['category_name'] }}
                                             </span>
-                                            <h3 class="title wow fadeInUp" data-wow-delay=".3s">
-                                                <a href="{{ route('services.details') }}">
-                                                    Hematology
-                                                </a>
-                                            </h3>
+                                            <h3 class="mb-15 text-white">{{ $service['title'] }}</h3>
+                                            <p class="mb-0" style="color: rgba(255, 255, 255, 0.86); font-size: 16px; line-height: 1.7;">
+                                                {{ $service['short_desc'] }}
+                                            </p>
+                                            @if (!empty($service['deliverables']))
+                                                <div class="spotlight-pills">
+                                                    @foreach ($service['deliverables'] as $pill)
+                                                        <span class="spotlight-pill">{{ $pill }}</span>
+                                                    @endforeach
+                                                </div>
+                                            @endif
                                         </div>
-                                        <div class="wow fadeInUp" data-wow-delay=".3s">
-                                            <div class="icon">
-                                                <i class="icon-phlebotomy"></i>
-                                            </div>
-                                        </div>
-                                        <div class="bottom-item">
-                                            <div class="desc wow fadeInUp" data-wow-delay=".3s">
-                                                We specialize in advanced hematology care, diagnosing and treating.
-                                            </div>
-                                            <div class="wow fadeInUp" data-wow-delay=".3s">
-                                                <a href="#" class="tf-btn no-bg">
-                                                    <span class="fw6 lsp-0">View Details</span>
-                                                    <i class="icon-arrow-right"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide colum-2">
-                                    <div class="box-cta style-1">
-                                        <div class="top-box">
-                                            <div class="sub-title wow fadeInUp" data-wow-delay=".4s">
-                                                Need For Home Care
-                                            </div>
-                                            <div class="title wow fadeInUp" data-wow-delay=".4s">
-                                                Medical Treatments?
-                                            </div>
-                                        </div>
-                                        <div class="desc fw5 wow fadeInUp" data-wow-delay=".4s">
-                                            We are committed to delivering safe, effective,
-                                            <br> and patient-centered care.
-                                        </div>
-                                        <div class="benefit-list">
-                                            <div class="benefit-items wow fadeInUp" data-wow-delay=".4s">
-                                                <i class="icon-check"></i>
-                                                <span>Advanced Medical Technology</span>
-                                            </div>
-                                            <div class="benefit-items wow fadeInUp" data-wow-delay=".4s">
-                                                <i class="icon-check"></i>
-                                                <span>Specialized Treatments & Services</span>
-                                            </div>
-                                        </div>
-                                        <div class="wow fadeInUp" data-wow-delay=".4s">
-                                            <a href="{{ route('appointment') }}" class="tf-btn hover-bg-white style-small">
-                                                <span>Make Appointment</span>
+                                        <div class="col-lg-4 text-lg-end">
+                                            <a href="{{ route('services.details', ['service' => $service['slug']]) }}" class="tf-btn style-white">
+                                                <span>Explore Medico-Marketing</span>
                                                 <i class="icon-arrow-right"></i>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endforeach
                         </div>
-                        <div class="sw-pagination-department sw-pagination d-xl-none mt-15 justify-content-center"></div>
+
+                        <div class="text-center mt-50">
+                            <a href="{{ route('services') }}" class="tf-btn">
+                                <span>View All Services</span>
+                                <i class="icon-arrow-right"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
+                <script>
+                    (function () {
+                        const buttons = document.querySelectorAll('.home-service-tab-btn');
+                        const panes = document.querySelectorAll('.home-service-pane');
+                        buttons.forEach(function (btn) {
+                            btn.addEventListener('click', function () {
+                                const targetId = btn.getAttribute('data-tab');
+                                buttons.forEach(function (b) {
+                                    b.classList.remove('active');
+                                    b.setAttribute('aria-selected', 'false');
+                                });
+                                panes.forEach(function (p) {
+                                    p.classList.remove('active');
+                                });
+                                btn.classList.add('active');
+                                btn.setAttribute('aria-selected', 'true');
+                                const targetPane = document.getElementById(targetId);
+                                if (targetPane) {
+                                    targetPane.classList.add('active');
+                                }
+                            });
+                        });
+                    })();
+                </script>
             </section>
 
             <section class="section-appointmrent h-1 mx-30">
@@ -971,11 +882,11 @@
                                 <div class="heading-section style-white flex align-items-end justify-content-between flex-wrap g-30 rg-10 mb-70">
                                     <div class="left">
                                         <h6 class="sub-title mb-10 text-anime">
-                                            Lab Testing & Facilitises
+                                            Specialized CRO Capabilities
                                         </h6>
                                         <h2 class="title text-anime">
-                                            We Have Modern Lab & Machine,
-                                            <br>Booking For Quality Test
+                                            Inspection-Ready Systems,
+                                            <br>Compliance &amp; Regulatory Excellence
                                         </h2>
                                     </div>
                                     <div class="list-btn flex align-items-center g-20">
@@ -1004,262 +915,40 @@
                                     }
                                 }'>
                                 <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                                        <div class="lab-item discount px-mobile-sm">
-                                            <span class="discount-number caption-1">40% OFF</span>
+                                    @foreach (['etmf-management', 'regulatory-affairs', 'cro-selection', 'gcp-glp-audit', 'statistical-services'] as $featuredSlug)
+                                        @if (isset($allServices[$featuredSlug]))
+                                            @php($featured = $allServices[$featuredSlug])
+                                            <div class="swiper-slide">
+                                                <div class="lab-item px-mobile-sm">
+                                                    <div class="icon">
+                                                        <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(0, 119, 200, 0.1); color: #0077C8; display: inline-flex; align-items: center; justify-content: center; font-size: 24px;">
+                                                            <i class="{{ $featured['icon'] }}"></i>
+                                                        </div>
+                                                    </div>
 
-                                            <div class="icon">
-                                                <img src="{{ asset('image/icon/mri.svg') }}" data-src="{{ asset('image/icon/mri.svg') }}" alt="" class="lazyload">
+                                                    <h5 class="name-lab lh-30">
+                                                        <a href="{{ route('services.details', ['service' => $featured['slug']]) }}">{{ $featured['title'] }}</a>
+                                                    </h5>
+
+                                                    <div class="desc">
+                                                        {{ \Illuminate\Support\Str::limit($featured['short_desc'], 105) }}
+                                                    </div>
+
+                                                    <div class="line"></div>
+
+                                                    <div class="price">
+                                                        <span class="fw5">Division :</span>
+                                                        <h6 style="margin: 0;">{{ $featured['category_name'] }}</h6>
+                                                    </div>
+
+                                                    <a href="{{ route('services.details', ['service' => $featured['slug']]) }}" class="tf-btn style-small style-gray-light">
+                                                        <span>Explore Service</span>
+                                                        <i class="icon-arrow-right"></i>
+                                                    </a>
+                                                </div>
                                             </div>
-
-                                            <h5 class="name-lab lh-30">
-                                                <a href="{{ route('services.details') }}">MRI (Magnetic Resonance Imaging)</a>
-                                            </h5>
-
-                                            <div class="desc">
-                                                Uses strong magnets & radio
-                                                waves create detailed images.
-                                            </div>
-
-                                            <div class="line"></div>
-
-                                            <div class="price">
-                                                <span class="fw5">Regular Price :</span>
-                                                <h5> $150</h5>
-                                            </div>
-
-                                            <a href="{{ route('services.details') }}" class="tf-btn style-small style-gray-light">
-                                                <span>Booking For A Test</span>
-                                                <i class="icon-arrow-right"></i>
-                                            </a>
-
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="lab-item discount px-mobile-sm">
-                                            <span class="discount-number caption-1">40% OFF</span>
-
-                                            <div class="icon">
-                                                <img src="{{ asset('image/icon/x-rays.svg') }}" data-src="{{ asset('image/icon/x-rays.svg') }}" alt="" class="lazyload">
-                                            </div>
-
-                                            <h5 class="name-lab lh-30">
-                                                <a href="{{ route('services.details') }}">
-                                                    X-rays, CT Scan
-                                                    (Tomography)
-                                                </a>
-                                            </h5>
-
-                                            <div class="desc">
-                                                Used to view bones and detect fractures, infections.
-                                            </div>
-
-                                            <div class="line"></div>
-
-                                            <div class="price">
-                                                <span class="fw5">Regular Price :</span>
-                                                <h5> $320</h5>
-                                            </div>
-
-                                            <a href="{{ route('services.details') }}" class="tf-btn style-small style-gray-light">
-                                                <span>Booking For A Test</span>
-                                                <i class="icon-arrow-right"></i>
-                                            </a>
-
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="lab-item discount px-mobile-sm">
-                                            <span class="discount-number caption-1">40% OFF</span>
-
-                                            <div class="icon">
-                                                <img src="{{ asset('image/icon/ecg.svg') }}" data-src="{{ asset('image/icon/ecg.svg') }}" alt="" class="lazyload">
-                                            </div>
-
-                                            <h5 class="name-lab lh-30">
-                                                <a href="{{ route('services.details') }}">
-                                                    (ECG)
-                                                    Electrocardiogram
-                                                </a>
-                                            </h5>
-
-                                            <div class="desc">
-                                                Measures electrical activity
-                                                of heart and can detect.
-                                            </div>
-
-                                            <div class="line"></div>
-
-                                            <div class="price">
-                                                <span class="fw5">Regular Price :</span>
-                                                <h5> $430</h5>
-                                            </div>
-
-                                            <a href="{{ route('services.details') }}" class="tf-btn style-small style-gray-light">
-                                                <span>Booking For A Test</span>
-                                                <i class="icon-arrow-right"></i>
-                                            </a>
-
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="lab-item discount px-mobile-sm">
-                                            <span class="discount-number caption-1">40% OFF</span>
-
-                                            <div class="icon">
-                                                <img src="{{ asset('image/icon/cbc.svg') }}" data-src="{{ asset('image/icon/cbc.svg') }}" alt="" class="lazyload">
-                                            </div>
-
-                                            <h5 class="name-lab lh-30">
-                                                <a href="{{ route('services.details') }}">(CBC) Complete Blood Count</a>
-                                            </h5>
-
-                                            <div class="desc">
-                                                Measures overall health and detects various disorders.
-                                            </div>
-
-                                            <div class="line"></div>
-
-                                            <div class="price">
-                                                <span class="fw5">Regular Price :</span>
-                                                <h5> $130</h5>
-                                            </div>
-
-                                            <a href="{{ route('services.details') }}" class="tf-btn style-small style-gray-light">
-                                                <span>Booking For A Test</span>
-                                                <i class="icon-arrow-right"></i>
-                                            </a>
-
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="lab-item discount px-mobile-sm">
-                                            <span class="discount-number caption-1">40% OFF</span>
-
-                                            <div class="icon">
-                                                <img src="{{ asset('image/icon/mri.svg') }}" data-src="{{ asset('image/icon/mri.svg') }}" alt="" class="lazyload">
-                                            </div>
-
-                                            <h5 class="name-lab lh-30">
-                                                <a href="{{ route('services.details') }}">MRI (Magnetic Resonance Imaging)</a>
-                                            </h5>
-
-                                            <div class="desc">
-                                                Uses strong magnets & radio
-                                                waves create detailed images.
-                                            </div>
-
-                                            <div class="line"></div>
-
-                                            <div class="price">
-                                                <span class="fw5">Regular Price :</span>
-                                                <h5> $150</h5>
-                                            </div>
-
-                                            <a href="{{ route('services.details') }}" class="tf-btn style-small style-gray-light">
-                                                <span>Booking For A Test</span>
-                                                <i class="icon-arrow-right"></i>
-                                            </a>
-
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="lab-item discount px-mobile-sm">
-                                            <span class="discount-number caption-1">40% OFF</span>
-
-                                            <div class="icon">
-                                                <img src="{{ asset('image/icon/x-rays.svg') }}" data-src="{{ asset('image/icon/x-rays.svg') }}" alt="" class="lazyload">
-                                            </div>
-
-                                            <h5 class="name-lab lh-30">
-                                                <a href="{{ route('services.details') }}">
-                                                    X-rays, CT Scan
-                                                    ( Tomography)
-                                                </a>
-                                            </h5>
-
-                                            <div class="desc">
-                                                Used to view bones and detect fractures, infections.
-                                            </div>
-
-                                            <div class="line"></div>
-
-                                            <div class="price">
-                                                <span class="fw5">Regular Price :</span>
-                                                <h5> $320</h5>
-                                            </div>
-
-                                            <a href="{{ route('services.details') }}" class="tf-btn style-small style-gray-light">
-                                                <span>Booking For A Test</span>
-                                                <i class="icon-arrow-right"></i>
-                                            </a>
-
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="lab-item discount px-mobile-sm">
-                                            <span class="discount-number caption-1">40% OFF</span>
-
-                                            <div class="icon">
-                                                <img src="{{ asset('image/icon/ecg.svg') }}" data-src="{{ asset('image/icon/ecg.svg') }}" alt="" class="lazyload">
-                                            </div>
-
-                                            <h5 class="name-lab lh-30">
-                                                <a href="{{ route('services.details') }}">
-                                                    (ECG)
-                                                    Electrocardiogram
-                                                </a>
-                                            </h5>
-
-                                            <div class="desc">
-                                                Measures electrical activity
-                                                of heart and can detect.
-                                            </div>
-
-                                            <div class="line"></div>
-
-                                            <div class="price">
-                                                <span class="fw5">Regular Price :</span>
-                                                <h5> $430</h5>
-                                            </div>
-
-                                            <a href="{{ route('services.details') }}" class="tf-btn style-small style-gray-light">
-                                                <span>Booking For A Test</span>
-                                                <i class="icon-arrow-right"></i>
-                                            </a>
-
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="lab-item discount px-mobile-sm">
-                                            <span class="discount-number caption-1">40% OFF</span>
-
-                                            <div class="icon">
-                                                <img src="{{ asset('image/icon/cbc.svg') }}" data-src="{{ asset('image/icon/cbc.svg') }}" alt="" class="lazyload">
-                                            </div>
-
-                                            <h5 class="name-lab lh-30">
-                                                <a href="{{ route('services.details') }}">(CBC) Complete Blood Count</a>
-                                            </h5>
-
-                                            <div class="desc">
-                                                Measures overall health and detects various disorders.
-                                            </div>
-
-                                            <div class="line"></div>
-
-                                            <div class="price">
-                                                <span class="fw5">Regular Price :</span>
-                                                <h5> $130</h5>
-                                            </div>
-
-                                            <a href="{{ route('services.details') }}" class="tf-btn style-small style-gray-light">
-                                                <span>Booking For A Test</span>
-                                                <i class="icon-arrow-right"></i>
-                                            </a>
-
-                                        </div>
-                                    </div>
+                                        @endif
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="sw-pagination-lab sw-pagination d-xl-none mt-15 justify-content-center style-white"></div>
