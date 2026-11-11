@@ -201,11 +201,6 @@
                             <i class="icon-arrow-right"></i>
                         </a>
                     </div>
-                    <div class="nav-megamenu">
-                        <a href="#canvnasMegamenu" data-bs-toggle="offcanvas" class="megamenu-btn">
-                            <i class="icon-megamenu"></i>
-                        </a>
-                    </div>
                 </div>
             </div>
         </header>
@@ -305,11 +300,6 @@
                         <a href="{{ route('appointment') }}" class="tf-btn style-small">
                             <span>Make Appointment</span>
                             <i class="icon-arrow-right"></i>
-                        </a>
-                    </div>
-                    <div class="nav-megamenu">
-                        <a href="#canvnasMegamenu" data-bs-toggle="offcanvas" class="megamenu-btn">
-                            <i class="icon-megamenu"></i>
                         </a>
                     </div>
                 </div>
@@ -564,108 +554,6 @@
             </div>
         </div>
         <!-- /.mobile-nav-wrap -->
-
-        <!-- OffcanvasMegamenu -->
-        <div class="offcanvas offcanvas-end offcanvasMegamenu" id="canvnasMegamenu">
-            <div class="heading flex justify-content-between">
-                <div class="logo-megamenu">
-                    <img src="{{ asset('image/logo/logo.svg') }}" alt="Clineva Research Laboratories">
-                </div>
-                <button class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
-                </button>
-            </div>
-            <div class="desc">
-                Join our newsletter today to get the latest updates and easily manage your data more efficiently!
-            </div>
-
-            <div class="contact-mega-menu meag-menu-item">
-                <ul class="contact-list-mega-menu">
-                    <li>
-                        <p>Address:
-                            <a href="#" target="_blank">
-                                70 Washington Square South, New York, NY 10012, United States
-                            </a>
-                        </p>
-                    </li>
-                    <li>
-                        <p>Email:
-                            <a href="mailto:example@gmail.com">
-                                example@gmail.com
-                            </a>
-                        </p>
-                    </li>
-                    <li>
-                        <p> Call: <a href="tel:+00012345688">
-                                +000 (123) 456 88</a>
-                        </p>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="megamenu-subscribe">
-                <h5 class="title-content">
-                    Newsletter Subscribe
-                </h5>
-                <form action="javascript:void(0)" method="POST" class="form-newsletter2 subscribe-form" accept-charset="utf-8">
-                    
-                    <input type="email" name="email-form" class="subscribe-email" placeholder="Email address" tabindex="0" aria-required="true" required="">
-                    <button class="subscribe-button tf-btn-newsletter">
-                        <i class="icon-send"></i>
-                    </button>
-                </form>
-            </div>
-
-            <div class="megamenu-recent">
-                <h5 class="title-content">
-                    Recent News
-                </h5>
-                <div class="tf-post-list style-small hover-img">
-                    <a href="{{ route('blog.details') }}" class="image">
-                        <img src="{{ asset('image/blog/tf-post-list-1.jpg') }}" data-src="{{ asset('image/blog/tf-post-list-1.jpg') }}" alt="" class="lazyload">
-                    </a>
-                    <div class="post-content">
-                        <div class="post-date caption-1">
-                            25 February 2025
-                        </div>
-                        <a href="{{ route('blog.details') }}" class="name-post fw7 lh-24">
-                            Future Healthcare Innovations
-                            in Medical Treatment
-                        </a>
-                    </div>
-                </div>
-                <div class="tf-post-list style-small hover-img">
-                    <a href="{{ route('blog.details') }}" class="image">
-                        <img src="{{ asset('image/blog/tf-post-list-2.jpg') }}" data-src="{{ asset('image/blog/tf-post-list-2.jpg') }}" alt="" class="lazyload">
-                    </a>
-                    <div class="post-content">
-                        <div class="post-date caption-1">
-                            25 February 2025
-                        </div>
-                        <a href="{{ route('blog.details') }}" class="name-post fw7 lh-24">
-                            Future Healthcare Innovations
-                            in Medical Treatment
-                        </a>
-                    </div>
-                </div>
-                <div class="tf-post-list style-small hover-img">
-                    <a href="{{ route('blog.details') }}" class="image">
-                        <img src="{{ asset('image/blog/tf-post-list-3.jpg') }}" data-src="{{ asset('image/blog/tf-post-list-3.jpg') }}" alt="" class="lazyload">
-                    </a>
-                    <div class="post-content">
-                        <div class="post-date caption-1">
-                            25 February 2025
-                        </div>
-                        <a href="{{ route('blog.details') }}" class="name-post fw7 lh-24">
-                            Future Healthcare Innovations
-                            in Medical Treatment
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-        <!-- /.offcanvasMegamenu -->
 
         <!-- Go-top -->
         <div class="progress-wrap">
