@@ -11,16 +11,15 @@
                             <div class="tf-container">
                                 <div class="page-title-content">
                                     <div class="top-content">
-                                        <div class="image fade-item-1 tf-fade-top">
-                                            <img src="{{ asset('image/page-title/img-sub-title.png') }}" data-src="{{ asset('image/page-title/img-sub-title.png') }}" alt="" class="lazyload">
-                                        </div>
-                                        <h3 class="sub-title fw6 fade-item-1 tf-fade-top">Medical & Health Center</h3>
+                                        <span class="services-cat-badge" style="margin-bottom: 0;">Clineva Research Laboratories</span>
                                     </div>
                                     <h1 class="title fade-item-2 tf-fade-top">
-                                        Quality Medical
-                                        <br>Care for Healthier
-                                        <br>and Tomorrow
+                                        Clinical Research &amp;
+                                        <br>Healthcare Solutions
                                     </h1>
+                                    <p class="hero-lead-desc fade-item-2 tf-fade-top">
+                                        We at Clineva believe in the power of providing the best solutions of Clinical, Regulatory, Quality assurance, Statistical, Data Management, Medical Writing, Medical Monitoring and Medico-marketing services to all of our clients within the pharmaceutical, healthcare and medical devices industry.
+                                    </p>
                                     <div class="list-btn flex align-items-center flex-wrap">
                                         <div class="fade-item-3 tf-fade-top">
                                             <a href="{{ route('services') }}" class="tf-btn hover-bg-white">
@@ -44,16 +43,15 @@
                             <div class="tf-container">
                                 <div class="page-title-content">
                                     <div class="top-content">
-                                        <div class="image fade-item-1 tf-fade-top">
-                                            <img src="{{ asset('image/page-title/img-sub-title.png') }}" data-src="{{ asset('image/page-title/img-sub-title.png') }}" alt="" class="lazyload">
-                                        </div>
-                                        <h3 class="sub-title fw6 fade-item-1 tf-fade-top">Medical & Health Center</h3>
+                                        <span class="services-cat-badge" style="margin-bottom: 0;">Responsibility · Trust · Innovation</span>
                                     </div>
                                     <h1 class="title fade-item-2 tf-fade-top">
-                                        Trusted Healthcare
-                                        <br>Services for Every
-                                        <br>Stage of Life
+                                        Quality, Credibility &amp;
+                                        <br>Modernized Execution
                                     </h1>
+                                    <p class="hero-lead-desc fade-item-2 tf-fade-top">
+                                        We are fully committed to our partners in the healthcare industry — delivering efficient Clinical, Regulatory, QA, and Medico-Marketing solutions tailored to pharmaceutical, biotech, and medical device programs.
+                                    </p>
                                     <div class="list-btn flex align-items-center flex-wrap">
                                         <div class="fade-item-3 tf-fade-top">
                                             <a href="{{ route('services') }}" class="tf-btn hover-bg-white">
@@ -77,15 +75,15 @@
                             <div class="tf-container">
                                 <div class="page-title-content">
                                     <div class="top-content">
-                                        <div class="image fade-item-1 tf-fade-top">
-                                            <img src="{{ asset('image/page-title/img-sub-title.png') }}" data-src="{{ asset('image/page-title/img-sub-title.png') }}" alt="" class="lazyload">
-                                        </div>
-                                        <h3 class="sub-title fw6 fade-item-1 tf-fade-top">Medical & Health Center</h3>
+                                        <span class="services-cat-badge" style="margin-bottom: 0;">Global CRO &amp; Regulatory Partner</span>
                                     </div>
                                     <h1 class="title fade-item-2 tf-fade-top">
-                                        Providing Excellence
-                                        <br>in Medical Care
+                                        Integrated Solutions From
+                                        <br>Protocol to Approval
                                     </h1>
+                                    <p class="hero-lead-desc fade-item-2 tf-fade-top">
+                                        From Clinical Operations, BA/BE study oversight, and eTMF management to Statistical Analysis, Medical Writing, and Medical Monitoring — precision at every milestone.
+                                    </p>
                                     <div class="list-btn flex align-items-center flex-wrap">
                                         <div class="fade-item-3 tf-fade-top">
                                             <a href="{{ route('services') }}" class="tf-btn hover-bg-white">
@@ -232,62 +230,60 @@
                         <div class="col-12">
                             <div class="heading-section mb-70">
                                 <h6 class="sub-title mb-10 text-anime">
-                                    About micare
+                                    Our Commitments
                                 </h6>
                                 <h2 class="title wow fadeInUp" data-wow-delay=".2s">
-                                    We focus on patient-centered care, cutting-
-                                    <br>edge medical solutions, and a compassionate
-                                    <br>approach to healing. With a dedication safety,
-                                    <br>excellence, and innovation,
+                                    Committed to Healthcare Partners
+                                    <br>Through Responsibility, Trust
+                                    <br>and Innovation
                                 </h2>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-7">
-                            <div class="wg-video img-2 tf-animate-1">
-                                <a href="https://www.youtube.com/watch?v=XHOmBV4js_E" class="popup-youtube">
-                                    <div class="icon">
-                                        <i class="icon-play icon-color-red"></i>
-                                    </div>
-                                    <div class="wave"></div>
-                                    <div class="wave"></div>
-                                    <div class="wave"></div>
-                                </a>
-                            </div>
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <div class="wg-video img-2 tf-animate-1"></div>
                         </div>
-                        <div class="col-lg-5">
+                        <div class="col-lg-6">
                             <div class="section-content">
-                                <h6 class="desc mb-50 fw4 lh-32 wow fadeInUp" data-wow-delay=".4s">
-                                    We are committed to providing comprehensive, high-quality medical care tailored to your needs. Whether you require preventive check-ups they specialized treatments, or emergency care
+                                <h6 class="desc mb-40 fw4 lh-32 wow fadeInUp" data-wow-delay=".3s">
+                                    We are fully committed to our partners in the healthcare industry and our commitment is revealed through our core values – Responsibility, Trust and Innovation. Our mission, is to provide efficient services of the highest quality, credibility, accessibility and modernized in solving your healthcare problems.
                                 </h6>
-                                <div class="list-item flex mb-40 flex-wrap">
+                                <div class="list-item flex mb-40 flex-wrap" style="gap: 28px;">
+                                    <div class="about-item">
+                                        <div class="wow fadeInUp" data-wow-delay=".3s">
+                                            <h6 class="number-item">01</h6>
+                                        </div>
+                                        <div class="wow fadeInUp" data-wow-delay=".3s">
+                                            <h6 class="title lh-30">
+                                                Responsibility
+                                            </h6>
+                                        </div>
+                                    </div>
                                     <div class="about-item">
                                         <div class="wow fadeInUp" data-wow-delay=".4s">
-                                            <h6 class="number-item">1</h6>
+                                            <h6 class="number-item">02</h6>
                                         </div>
                                         <div class="wow fadeInUp" data-wow-delay=".4s">
                                             <h6 class="title lh-30">
-                                                Compassionate
-                                                <br>Healthcare
+                                                Trust
                                             </h6>
                                         </div>
                                     </div>
                                     <div class="about-item">
                                         <div class="wow fadeInUp" data-wow-delay=".5s">
-                                            <h6 class="number-item">2</h6>
+                                            <h6 class="number-item">03</h6>
                                         </div>
                                         <div class="wow fadeInUp" data-wow-delay=".5s">
                                             <h6 class="title lh-30">
-                                                Advanced Medical
-                                                <br>Technology
+                                                Innovation
                                             </h6>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="wow fadeInUp" data-wow-delay=".4s">
                                     <a href="{{ route('about') }}" class="tf-btn">
-                                        <span>Learn more us</span>
+                                        <span>Learn More About Us</span>
                                         <i class="icon-arrow-right"></i>
                                     </a>
                                 </div>

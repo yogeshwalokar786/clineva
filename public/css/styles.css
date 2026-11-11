@@ -15411,4 +15411,33 @@ a.mapboxgl-ctrl-logo {
   }
 }
 
+/* Homepage Hero Lead Copy */
+.page-title-home .page-title-content {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+}
+
+.page-title-home .title {
+  margin-bottom: 22px;
+}
+
+.page-title-home .hero-lead-desc {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #1E293B;
+  margin-bottom: 32px;
+  max-width: 630px;
+}
+
+@media (max-width: 991px) {
+  .page-title-home .page-title-home-inner {
+    padding-top: 110px;
+    padding-bottom: 110px;
+  }
+  .page-title-home .page-title-home-inner::before {
+    background: linear-gradient(180deg, rgba(214, 232, 235, 0.92) 0%, rgba(214, 232, 235, 0.88) 100%);
+  }
+}
+
 /*# sourceMappingURL=styles.css.map */
