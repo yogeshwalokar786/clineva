@@ -1,154 +1,157 @@
 @extends('layouts.app')
 
-@section('title', 'Contact Us - Clineva')
+@section('title', 'Contact Us - Clineva Research Laboratories')
 
 @section('content')
 <div class="page-title mt-30">
-             <div class="mx-30">
-                <div class="page-title-content paralax-bg">
-                    <h1 class="title">
-                        Contacts us
-                    </h1>
-                    <div class="breadkcum">
-                        <h3><a href="{{ route('home') }}" class="link-breadkcum">Home</a></h3>
-                        <span class="dot bg-white"></span>
-                        <h3 class="page-breadkcum">Contacts</h3>
-                    </div>
-                </div>
+    <div class="mx-30">
+        <div class="page-title-content paralax-bg">
+            <h1 class="title text-anime">
+                Contact Us
+            </h1>
+            <div class="breadkcum text-anime">
+                <h3><a href="{{ route('home') }}" class="link-breadkcum">Home</a></h3>
+                <span class="dot bg-white mx-27"></span>
+                <h3 class="page-breadkcum pl-0">Contact Us</h3>
             </div>
         </div>
+    </div>
+</div>
 
-        <div class="main-content">
-            <div class="section-contact p-contact tf-spacing-1">
-                <div class="tf-container">
-                    <div class="heading-section mb-70 text-center">
-                        <h6 class="sub-title mb-10 text-anime">
-                            Contact Us
-                        </h6>
-                        <h2 class="title text-anime">
-                            Connect with Our Medical Team
-                            <br>for Personalized Care
-                        </h2>
-                    </div>
-                </div>
-                <div class="tf-container tf-spacing-3">
-                    <div class="row rg-30">
-                        <div class="col-lg-4">
-                            <div class="box-icon style-list px-mobile-sm">
-                                <div class="wow fadeInUp">
-                                    <div class="icon">
-                                        <i class="icon-address"></i>
-                                    </div>
+<div class="main-content">
+    <section class="clineva-contact-section">
+        <div class="tf-container">
+            <div class="row rg-30 align-items-stretch">
+                <!-- Left Column: Direct Contact Details Card -->
+                <div class="col-lg-5 wow fadeInUp" data-wow-delay=".1s">
+                    <div class="clineva-contact-info-card">
+                        <h3 class="info-title">Get in Touch</h3>
+                        <p class="info-subtitle">
+                            Connect with Clineva's clinical operations, regulatory affairs, and medical affairs team for inquiries or study proposals.
+                        </p>
+
+                        <div class="clineva-contact-info-list">
+                            <div class="clineva-contact-info-item">
+                                <div class="info-icon">
+                                    <i class="icon-address"></i>
                                 </div>
-                                <div class="box-content">
-                                    <h6 class="title wow fadeInUp"><a href="#">Address</a></h6>
-                                    <div class="wow fadeInUp">
-                                        <p class="desc">15 Washington Square New York, NY 10075, USA</p>
-                                    </div>
+                                <div>
+                                    <span class="info-label">Office Address</span>
+                                    <span class="info-value">70 Washington Square South,<br>New York, NY 10012, United States</span>
+                                </div>
+                            </div>
+
+                            <div class="clineva-contact-info-item">
+                                <div class="info-icon">
+                                    <i class="icon-contacts"></i>
+                                </div>
+                                <div>
+                                    <span class="info-label">Contact Details</span>
+                                    <a href="mailto:info@clineva.com">info@clineva.com</a>
+                                    <a href="tel:+12345688990">+1 (234) 5688 9990</a>
+                                </div>
+                            </div>
+
+                            <div class="clineva-contact-info-item">
+                                <div class="info-icon">
+                                    <i class="icon-working-hours"></i>
+                                </div>
+                                <div>
+                                    <span class="info-label">Working Hours</span>
+                                    <span class="info-value">Monday – Friday: 08:30 AM – 06:00 PM</span>
+                                    <span class="info-value" style="font-size: 13.5px; color: rgba(255,255,255,0.65);">Saturday &amp; Sunday: Closed</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="box-icon style-list px-mobile-sm">
-                                <div class="wow fadeInUp" data-wow-delay=".1s">
-                                    <div class="icon">
-                                        <i class="icon-contacts"></i>
-                                    </div>
-                                </div>
-                                <div class="box-content">
-                                    <h6 class="title wow fadeInUp" data-wow-delay=".1s"><a href="#">Contacts:</a></h6>
-                                    <ul>
-                                        <li class="wow fadeInUp" data-wow-delay=".1s"><span class="color-paragraph">Email : </span> <a href="#" class="fw7">support@gmail.com</a></li>
-                                        <li class="wow fadeInUp" data-wow-delay=".1s"><span class="color-paragraph">Phone : </span> <a href="#" class="fw7">+1 (234) 568 9900</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="box-icon style-list px-mobile-sm">
-                                <div class= "wow fadeInUp" data-wow-delay=".2s">
-                                    <div class="icon">
-                                        <i class="icon-working-hours"></i>
-                                    </div>
-                                </div>
-                                <div class="box-content">
-                                    <h6 class="title wow fadeInUp" data-wow-delay=".2s"><a href="#">Working hours:</a></h6>
-                                    <ul>
-                                        <li class="flex justify-content-between align-items-center flex-wrap wow fadeInUp" data-wow-delay=".2s"><span class="color-paragraph">Monday - Friday:</span> <span class="fw7">8AM - 5PM</span></li>
-                                        <li class="flex justify-content-between align-items-center flex-wrap wow fadeInUp" data-wow-delay=".2s"> <span class="color-paragraph">Saturday</span> <span class="color-paragraph">:</span> <span class="fw7">8AM - 1PM</span></li>
-                                    </ul>
-                                </div>
-                            </div>
+
+                        <div class="clineva-contact-social">
+                            <a href="#" title="Facebook" aria-label="Facebook"><i class="icon-facebook"></i></a>
+                            <a href="#" title="Twitter" aria-label="Twitter"><i class="icon-twitter"></i></a>
+                            <a href="#" title="LinkedIn" aria-label="LinkedIn"><i class="icon-linkedin2"></i></a>
+                            <a href="#" title="Instagram" aria-label="Instagram"><i class="icon-instagram"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="tf-container w-1740">
-                    <div class="bottom-section flex justify-content-between g-30">
-                        <div class="image img-item img-1 tf-animate-1">
-                            <img src="{{ asset('image/section/img-p-contact-1.jpg') }}" data-src="{{ asset('image/section/img-p-contact-1.jpg') }}" alt="" class="lazyload">
-                        </div>
 
-                        <form id="contactform" class="form-contact-us style-white-3 px-mobile-sm" method="POST" action="javascript:void(0)">
-                            
-                            <div class="heading-form text-center mb-42">
-                                <div class="title text-anime">
-                                    Send Us Message
+                <!-- Right Column: Minimal Inquiry Form Card -->
+                <div class="col-lg-7 wow fadeInUp" data-wow-delay=".2s">
+                    <div class="clineva-contact-form-card">
+                        <h3 class="form-title">Send Us a Message</h3>
+                        <p class="form-subtitle">
+                            Share your project details below and our specialists will get back to you promptly.
+                        </p>
+
+                        <form id="clinevaContactForm" action="javascript:void(0)" method="POST">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="clineva-field-label" for="contact_name">Full Name *</label>
+                                    <input type="text" id="contact_name" name="name" class="clineva-minimal-input" placeholder="Your full name" required>
                                 </div>
-                                <div class="desc text-anime">Strong communication teamwork skills enable collaboration</div>
+                                <div class="col-md-6">
+                                    <label class="clineva-field-label" for="contact_email">Email Address *</label>
+                                    <input type="email" id="contact_email" name="email" class="clineva-minimal-input" placeholder="you@company.com" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="clineva-field-label" for="contact_phone">Phone Number *</label>
+                                    <input type="tel" id="contact_phone" name="phone" class="clineva-minimal-input" placeholder="+1 (234) 567-8900" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="clineva-field-label" for="contact_company">Company / Organization</label>
+                                    <input type="text" id="contact_company" name="company" class="clineva-minimal-input" placeholder="Pharmaceutical / Biotech / CRO">
+                                </div>
+                                <div class="col-12">
+                                    <label class="clineva-field-label" for="contact_service">Service of Interest</label>
+                                    <select id="contact_service" name="service" class="clineva-minimal-select">
+                                        <option value="">Select a service (Optional)</option>
+                                        <option value="Clinical Operations">Clinical Trials — Clinical Operations</option>
+                                        <option value="Project Management">Clinical Trials — Project Management</option>
+                                        <option value="Clinical Trial Monitoring">Clinical Trials — Clinical Trial Monitoring</option>
+                                        <option value="Medical Monitoring">Clinical Trials — Medical Monitoring</option>
+                                        <option value="Quality Assurance">Clinical Trials — Quality Assurance</option>
+                                        <option value="Medical Writing">Clinical Trials — Medical Writing</option>
+                                        <option value="eTMF Management">Clinical Trials — eTMF Management</option>
+                                        <option value="Regulatory Affairs">Clinical Trials — Regulatory Affairs</option>
+                                        <option value="Statistical Services">Clinical Trials — Statistical Services</option>
+                                        <option value="BA/BE Services">BA/BE Services (CRO Selection / Monitoring / Audits)</option>
+                                        <option value="Medico-Marketing">Medical Affairs &amp; Medico-Marketing</option>
+                                        <option value="General Inquiry">General Inquiry</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="clineva-field-label" for="contact_message">Message *</label>
+                                    <textarea id="contact_message" name="message" class="clineva-minimal-textarea" placeholder="Write your message or study inquiry..." required></textarea>
+                                </div>
+                                <div class="col-12 mt-3">
+                                    <button type="submit" class="tf-btn">
+                                        <span>Send Message</span>
+                                        <i class="icon-arrow-right"></i>
+                                    </button>
+                                </div>
                             </div>
 
-                            <fieldset class="item mb-20">
-                                <i class="icon-user"></i>
-                                <input type="text" name="name" id="name" placeholder="Name" required>
-                            </fieldset>
-
-                            <fieldset class="item mb-20">
-                                <i class="icon-envelope"></i>
-                                <input type="email" name="mail" id="mail" placeholder="Email Address" required>
-                            </fieldset>
-
-                            <fieldset class="item mb-20">
-                                <i class="icon-phone-volume-2"></i>
-                                <input type="number" name="phone" id="phone" placeholder="Phone no" required>
-                            </fieldset>
-
-                            <fieldset class="item mb-20">
-                                <i class="icon-globe"></i>
-                                <input type="text" name="website" id="website" placeholder="Website" required>
-                            </fieldset>
-
-                            <fieldset class="item-textarea mb-25">
-                                <i class="icon-envelope-2"></i>
-                                <textarea name="message" id="message" placeholder="Write message..." required></textarea>
-                            </fieldset>
-
-                            <fieldset class="radio-box mb-30">
-                                <input type="checkbox" name="ship" id="ship">
-                                <label class="mb-0 color-paragraph" for="ship">I agree with company terms & condition.</label>
-                            </fieldset>
-
-                            <button type="submit" class="tf-btn">
-                                <span>Send Message</span>
-                                <i class="icon-arrow-right"></i>
-                            </button>
-
+                            <div id="contactSuccessAlert" class="mt-4 p-3 rounded-3 d-none" style="background: rgba(0, 119, 200, 0.08); border: 1px solid rgba(0, 119, 200, 0.25); color: #0A1C32; font-size: 14.5px;">
+                                <i class="icon-check me-2" style="color: #0077C8;"></i>
+                                Thank you! Your message has been received. Our team will get back to you shortly.
+                            </div>
                         </form>
-
-                        <div class="image img-item img-2 tf-animate-4">
-                            <img src="{{ asset('image/section/img-p-contact-2.jpg') }}" data-src="{{ asset('image/section/img-p-contact-2.jpg') }}" alt="" class="lazyload">
-                        </div>
                     </div>
                 </div>
             </div>
-
-            <section class="section-map">
-                <div class="tf-container">
-                    <div class="wg-map tf-spacing-11">
-                        <div class="box-map">
-                            <div id="map" class="map map-1"></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
         </div>
+    </section>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('clinevaContactForm');
+    const alertBox = document.getElementById('contactSuccessAlert');
+    if (form && alertBox) {
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            alertBox.classList.remove('d-none');
+            form.reset();
+        });
+    }
+});
+</script>
 @endsection
