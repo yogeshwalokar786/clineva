@@ -15411,32 +15411,114 @@ a.mapboxgl-ctrl-logo {
   }
 }
 
-/* Homepage Hero Lead Copy */
-.page-title-home .page-title-content {
+/* Homepage Minimal Static Hero */
+.clineva-hero-minimal {
+  background: linear-gradient(130deg, #F0F7FC 0%, #FFFFFF 55%, #E7F2FA 100%);
+  border: 1px solid #E2E8F0;
+  border-radius: 20px;
+  padding: 68px 0;
   position: relative;
-  z-index: 2;
-  max-width: 680px;
+  overflow: hidden;
 }
 
-.page-title-home .title {
-  margin-bottom: 22px;
+.clineva-hero-minimal .hero-title {
+  font-size: clamp(32px, 3.6vw, 48px);
+  font-weight: 700;
+  line-height: 1.18;
+  color: #0A1C32;
+  margin-top: 14px;
+  margin-bottom: 18px;
 }
 
-.page-title-home .hero-lead-desc {
+.clineva-hero-minimal .hero-lead-desc {
   font-size: 16px;
-  line-height: 1.7;
-  color: #1E293B;
-  margin-bottom: 32px;
-  max-width: 630px;
+  line-height: 1.75;
+  color: #475569;
+  margin-bottom: 28px;
+  max-width: 620px;
+}
+
+.clineva-hero-minimal .list-btn {
+  gap: 14px;
+}
+
+.clineva-hero-minimal .hero-btn-outline {
+  background: #ffffff;
+  color: #0A1C32;
+  border: 1px solid #CBD5E1;
+}
+
+.clineva-hero-minimal .hero-btn-outline:hover {
+  border-color: #0077C8;
+  color: #0077C8;
+  background: #F8FBFF;
+}
+
+.hero-industries-card {
+  background: linear-gradient(145deg, #0A1C32 0%, #102B4D 100%);
+  border-radius: 18px;
+  padding: 32px 30px;
+  color: #ffffff;
+  box-shadow: 0 18px 40px rgba(10, 28, 50, 0.14);
+}
+
+.hero-industries-card .card-eyebrow {
+  display: inline-block;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  color: #7DD3FC;
+  margin-bottom: 18px;
+}
+
+.hero-industries-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.hero-industries-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-industries-item .item-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(0, 163, 224, 0.2);
+  color: #7DD3FC;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  flex-shrink: 0;
+}
+
+.hero-industries-item .item-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.hero-industries-footer {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.78);
 }
 
 @media (max-width: 991px) {
-  .page-title-home .page-title-home-inner {
-    padding-top: 110px;
-    padding-bottom: 110px;
-  }
-  .page-title-home .page-title-home-inner::before {
-    background: linear-gradient(180deg, rgba(214, 232, 235, 0.92) 0%, rgba(214, 232, 235, 0.88) 100%);
+  .clineva-hero-minimal {
+    padding: 46px 0;
   }
 }
 

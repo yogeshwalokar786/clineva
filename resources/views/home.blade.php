@@ -3,218 +3,143 @@
 @section('title', 'Clineva Research Laboratories - Clinical Research & Healthcare Solutions')
 
 @section('content')
-        <div class="page-title-home h-1 mt-30">
-            <div class="swiper sw-page-title-home tf-sw-slideshow slider-effect-fade" data-effect="fade" data-preview="1" data-tablet="1" data-mobile="1" data-auto-play="true" data-centered="false" data-space="0" data-space-mb="0" data-loop="false" data-speed="800">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="page-title-home-inner img-1 mx-30">
-                            <div class="tf-container">
-                                <div class="page-title-content">
-                                    <div class="top-content">
-                                        <span class="services-cat-badge" style="margin-bottom: 0;">Clineva Research Laboratories</span>
-                                    </div>
-                                    <h1 class="title fade-item-2 tf-fade-top">
-                                        Clinical Research &amp;
-                                        <br>Healthcare Solutions
-                                    </h1>
-                                    <p class="hero-lead-desc fade-item-2 tf-fade-top">
-                                        We at Clineva believe in the power of providing the best solutions of Clinical, Regulatory, Quality assurance, Statistical, Data Management, Medical Writing, Medical Monitoring and Medico-marketing services to all of our clients within the pharmaceutical, healthcare and medical devices industry.
-                                    </p>
-                                    <div class="list-btn flex align-items-center flex-wrap">
-                                        <div class="fade-item-3 tf-fade-top">
-                                            <a href="{{ route('services') }}" class="tf-btn hover-bg-white">
-                                                <span>Explore Services</span>
-                                                <i class="icon-arrow-right"></i>
-                                            </a>
-                                        </div>
-                                        <div class="fade-item-4 tf-fade-top">
-                                            <a href="{{ route('contact') }}" class="tf-btn style-white">
-                                                <span>Contact Us</span>
-                                                <i class="icon-arrow-right"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+        <section class="clineva-hero-minimal mt-30 mx-30">
+            <div class="tf-container">
+                <div class="row align-items-center rg-30">
+                    <div class="col-lg-7">
+                        <span class="services-cat-badge" style="margin-bottom: 0;">Clineva Research Laboratories</span>
+                        <h1 class="hero-title">
+                            Clinical Research &amp;
+                            <br>Healthcare Solutions
+                        </h1>
+                        <p class="hero-lead-desc">
+                            We at Clineva believe in the power of providing the best solutions of Clinical, Regulatory, Quality assurance, Statistical, Data Management, Medical Writing, Medical Monitoring and Medico-marketing services to all of our clients within the pharmaceutical, healthcare and medical devices industry.
+                        </p>
+                        <div class="list-btn flex align-items-center flex-wrap">
+                            <a href="{{ route('services') }}" class="tf-btn">
+                                <span>Explore Services</span>
+                                <i class="icon-arrow-right"></i>
+                            </a>
+                            <a href="{{ route('contact') }}" class="tf-btn hero-btn-outline">
+                                <span>Contact Us</span>
+                                <i class="icon-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
-                    <div class="swiper-slide">
-                        <div class="page-title-home-inner img-2 mx-30">
-                            <div class="tf-container">
-                                <div class="page-title-content">
-                                    <div class="top-content">
-                                        <span class="services-cat-badge" style="margin-bottom: 0;">Responsibility · Trust · Innovation</span>
+                    <div class="col-lg-5">
+                        <div class="hero-industries-card">
+                            <span class="card-eyebrow">Industries We Serve</span>
+                            <div class="hero-industries-list">
+                                <div class="hero-industries-item">
+                                    <div class="item-icon">
+                                        <i class="icon-atom-simple"></i>
                                     </div>
-                                    <h1 class="title fade-item-2 tf-fade-top">
-                                        Quality, Credibility &amp;
-                                        <br>Modernized Execution
-                                    </h1>
-                                    <p class="hero-lead-desc fade-item-2 tf-fade-top">
-                                        We are fully committed to our partners in the healthcare industry — delivering efficient Clinical, Regulatory, QA, and Medico-Marketing solutions tailored to pharmaceutical, biotech, and medical device programs.
-                                    </p>
-                                    <div class="list-btn flex align-items-center flex-wrap">
-                                        <div class="fade-item-3 tf-fade-top">
-                                            <a href="{{ route('services') }}" class="tf-btn hover-bg-white">
-                                                <span>Explore Services</span>
-                                                <i class="icon-arrow-right"></i>
-                                            </a>
-                                        </div>
-                                        <div class="fade-item-4 tf-fade-top">
-                                            <a href="{{ route('contact') }}" class="tf-btn style-white">
-                                                <span>Contact Us</span>
-                                                <i class="icon-arrow-right"></i>
-                                            </a>
-                                        </div>
+                                    <span class="item-label">Pharmaceutical &amp; Biotechnology</span>
+                                </div>
+                                <div class="hero-industries-item">
+                                    <div class="item-icon">
+                                        <i class="icon-stethoscope"></i>
                                     </div>
+                                    <span class="item-label">Healthcare Providers &amp; Organizations</span>
+                                </div>
+                                <div class="hero-industries-item">
+                                    <div class="item-icon">
+                                        <i class="icon-cutting-edge"></i>
+                                    </div>
+                                    <span class="item-label">Medical Devices Industry</span>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="page-title-home-inner img-3 mx-30">
-                            <div class="tf-container">
-                                <div class="page-title-content">
-                                    <div class="top-content">
-                                        <span class="services-cat-badge" style="margin-bottom: 0;">Global CRO &amp; Regulatory Partner</span>
-                                    </div>
-                                    <h1 class="title fade-item-2 tf-fade-top">
-                                        Integrated Solutions From
-                                        <br>Protocol to Approval
-                                    </h1>
-                                    <p class="hero-lead-desc fade-item-2 tf-fade-top">
-                                        From Clinical Operations, BA/BE study oversight, and eTMF management to Statistical Analysis, Medical Writing, and Medical Monitoring — precision at every milestone.
-                                    </p>
-                                    <div class="list-btn flex align-items-center flex-wrap">
-                                        <div class="fade-item-3 tf-fade-top">
-                                            <a href="{{ route('services') }}" class="tf-btn hover-bg-white">
-                                                <span>Explore Services</span>
-                                                <i class="icon-arrow-right"></i>
-                                            </a>
-                                        </div>
-                                        <div class="fade-item-4 tf-fade-top">
-                                            <a href="{{ route('contact') }}" class="tf-btn style-white">
-                                                <span>Contact Us</span>
-                                                <i class="icon-arrow-right"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <p class="hero-industries-footer mb-0">
+                                Integrated Clinical, Regulatory, Quality Assurance, Statistical, Data Management, Medical Writing, Medical Monitoring &amp; Medico-Marketing solutions.
+                            </p>
                         </div>
                     </div>
                 </div>
-                <a class="arrow-btn arrow-next navigation-prev-slider">
-                    <i class="icon-arrow-left"></i>
-                </a>
-                <a class="arrow-btn arrow-prev navigation-next-slider">
-                    <i class="icon-arrow-right"></i>
-                </a>
-                <div class="sw-pagination-slider sw-pagination pagination-home"></div>
             </div>
-        </div>
+        </section>
 
         <div class="main-content">
 
             <div class="features-list mt-30 mx-30">
-                <div class="swiper tf-swiper sw-features" data-swiper='{
-                    "slidesPerView": 1,
-                    "spaceBetween": 30,
-                    "pagination": { "el": ".sw-pagination-features", "clickable": true },
-                    "breakpoints": {
-                        "575": { "slidesPerView": 2, "slidesPerGroup": 1},
-                        "1150": { "slidesPerView": 3, "slidesPerGroup": 1}
-                        }
-                    }'>
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="features-item">
-                                <svg class="number-features">
-                                    <defs>
-                                        <linearGradient id="textGradient1" x1="0%" y1="0%" x2="0%" y2="100%">
-                                            <stop offset="0%" stop-color="rgba(12, 23, 26, 0.05)" />
-                                            <stop offset="100%" stop-color="rgba(12, 23, 26, 0)" />
-                                        </linearGradient>
-                                    </defs>
-
-                                    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="none" stroke="url(#textGradient1)" stroke-width="2">
-                                        01
-                                    </text>
-                                </svg>
-                                <div class="icon">
-                                    <i class="icon-stethoscope"></i>
-                                </div>
-                                <h4 class="title">
-                                    <a href="{{ route('services.details', ['service' => 'clinical-operations']) }}">
-                                        Clinical Trials Management
-                                    </a>
-                                </h4>
-                                <div class="desc">End-to-end clinical operations, site monitoring, medical writing, eTMF management, and global regulatory support.</div>
-                                <a href="{{ route('services') }}#clinical-trials" class="tf-btn no-bg">
-                                    <span>Explore Clinical Trials</span>
-                                    <i class="icon-arrow-right"></i>
-                                </a>
-                            </div>
+                <div class="home-services-grid">
+                    <div class="features-item h-100">
+                        <svg class="number-features">
+                            <defs>
+                                <linearGradient id="textGradient1" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="rgba(12, 23, 26, 0.05)" />
+                                    <stop offset="100%" stop-color="rgba(12, 23, 26, 0)" />
+                                </linearGradient>
+                            </defs>
+                            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="none" stroke="url(#textGradient1)" stroke-width="2">
+                                01
+                            </text>
+                        </svg>
+                        <div class="icon">
+                            <i class="icon-stethoscope"></i>
                         </div>
-                        <div class="swiper-slide">
-                            <div class="features-item">
-                                <svg class="number-features">
-                                    <defs>
-                                        <linearGradient id="textGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
-                                            <stop offset="0%" stop-color="rgba(12, 23, 26, 0.05)" />
-                                            <stop offset="100%" stop-color="rgba(12, 23, 26, 0)" />
-                                        </linearGradient>
-                                    </defs>
-
-                                    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="none" stroke="url(#textGradient2)" stroke-width="2">
-                                        02
-                                    </text>
-                                </svg>
-                                <div class="icon">
-                                    <i class="icon-atom-simple"></i>
-                                </div>
-                                <h4 class="title">
-                                    <a href="{{ route('services.details', ['service' => 'cro-selection']) }}">
-                                        BA / BE Study Services
-                                    </a>
-                                </h4>
-                                <div class="desc">Independent CRO selection, medical writing, BA/BE study monitoring, regulatory guidance, and GCP/GLP audits.</div>
-                                <a href="{{ route('services') }}#babe-services" class="tf-btn no-bg">
-                                    <span>Explore BA/BE Services</span>
-                                    <i class="icon-arrow-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="features-item">
-                                <svg class="number-features">
-                                    <defs>
-                                        <linearGradient id="textGradient3" x1="0%" y1="0%" x2="0%" y2="100%">
-                                            <stop offset="0%" stop-color="rgba(12, 23, 26, 0.05)" />
-                                            <stop offset="100%" stop-color="rgba(12, 23, 26, 0)" />
-                                        </linearGradient>
-                                    </defs>
-
-                                    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="none" stroke="url(#textGradient3)" stroke-width="2">
-                                        03
-                                    </text>
-                                </svg>
-                                <div class="icon">
-                                    <i class="icon-globe"></i>
-                                </div>
-                                <h4 class="title">
-                                    <a href="{{ route('services.details', ['service' => 'medical-affairs-medico-marketing']) }}">
-                                        Medico-Marketing Services
-                                    </a>
-                                </h4>
-                                <div class="desc">Scientific communication, advisory boards, CME programs, KOL engagement, and strategic brand launch support.</div>
-                                <a href="{{ route('services.details', ['service' => 'medical-affairs-medico-marketing']) }}" class="tf-btn no-bg">
-                                    <span>Explore Medico-Marketing</span>
-                                    <i class="icon-arrow-right"></i>
-                                </a>
-                            </div>
-                        </div>
+                        <h4 class="title">
+                            <a href="{{ route('services.details', ['service' => 'clinical-operations']) }}">
+                                Clinical Trials Management
+                            </a>
+                        </h4>
+                        <div class="desc">End-to-end clinical operations, site monitoring, medical writing, eTMF management, and global regulatory support.</div>
+                        <a href="{{ route('services') }}#clinical-trials" class="tf-btn no-bg">
+                            <span>Explore Clinical Trials</span>
+                            <i class="icon-arrow-right"></i>
+                        </a>
                     </div>
-                    <div class="sw-pagination-features sw-pagination d-xl-none mt-15 justify-content-center"></div>
+                    <div class="features-item h-100">
+                        <svg class="number-features">
+                            <defs>
+                                <linearGradient id="textGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="rgba(12, 23, 26, 0.05)" />
+                                    <stop offset="100%" stop-color="rgba(12, 23, 26, 0)" />
+                                </linearGradient>
+                            </defs>
+                            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="none" stroke="url(#textGradient2)" stroke-width="2">
+                                02
+                            </text>
+                        </svg>
+                        <div class="icon">
+                            <i class="icon-atom-simple"></i>
+                        </div>
+                        <h4 class="title">
+                            <a href="{{ route('services.details', ['service' => 'cro-selection']) }}">
+                                BA / BE Study Services
+                            </a>
+                        </h4>
+                        <div class="desc">Independent CRO selection, medical writing, BA/BE study monitoring, regulatory guidance, and GCP/GLP audits.</div>
+                        <a href="{{ route('services') }}#babe-services" class="tf-btn no-bg">
+                            <span>Explore BA/BE Services</span>
+                            <i class="icon-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="features-item h-100">
+                        <svg class="number-features">
+                            <defs>
+                                <linearGradient id="textGradient3" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="rgba(12, 23, 26, 0.05)" />
+                                    <stop offset="100%" stop-color="rgba(12, 23, 26, 0)" />
+                                </linearGradient>
+                            </defs>
+                            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="none" stroke="url(#textGradient3)" stroke-width="2">
+                                03
+                            </text>
+                        </svg>
+                        <div class="icon">
+                            <i class="icon-globe"></i>
+                        </div>
+                        <h4 class="title">
+                            <a href="{{ route('services.details', ['service' => 'medical-affairs-medico-marketing']) }}">
+                                Medico-Marketing Services
+                            </a>
+                        </h4>
+                        <div class="desc">Scientific communication, advisory boards, CME programs, KOL engagement, and strategic brand launch support.</div>
+                        <a href="{{ route('services.details', ['service' => 'medical-affairs-medico-marketing']) }}" class="tf-btn no-bg">
+                            <span>Explore Medico-Marketing</span>
+                            <i class="icon-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
 
