@@ -149,7 +149,7 @@
                                         </div>
                                         <div class="mega-col mega-col-2">
                                             <div class="mega-header">
-                                                <i class="icon-microscope"></i>
+                                                <i class="icon-atom-simple"></i>
                                                 <h6>BA/BE Services</h6>
                                             </div>
                                             <ul class="mega-list">
@@ -161,7 +161,7 @@
                                             </ul>
                                             <div class="mega-featured-card">
                                                 <a href="{{ route('services.details', ['service' => 'medical-affairs-medico-marketing']) }}" class="featured-service-link">
-                                                    <div class="card-icon"><i class="icon-health-care"></i></div>
+                                                    <div class="card-icon"><i class="icon-globe"></i></div>
                                                     <div class="card-text">
                                                         <h6>Medical affairs and Medico marketing</h6>
                                                         <span>Strategic consulting & communications</span>
@@ -255,7 +255,7 @@
                                         </div>
                                         <div class="mega-col mega-col-2">
                                             <div class="mega-header">
-                                                <i class="icon-microscope"></i>
+                                                <i class="icon-atom-simple"></i>
                                                 <h6>BA/BE Services</h6>
                                             </div>
                                             <ul class="mega-list">
@@ -267,7 +267,7 @@
                                             </ul>
                                             <div class="mega-featured-card">
                                                 <a href="{{ route('services.details', ['service' => 'medical-affairs-medico-marketing']) }}" class="featured-service-link">
-                                                    <div class="card-icon"><i class="icon-health-care"></i></div>
+                                                    <div class="card-icon"><i class="icon-globe"></i></div>
                                                     <div class="card-text">
                                                         <h6>Medical affairs and Medico marketing</h6>
                                                         <span>Strategic consulting & communications</span>

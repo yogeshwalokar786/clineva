@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Data\ServicesCatalog;
 
 class PageController extends Controller
 {
@@ -13,12 +14,42 @@ class PageController extends Controller
 
     public function services()
     {
-        return view('pages.services');
+        $categories = ServicesCatalog::categories();
+        $clinicalServices = ServicesCatalog::getByCategory('clinical-trials');
+        $babeServices = ServicesCatalog::getByCategory('babe-services');
+        $medicoMarketingServices = ServicesCatalog::getByCategory('medico-marketing');
+
+        return view('pages.services', compact(
+            'categories',
+            'clinicalServices',
+            'babeServices',
+            'medicoMarketingServices'
+        ));
     }
 
-    public function serviceDetails()
+    public function serviceDetails(Request $request, ?string $service = null)
     {
-        return view('pages.services-details');
+        $slug = $service ?: $request->query('service', 'clinical-operations');
+        $all = ServicesCatalog::all();
+        $currentService = ServicesCatalog::find($slug);
+
+        $keys = array_keys($all);
+        $idx = array_search($currentService['slug'], $keys, true);
+        $prevService = ($idx !== false && $idx > 0) ? $all[$keys[$idx - 1]] : null;
+        $nextService = ($idx !== false && $idx < count($keys) - 1) ? $all[$keys[$idx + 1]] : null;
+
+        $clinicalServices = ServicesCatalog::getByCategory('clinical-trials');
+        $babeServices = ServicesCatalog::getByCategory('babe-services');
+        $medicoMarketingServices = ServicesCatalog::getByCategory('medico-marketing');
+
+        return view('pages.services-details', compact(
+            'currentService',
+            'prevService',
+            'nextService',
+            'clinicalServices',
+            'babeServices',
+            'medicoMarketingServices'
+        ));
     }
 
     public function doctors()

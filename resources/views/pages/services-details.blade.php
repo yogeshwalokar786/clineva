@@ -1,295 +1,211 @@
 @extends('layouts.app')
 
-@section('title', 'Services Details - Clineva')
+@section('title', $currentService['title'] . ' - Clineva Research Laboratories')
 
 @section('content')
 <div class="page-title mt-30">
-             <div class="mx-30">
-                <div class="page-title-content paralax-bg">
-                    <h1 class="title">
-                        Health & Wellness
-                    </h1>
-                    <div class="breadkcum">
-                        <h3><a href="{{ route('home') }}" class="link-breadkcum">Home</a></h3>
-                        <span class="dot bg-white mx-25"></span>
-                        <h3 class="page-breadkcum pl-0">Service Details</h3>
+    <div class="mx-30">
+        <div class="page-title-content paralax-bg">
+            <h1 class="title">
+                {{ $currentService['title'] }}
+            </h1>
+            <div class="breadkcum">
+                <h3><a href="{{ route('home') }}" class="link-breadkcum">Home</a></h3>
+                <span class="dot bg-white mx-25"></span>
+                <h3><a href="{{ route('services') }}" class="link-breadkcum">Services</a></h3>
+                <span class="dot bg-white mx-25"></span>
+                <h3 class="page-breadkcum pl-0">{{ $currentService['title'] }}</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="main-content">
+    <div class="wg-services-details tf-spacing-1">
+        <div class="tf-container">
+            <div class="row rg-30">
+                <!-- Left Sidebar Navigation -->
+                <div class="col-lg-4">
+                    <div class="tf-sidebar">
+
+                        <div class="sidebar-item sidebar-style-2 sidebar-content sidebar-categories px-mobile-sm">
+                            <h4 class="title-content">
+                                Our Services
+                            </h4>
+
+                            <div class="sidebar-group-title">Clinical Trials</div>
+                            <ul class="list mb-15">
+                                @foreach($clinicalServices as $item)
+                                <li class="item {{ $currentService['slug'] === $item['slug'] ? 'active' : '' }}">
+                                    <a href="{{ route('services.details', ['service' => $item['slug']]) }}">{{ $item['title'] }}</a>
+                                    <i class="icon-arrow-right"></i>
+                                </li>
+                                @endforeach
+                            </ul>
+
+                            <div class="sidebar-group-title">BA/BE Services</div>
+                            <ul class="list mb-15">
+                                @foreach($babeServices as $item)
+                                <li class="item {{ $currentService['slug'] === $item['slug'] ? 'active' : '' }}">
+                                    <a href="{{ route('services.details', ['service' => $item['slug']]) }}">{{ $item['title'] }}</a>
+                                    <i class="icon-arrow-right"></i>
+                                </li>
+                                @endforeach
+                            </ul>
+
+                            <div class="sidebar-group-title">Medical Affairs</div>
+                            <ul class="list">
+                                @foreach($medicoMarketingServices as $item)
+                                <li class="item {{ $currentService['slug'] === $item['slug'] ? 'active' : '' }}">
+                                    <a href="{{ route('services.details', ['service' => $item['slug']]) }}">{{ $item['title'] }}</a>
+                                    <i class="icon-arrow-right"></i>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-item sidebar-banner">
+                            <h6 class="sub-title lsp-0">
+                                Partner With Clineva
+                            </h6>
+                            <div class="title">
+                                Need Clinical Research Expertise?
+                            </div>
+                            <div class="benefit-list">
+                                <div class="benefit-items body-2">
+                                    <i class="icon-check"></i>
+                                    <span class="body-2">GCP &amp; GLP Compliant Execution</span>
+                                </div>
+                                <div class="benefit-items body-2">
+                                    <i class="icon-check"></i>
+                                    <span class="body-2">Global Regulatory Alignment</span>
+                                </div>
+                            </div>
+
+                            <a href="{{ route('contact') }}" class="tf-btn">
+                                <span>Request Consultation</span>
+                                <i class="icon-arrow-right"></i>
+                            </a>
+                            <h5 class="number-phone">
+                                <i class="icon-phone"></i>
+                                <a href="tel:+12345688990">+1 (234) 5688 9990</a>
+                            </h5>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Right Main Service Content -->
+                <div class="col-lg-8">
+                    <div class="details-content services-details-content">
+
+                        <div class="service-detail-header">
+                            <span class="services-cat-badge">
+                                <i class="{{ $currentService['icon'] }}"></i>
+                                <span>{{ $currentService['category_name'] }}</span>
+                            </span>
+                            <h2 class="title-content mb-0">
+                                {{ $currentService['title'] }}
+                            </h2>
+                            <div class="service-subtitle">
+                                {{ $currentService['subtitle'] }}
+                            </div>
+                        </div>
+
+                        <div class="service-detail-paragraphs">
+                            @foreach($currentService['paragraphs'] as $paragraph)
+                                <p>{{ $paragraph }}</p>
+                            @endforeach
+                        </div>
+
+                        <div class="service-hero-banner">
+                            <img src="{{ asset($currentService['image']) }}" alt="{{ $currentService['title'] }}">
+                        </div>
+
+                        @if(!empty($currentService['deliverables']))
+                        <div>
+                            <h3 class="service-deliverables-title">
+                                {{ $currentService['deliverables_title'] }}
+                            </h3>
+                            <div class="service-deliverables-grid">
+                                @foreach($currentService['deliverables'] as $deliverable)
+                                <div class="deliverable-card">
+                                    <div class="check-badge">
+                                        <i class="icon-check"></i>
+                                    </div>
+                                    <div class="deliverable-text">
+                                        {{ $deliverable }}
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        @endif
+
+                        @if(!empty($currentService['subsections']))
+                        <div class="service-subsections-list">
+                            @foreach($currentService['subsections'] as $index => $subsec)
+                            <div class="subsection-card">
+                                <div class="subsec-head">
+                                    <span class="subsec-num">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                                    <h4>{{ $subsec['title'] }}</h4>
+                                </div>
+                                <p>{{ $subsec['desc'] }}</p>
+                            </div>
+                            @endforeach
+                        </div>
+                        @endif
+
+                        @if(!empty($currentService['highlights']))
+                        <div class="service-highlights-grid">
+                            @foreach($currentService['highlights'] as $highlight)
+                            <div class="service-highlight-box">
+                                <h6>{{ $highlight['title'] }}</h6>
+                                <p>{{ $highlight['desc'] }}</p>
+                            </div>
+                            @endforeach
+                        </div>
+                        @endif
+
+                        <div class="service-cta-strip">
+                            <div>
+                                <h4>Ready to Discuss {{ $currentService['title'] }}?</h4>
+                                <p>Connect with our clinical &amp; regulatory specialists for tailored study support.</p>
+                            </div>
+                            <a href="{{ route('contact') }}" class="tf-btn hover-bg-white">
+                                <span>Contact Us</span>
+                                <i class="icon-arrow-right"></i>
+                            </a>
+                        </div>
+
+                        <div class="service-pager">
+                            @if($prevService)
+                                <a href="{{ route('services.details', ['service' => $prevService['slug']]) }}" class="pager-link">
+                                    <i class="icon-arrow-left"></i>
+                                    <div>
+                                        <span class="pager-label">Previous Service</span>
+                                        <span class="pager-title">{{ $prevService['title'] }}</span>
+                                    </div>
+                                </a>
+                            @else
+                                <div></div>
+                            @endif
+
+                            @if($nextService)
+                                <a href="{{ route('services.details', ['service' => $nextService['slug']]) }}" class="pager-link text-end">
+                                    <div>
+                                        <span class="pager-label">Next Service</span>
+                                        <span class="pager-title">{{ $nextService['title'] }}</span>
+                                    </div>
+                                    <i class="icon-arrow-right"></i>
+                                </a>
+                            @endif
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="main-content">
-            <div class="wg-services-details tf-spacing-1">
-                <div class="tf-container">
-                    <div class="row rg-30">
-                        <div class="col-lg-4">
-                            <div class="tf-sidebar">
-
-                                <div class="sidebar-item sidebar-style-2 sidebar-content sidebar-categories px-mobile-sm">
-                                    <h4 class="title-content">
-                                        Clinical Services
-                                    </h4>
-                                    <ul class="list">
-                                        <li class="item">
-                                            <a href="{{ route('services.details', ['service' => 'clinical-operations']) }}">Clinical Operations</a>
-                                            <i class="icon-arrow-right"></i>
-                                        </li>
-                                        <li class="item">
-                                            <a href="{{ route('services.details', ['service' => 'project-management']) }}">Project Management</a>
-                                            <i class="icon-arrow-right"></i>
-                                        </li>
-                                        <li class="item">
-                                            <a href="{{ route('services.details', ['service' => 'clinical-trial-monitoring']) }}">Clinical Trial Monitoring</a>
-                                            <i class="icon-arrow-right"></i>
-                                        </li>
-                                        <li class="item">
-                                            <a href="{{ route('services.details', ['service' => 'medical-monitoring']) }}">Medical Monitoring</a>
-                                            <i class="icon-arrow-right"></i>
-                                        </li>
-                                        <li class="item">
-                                            <a href="{{ route('services.details', ['service' => 'quality-assurance']) }}">Quality Assurance</a>
-                                            <i class="icon-arrow-right"></i>
-                                        </li>
-                                        <li class="item">
-                                            <a href="{{ route('services.details', ['service' => 'medical-writing']) }}">Medical Writing</a>
-                                            <i class="icon-arrow-right"></i>
-                                        </li>
-                                        <li class="item">
-                                            <a href="{{ route('services.details', ['service' => 'etmf-management']) }}">eTMF Management</a>
-                                            <i class="icon-arrow-right"></i>
-                                        </li>
-                                        <li class="item">
-                                            <a href="{{ route('services.details', ['service' => 'regulatory-affairs']) }}">Regulatory Affairs</a>
-                                            <i class="icon-arrow-right"></i>
-                                        </li>
-                                        <li class="item">
-                                            <a href="{{ route('services.details', ['service' => 'statistical-services']) }}">Statistical Services</a>
-                                            <i class="icon-arrow-right"></i>
-                                        </li>
-                                        <li class="item">
-                                            <a href="{{ route('services.details', ['service' => 'cro-selection']) }}">BA/BE - CRO Selection</a>
-                                            <i class="icon-arrow-right"></i>
-                                        </li>
-                                        <li class="item">
-                                            <a href="{{ route('services.details', ['service' => 'medical-affairs-medico-marketing']) }}">Medical Affairs & Marketing</a>
-                                            <i class="icon-arrow-right"></i>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div class="sidebar-item sidebar-banner">
-                                    <h6 class="sub-title lsp-0">
-                                        Find a Medical ?
-                                    </h6>
-                                    <div class="title">
-                                        Looking for Expert
-                                        medical healthcare?
-                                    </div>
-                                    <div class="benefit-list">
-                                        <div class="benefit-items body-2">
-                                            <i class="icon-check"></i>
-                                            <span class="body-2">Advanced Medical Technology</span>
-                                        </div>
-                                        <div class="benefit-items body-2">
-                                            <i class="icon-check"></i>
-                                            <span class="body-2">Treatments &amp; Services</span>
-                                        </div>
-                                    </div>
-
-                                    <a href="#" class="tf-btn">
-                                        <span>Find Medical Care</span>
-                                        <i class="icon-arrow-right"></i>
-                                    </a>
-                                    <h5 class="number-phone">
-                                        <i class="icon-phone"></i>
-                                        <a href="#">+1 (234) 568 0000</a>
-                                    </h5>
-
-                                </div>
-
-                                <div class="sidebar-item sidebar-style-2 sidebar-content sidebar-categories sidebar-company-profile px-mobile-sm">
-                                    <h4 class="title-content">
-                                        Company profile
-                                    </h4>
-                                    <ul class="list">
-                                        <li class="item">
-                                            <a href="#">Download pdf</a>
-                                            <i class="icon-file-pdf"></i>
-                                        </li>
-                                        <li class="item">
-                                            <a href="#">Download doc file</a>
-                                            <i class="icon-file-word"></i>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-lg-8">
-                            <div class="details-content services-details-content">
-
-                                <h2 class="title-content mb-30">
-                                    Mental health and wellness refer to a person’s emotional, psychological, and social well-being.
-                                </h2>
-
-                                <p class="desc mb-50">
-                                    We provide comprehensive Mental Health & Wellness services designed to support emotional well-being, mental clarity, and overall life balance. Our expert team of psychologists, therapists, and counselors offers personalized care in a safe and confidential environment.
-                                </p>
-
-                                <div class="image-details mb-40">
-                                    <img src="{{ asset('image/section/img-services-details-1.jpg') }}" data-src="{{ asset('image/section/img-services-details-1.jpg') }}" alt="" class="lazyload">
-                                </div>
-
-                                <div class="mb-44">
-                                    <h3 class="title mb-20">
-                                        Key Aspects of Mental Health & Wellness
-                                    </h3>
-                                    <div class="desc">
-                                        Mental health and wellness refer to a person’s emotional, psychological, and social well-being. It affects how individuals think, feel, and behave in daily life, as well as how they handle stress, relate to others, and make decisions. Good mental health enables people to cope with challenges, maintain relationships, and function effectively in work and personal life.
-                                    </div>
-                                </div>
-
-                                <div class="flex list-item mb-36">
-                                    <div class="item-services-details">
-                                        <div class="icon">
-                                            <i class="icon-check"></i>
-                                        </div>
-                                        <div class="item-content">
-
-                                            <h6 class="title-item">
-                                                Emotional Well-being
-                                            </h6>
-                                            <div class="desc">
-                                                The ability to manage emotions, such
-                                                as stress, anxiety, sadness.
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item-services-details">
-                                        <div class="icon">
-                                            <i class="icon-check"></i>
-                                        </div>
-                                        <div class="item-content">
-
-                                            <h6 class="title-item">
-                                                Cognitive Health
-                                            </h6>
-                                            <div class="desc">
-                                                Maintaining clarity in thinking, decision
-                                                making, and problem-solving.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="flex list-item mb-42">
-                                    <div class="item-services-details">
-                                        <div class="icon">
-                                            <i class="icon-check"></i>
-                                        </div>
-                                        <div class="item-content">
-                                            <h6 class="title-item">
-                                                Social Wellness
-                                            </h6>
-                                            <div class="desc">
-                                                Building and maintaining positive the
-                                                relationships with family, friends
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="item-services-details">
-                                        <div class="icon">
-                                            <i class="icon-check"></i>
-                                        </div>
-                                        <div class="item-content">
-
-                                            <h6 class="title-item">
-                                                Resilience & Coping Skills
-                                            </h6>
-                                            <div class="desc">
-                                                The ability to adapt to challenges, setbacks, and life changes.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="list-img flex g-20 mb-50">
-                                    <div class="image-details">
-                                        <img src="{{ asset('image/section/img-services-details-2.jpg') }}" data-src="{{ asset('image/section/img-services-details-2.jpg') }}" alt="" class="lazyload">
-                                    </div>
-                                    <div class="image-details">
-                                        <img src="{{ asset('image/section/img-services-details-3.jpg') }}" data-src="{{ asset('image/section/img-services-details-3.jpg') }}" alt="" class="lazyload">
-                                    </div>
-                                </div>
-
-                                <div class="mb-40">
-                                    <h3 class="title mb-20">
-                                        Mental health is a vital aspect of overall well-being
-                                    </h3>
-                                    <div class="desc">
-                                        We think, feel, and interact with the world around us. It encompasses emotional, psychological,
-                                        and social wellness, helping individuals cope with stress, build relationships, a make decisions.
-                                        Prioritizing mental health involves self-care, mindfulness, an seeking support when needed, whether
-                                        through therapy, counseling, or lifestyle changes. Just like physical health, maintaining mental
-                                        well-being is essential
-                                    </div>
-                                </div>
-
-                                <div class="wg-according" id="According1">
-                                    <div class="according-item mb-10 according-active ">
-                                        <a href="#according1" data-bs-toggle="collapse" class="title-according collapsed">
-                                            <p class="body-2 fw7 ">How do I know if I need mental health support?</p><span></span>
-                                        </a>
-                                        <div id="according1" class="collapse" data-bs-parent="#According1">
-                                            <div class="according-content">
-                                                <p class="text">
-                                                    We provide counseling, therapy, stress management programs, psychiatric evaluations, medication management, mindfulness training, and wellness programs
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="according-item mb-10 according-active active">
-                                        <a href="#according2" data-bs-toggle="collapse" class="title-according">
-                                            <p class="body-2 fw7 ">What services do you offer for mental health and wellness?</p><span></span>
-                                        </a>
-                                        <div id="according2" class="collapse show" data-bs-parent="#According1">
-                                            <div class="according-content">
-                                                <p class="text">
-                                                    We provide counseling, therapy, stress management programs, psychiatric evaluations, medication management, mindfulness training, and wellness programs
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="according-item mb-10 according-active ">
-                                        <a href="#according3" data-bs-toggle="collapse" class="title-according collapsed">
-                                            <p class="body-2 fw7 ">What are common mental health disorders?</p><span></span>
-                                        </a>
-                                        <div id="according3" class="collapse" data-bs-parent="#According1">
-                                            <div class="according-content">
-                                                <p class="text">
-                                                    We provide counseling, therapy, stress management programs, psychiatric evaluations, medication management, mindfulness training, and wellness programs
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="according-item according-active ">
-                                        <a href="#according4" data-bs-toggle="collapse" class="title-according collapsed">
-                                            <p class="body-2 fw7 ">How can I manage stress and anxiety?</p><span></span>
-                                        </a>
-                                        <div id="according4" class="collapse" data-bs-parent="#According1">
-                                            <div class="according-content">
-                                                <p class="text">
-                                                    We provide counseling, therapy, stress management programs, psychiatric evaluations, medication management, mindfulness training, and wellness programs
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    </div>
+</div>
 @endsection

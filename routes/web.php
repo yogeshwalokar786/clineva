@@ -24,7 +24,8 @@ Route::get('/events-calendar', [PageController::class, 'events'])->name('events'
 // Services
 Route::get('/services', [PageController::class, 'services'])->name('services');
 Route::get('/our-services', [PageController::class, 'services']);
-Route::get('/services-details', [PageController::class, 'serviceDetails'])->name('services.details');
+Route::get('/services-details/{service?}', [PageController::class, 'serviceDetails'])->name('services.details');
+Route::get('/services/{service}', [PageController::class, 'serviceDetails']);
 
 // Doctors
 Route::get('/doctors', [PageController::class, 'doctors'])->name('doctors');
