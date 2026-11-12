@@ -132,8 +132,8 @@
                                 </div>
                                 <div>
                                     <span class="info-label">Direct HR Contact</span>
-                                    <a href="mailto:careers@clineva.com">careers@clineva.com</a>
-                                    <a href="tel:+12345688990">+1 (234) 5688 9990</a>
+                                    <a href="mailto:priti.gotpagar@clineva.in">priti.gotpagar@clineva.in</a>
+                                    <a href="tel:+919870484499">+91 9870484499</a>
                                 </div>
                             </div>
                         </div>

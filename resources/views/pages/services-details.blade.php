@@ -88,7 +88,7 @@
                             </a>
                             <h5 class="number-phone">
                                 <i class="icon-phone"></i>
-                                <a href="tel:+12345688990">+1 (234) 5688 9990</a>
+                                <a href="tel:+919870484499">+91 9870484499</a>
                             </h5>
                         </div>
 

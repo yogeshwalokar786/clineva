@@ -73,14 +73,14 @@
                     </div>
                     <span class="topbar-separator"></span>
                     <div class="topbar-contact-group flex align-items-center">
-                        <a href="tel:+12345688990" class="topbar-item topbar-link">
+                        <a href="tel:+919870484499" class="topbar-item topbar-link">
                             <span class="icon-wrap"><i class="icon-phone-volume"></i></span>
-                            <span class="content"><span>Call:</span> +1 (234) 5688 9990</span>
+                            <span class="content"><span>Call:</span> +91 9870484499</span>
                         </a>
                         <span class="topbar-separator"></span>
-                        <a href="mailto:info@clineva.com" class="topbar-item topbar-link">
+                        <a href="mailto:priti.gotpagar@clineva.in" class="topbar-item topbar-link">
                             <span class="icon-wrap"><i class="icon-envelope"></i></span>
-                            <span class="content"><span>Email:</span> info@clineva.com</span>
+                            <span class="content"><span>Email:</span> priti.gotpagar@clineva.in</span>
                         </a>
                     </div>
                 </div>
@@ -407,7 +407,7 @@
                                             </h4>
                                         </div>
                                         <div class="desc body-2 lh-30">
-                                            70 Washington Square South, New York, NY 10012, United States
+                                            Shop No. 10, Patidar Complex, Kannawmar Nagar 2, Vikhroli (East), Mumbai 400083
                                         </div>
                                     </div>
                                 </div>
@@ -422,8 +422,8 @@
                                         </div>
                                         <div class="desc">
                                             <ul>
-                                                <li class="body-2 lh-35">Email Us : <a href="#"> example@gmail.com</a></li>
-                                                <li class="body-2 lh-35">Phone no : <a href="#"> +1 (234) 567 88 9990</a></li>
+                                                <li class="body-2 lh-35">Email Us : <a href="mailto:priti.gotpagar@clineva.in"> priti.gotpagar@clineva.in</a></li>
+                                                <li class="body-2 lh-35">Phone no : <a href="tel:+919870484499"> +91 9870484499</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -533,13 +533,13 @@
                     <div class="contact-mobile">
                         <h6 class="title-contact-mobile">Contact Info</h6>
                         <ul class="mb-15">
-                            <li class="content-contact-moblile"><i class="icon-location-dot2"></i> <a href="#" class="caption-1">70 Washington Square South, New York, NY 10012, United States</a>
+                            <li class="content-contact-moblile"><i class="icon-location-dot2"></i> <a href="{{ route('contact') }}" class="caption-1">Shop No. 10, Patidar Complex, Kannawmar Nagar 2, Vikhroli (East), Mumbai 400083</a>
                             </li>
                             <li class="content-contact-moblile">
-                                <i class="icon-envelope"></i><a href="mailto:example@gmail.com" class="caption-1">example@gmail.com</a>
+                                <i class="icon-envelope"></i><a href="mailto:priti.gotpagar@clineva.in" class="caption-1">priti.gotpagar@clineva.in</a>
                             </li>
                             <li class="content-contact-moblile">
-                                <i class="icon-phone"></i><a href="tel:+00012345688" class="caption-1">+000 (123) 456 88</a>
+                                <i class="icon-phone"></i><a href="tel:+919870484499" class="caption-1">+91 9870484499</a>
                             </li>
                         </ul>
 

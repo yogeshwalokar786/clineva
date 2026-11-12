@@ -37,7 +37,7 @@
                                 </div>
                                 <div>
                                     <span class="info-label">Office Address</span>
-                                    <span class="info-value">70 Washington Square South,<br>New York, NY 10012, United States</span>
+                                    <span class="info-value">Shop No. 10, Patidar Complex,<br>Kannawmar Nagar 2,<br>Vikhroli (East), Mumbai 400083</span>
                                 </div>
                             </div>
 
@@ -47,8 +47,10 @@
                                 </div>
                                 <div>
                                     <span class="info-label">Contact Details</span>
-                                    <a href="mailto:info@clineva.com">info@clineva.com</a>
-                                    <a href="tel:+12345688990">+1 (234) 5688 9990</a>
+                                    <span class="info-value" style="font-size: 14px; font-weight: 600; margin-bottom: 4px; display: block;">Ms. Priti Gotpagar — Managing Director</span>
+                                    <a href="mailto:priti.gotpagar@clineva.in">priti.gotpagar@clineva.in</a>
+                                    <a href="tel:+919870484499">+91 9870484499</a>
+                                    <a href="https://www.clineva.in" target="_blank" rel="noopener">www.clineva.in</a>
                                 </div>
                             </div>
 
@@ -93,7 +95,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label class="clineva-field-label" for="contact_phone">Phone Number *</label>
-                                    <input type="tel" id="contact_phone" name="phone" class="clineva-minimal-input" placeholder="+1 (234) 567-8900" required>
+                                    <input type="tel" id="contact_phone" name="phone" class="clineva-minimal-input" placeholder="+91 98704 84499" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="clineva-field-label" for="contact_company">Company / Organization</label>
