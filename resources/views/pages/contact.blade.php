@@ -47,7 +47,6 @@
                                 </div>
                                 <div>
                                     <span class="info-label">Contact Details</span>
-                                    <span class="info-value" style="font-size: 14px; font-weight: 600; margin-bottom: 4px; display: block;">Ms. Priti Gotpagar — Managing Director</span>
                                     <a href="mailto:priti.gotpagar@clineva.in">priti.gotpagar@clineva.in</a>
                                     <a href="tel:+919870484499">+91 9870484499</a>
                                     <a href="https://www.clineva.in" target="_blank" rel="noopener">www.clineva.in</a>
