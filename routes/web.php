@@ -31,6 +31,7 @@ Route::get('/career', [PageController::class, 'careers']);
 Route::post('/careers/apply', [PageController::class, 'submitApplication'])->name('careers.apply');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::post('/contact', [PageController::class, 'submitContact'])->name('contact.submit');
+Route::post('/newsletter/subscribe', [PageController::class, 'newsletterSubscribe'])->name('newsletter.subscribe');
 
 // Blog
 Route::get('/blog', [PageController::class, 'blog'])->name('blog');

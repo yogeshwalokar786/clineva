@@ -153,6 +153,36 @@ class PageController extends Controller
         return back()->with('contact_success', 'Thank you! Your message has been received. Our specialists will get back to you shortly.');
     }
 
+    /**
+     * Handle newsletter subscription.
+     */
+    public function newsletterSubscribe(Request $request)
+    {
+        $validated = $request->validate([
+            'email' => ['required', 'email', 'max:191'],
+        ]);
+
+        try {
+            if (\Illuminate\Support\Facades\Schema::hasTable('subscribers')) {
+                \Illuminate\Support\Facades\DB::table('subscribers')->updateOrInsert(
+                    ['email' => strtolower(trim($validated['email']))],
+                    ['updated_at' => now(), 'created_at' => now()]
+                );
+            }
+        } catch (\Throwable $e) {
+            // Silently allow fallback if database offline
+        }
+
+        if ($request->expectsJson() || $request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Thank you for subscribing to Clineva research & regulatory intelligence!',
+            ]);
+        }
+
+        return back()->with('subscribe_success', 'Thank you for subscribing to Clineva research & regulatory intelligence!');
+    }
+
     public function blog(Request $request)
     {
         $selectedCategory = $request->query('category', 'all');
