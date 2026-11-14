@@ -121,26 +121,11 @@ class BlogPost extends Model
     }
 
     /**
-     * Get category badge color dynamically from database.
+     * Get uniform category badge color (Clineva Website Brand Blue).
      */
     public function getCategoryColorAttribute(): string
     {
-        try {
-            $color = BlogCategory::where('slug', $this->category)->value('color');
-            if ($color) {
-                return $color;
-            }
-        } catch (\Throwable $e) {}
-
-        $colors = [
-            'regulatory-gcp' => '#059669', // Emerald
-            'babe-services' => '#0284C7',   // Sky Blue
-            'clinical-trials' => '#007E8A', // Teal Primary
-            'bioanalytics-pk' => '#6366F1', // Indigo
-            'medico-marketing' => '#8B5CF6',// Purple
-        ];
-
-        return $colors[$this->category] ?? '#007E8A';
+        return '#0077C8';
     }
 
     /**

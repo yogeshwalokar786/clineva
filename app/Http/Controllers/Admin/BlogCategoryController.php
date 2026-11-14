@@ -32,8 +32,7 @@ class BlogCategoryController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:150',
-            'slug' => 'nullable|string|max:150|unique:blog_categories,slug',
-            'color' => 'nullable|string|max:30',
+            'slug' => 'nullable|string|max:150',
             'description' => 'nullable|string|max:1000',
             'is_active' => 'nullable|boolean',
         ]);
@@ -51,9 +50,9 @@ class BlogCategoryController extends Controller
         BlogCategory::create([
             'name' => $validated['name'],
             'slug' => $slug,
-            'color' => $validated['color'] ?: '#007E8A',
+            'color' => '#0077C8',
             'description' => $validated['description'] ?? null,
-            'is_active' => $request->has('is_active') ? true : true,
+            'is_active' => $request->has('is_active'),
         ]);
 
         return redirect()->route('admin.blog-categories.index')
@@ -69,8 +68,7 @@ class BlogCategoryController extends Controller
 
         $validated = $request->validate([
             'name' => 'required|string|max:150',
-            'slug' => 'nullable|string|max:150|unique:blog_categories,slug,' . $category->id,
-            'color' => 'nullable|string|max:30',
+            'slug' => 'nullable|string|max:150',
             'description' => 'nullable|string|max:1000',
             'is_active' => 'nullable|boolean',
         ]);
@@ -80,7 +78,7 @@ class BlogCategoryController extends Controller
         $category->update([
             'name' => $validated['name'],
             'slug' => $slug,
-            'color' => $validated['color'] ?: '#007E8A',
+            'color' => '#0077C8',
             'description' => $validated['description'] ?? null,
             'is_active' => $request->has('is_active'),
         ]);

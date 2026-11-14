@@ -62,14 +62,14 @@
 
 @section('content')
 <style>
-    /* Full-Width Modern Blog Styling */
+    /* Full-Width Modern Blog Styling - Clineva Website Brand System */
     .blog-filter-toolbar {
         background: #FFFFFF;
-        border: 1px solid #E2E8F0;
+        border: 1px solid #DCECF7;
         border-radius: 16px;
         padding: 14px 20px;
         margin-bottom: 36px;
-        box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+        box-shadow: 0 4px 18px rgba(0, 119, 200, 0.05);
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -90,29 +90,30 @@
         border-radius: 999px;
         font-size: 13px;
         font-weight: 600;
-        color: #475569;
-        background: #F8FAFC;
-        border: 1px solid #E2E8F0;
+        color: #334155;
+        background: #F0F6FB;
+        border: 1px solid #DCECF7;
         text-decoration: none;
         transition: all 0.2s ease;
     }
     .blog-cat-pill:hover {
-        background: #E6F4F6;
-        color: var(--primary, #007E8A);
-        border-color: #CBD5E1;
+        background: #E6F2FA;
+        color: #0077C8;
+        border-color: #0077C8;
     }
     .blog-cat-pill.active {
-        background: var(--primary, #007E8A);
+        background: #0077C8;
         color: #FFFFFF;
-        border-color: var(--primary, #007E8A);
-        box-shadow: 0 4px 12px rgba(0, 126, 138, 0.25);
+        border-color: #0077C8;
+        box-shadow: 0 4px 14px rgba(0, 119, 200, 0.3);
     }
     .blog-cat-pill .cat-count-badge {
         font-size: 11px;
         font-weight: 700;
         padding: 1px 7px;
         border-radius: 999px;
-        background: rgba(0, 0, 0, 0.07);
+        background: rgba(0, 119, 200, 0.1);
+        color: #0077C8;
     }
     .blog-cat-pill.active .cat-count-badge {
         background: rgba(255, 255, 255, 0.25);
@@ -125,24 +126,24 @@
     .blog-search-box {
         width: 100%;
         padding: 8px 38px 8px 14px;
-        border: 1.5px solid #CBD5E1;
+        border: 1.5px solid #DCECF7;
         border-radius: 999px;
         font-size: 13px;
-        background: #F8FAFC;
+        background: #F0F6FB;
         outline: none;
         transition: all 0.2s ease;
     }
     .blog-search-box:focus {
-        border-color: var(--primary, #007E8A);
+        border-color: #0077C8;
         background: #FFFFFF;
-        box-shadow: 0 0 0 3px rgba(0, 126, 138, 0.12);
+        box-shadow: 0 0 0 3px rgba(0, 119, 200, 0.15);
     }
     .blog-search-btn {
         position: absolute;
         right: 4px;
         top: 50%;
         transform: translateY(-50%);
-        background: var(--primary, #007E8A);
+        background: #0077C8;
         border: none;
         color: #FFFFFF;
         width: 28px;
@@ -153,16 +154,20 @@
         justify-content: center;
         cursor: pointer;
         font-size: 11px;
+        transition: background 0.2s ease;
+    }
+    .blog-search-btn:hover {
+        background: #005FA3;
     }
 
     /* Featured Lead Article Card (Full Width) */
     .featured-lead-box {
         background: #FFFFFF;
-        border: 1px solid #E2E8F0;
+        border: 1px solid #DCECF7;
         border-radius: 20px;
         overflow: hidden;
         margin-bottom: 44px;
-        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+        box-shadow: 0 8px 24px rgba(10, 28, 50, 0.06);
         display: flex;
         flex-direction: column;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -181,12 +186,13 @@
     }
     .featured-lead-box:hover {
         transform: translateY(-4px);
-        box-shadow: 0 16px 36px -4px rgba(0, 126, 138, 0.15);
+        box-shadow: 0 16px 36px -4px rgba(0, 119, 200, 0.15);
+        border-color: #0077C8;
     }
     .featured-lead-thumb {
         position: relative;
         overflow: hidden;
-        background: #0B1E33;
+        background: #0A1C32;
     }
     .featured-lead-thumb img {
         width: 100%;
@@ -202,7 +208,7 @@
         position: absolute;
         top: 18px;
         left: 18px;
-        background: rgba(15, 23, 42, 0.85);
+        background: rgba(10, 28, 50, 0.88);
         color: #FFFFFF;
         font-size: 11.5px;
         font-weight: 700;
@@ -217,7 +223,7 @@
         gap: 6px;
     }
     .featured-pill-tag i {
-        color: #F59E0B;
+        color: #00A3E0;
     }
     .featured-lead-body {
         padding: 36px;
@@ -232,27 +238,31 @@
         margin-bottom: 14px;
         flex-wrap: wrap;
     }
+    /* Uniform Category Badge - Brand Blue */
     .badge-cat-tag {
         display: inline-flex;
         align-items: center;
         padding: 4px 12px;
         border-radius: 999px;
-        font-size: 12px;
+        font-size: 11.5px;
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.5px;
+        color: #0077C8 !important;
+        background: #F0F6FB !important;
+        border: 1px solid #DCECF7;
     }
     .featured-post-title {
         font-size: 25px;
         line-height: 1.32;
         font-weight: 800;
-        color: #0F172A;
+        color: #0A1C32;
         margin-bottom: 14px;
         text-decoration: none;
         transition: color 0.2s ease;
     }
     .featured-post-title:hover {
-        color: var(--primary, #007E8A);
+        color: #0077C8;
     }
     .featured-post-desc {
         font-size: 14.5px;
@@ -265,26 +275,15 @@
         align-items: center;
         justify-content: space-between;
         padding-top: 18px;
-        border-top: 1px solid #F1F5F9;
+        border-top: 1px solid #DCECF7;
         flex-wrap: wrap;
         gap: 14px;
-    }
-    .author-meta-item {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-    .author-meta-item img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        object-fit: cover;
     }
     .btn-read-lead {
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        background: var(--primary, #007E8A);
+        background: #0077C8;
         color: #FFFFFF !important;
         font-size: 13.5px;
         font-weight: 700;
@@ -294,7 +293,7 @@
         transition: all 0.2s ease;
     }
     .btn-read-lead:hover {
-        background: #005F69;
+        background: #005FA3;
         transform: translateX(3px);
     }
 
@@ -317,25 +316,25 @@
     }
     .blog-grid-card {
         background: #FFFFFF;
-        border: 1px solid #E2E8F0;
+        border: 1px solid #DCECF7;
         border-radius: 18px;
         overflow: hidden;
         display: flex;
         flex-direction: column;
-        box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
+        box-shadow: 0 4px 18px rgba(10, 28, 50, 0.04);
         transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         height: 100%;
     }
     .blog-grid-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 16px 36px -4px rgba(0, 126, 138, 0.14);
-        border-color: #CBD5E1;
+        box-shadow: 0 16px 36px -4px rgba(0, 119, 200, 0.15);
+        border-color: #0077C8;
     }
     .blog-card-thumb-wrap {
         position: relative;
         height: 210px;
         overflow: hidden;
-        background: #0B1E33;
+        background: #0A1C32;
     }
     .blog-card-thumb-wrap img {
         width: 100%;
@@ -356,7 +355,7 @@
         position: absolute;
         top: 12px;
         right: 12px;
-        background: rgba(15, 23, 42, 0.75);
+        background: rgba(10, 28, 50, 0.82);
         color: #F8FAFC;
         font-size: 11px;
         font-weight: 600;
@@ -385,14 +384,14 @@
         font-size: 17.5px;
         line-height: 1.4;
         font-weight: 700;
-        color: #0F172A;
+        color: #0A1C32;
         margin-bottom: 12px;
         display: block;
         text-decoration: none;
         transition: color 0.2s ease;
     }
     .blog-grid-card:hover .blog-card-heading {
-        color: var(--primary, #007E8A);
+        color: #0077C8;
     }
     .blog-card-excerpt {
         font-size: 13.5px;
@@ -404,48 +403,32 @@
     .blog-card-footer {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-end;
         padding-top: 14px;
         border-top: 1px solid #F1F5F9;
-    }
-    .card-author-info {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-    .card-author-info img {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        object-fit: cover;
-    }
-    .card-author-info span {
-        font-size: 12px;
-        font-weight: 600;
-        color: #1E293B;
     }
     .card-read-action {
         font-size: 12.5px;
         font-weight: 700;
-        color: var(--primary, #007E8A);
+        color: #0077C8;
         text-decoration: none;
         display: inline-flex;
         align-items: center;
         gap: 4px;
-        transition: gap 0.2s ease;
+        transition: gap 0.2s ease, color 0.2s ease;
     }
     .card-read-action:hover {
         gap: 7px;
-        color: #005F69;
+        color: #005FA3;
     }
 
-    /* Bottom Consultation CTA Bar */
+    /* Bottom Consultation CTA Bar - Clineva Navy & Blue */
     .blog-bottom-cta {
-        background: linear-gradient(135deg, #072836 0%, #00505A 60%, #007E8A 100%);
+        background: linear-gradient(135deg, #0A1C32 0%, #0E294B 45%, #0077C8 100%);
         border-radius: 20px;
         padding: 36px 40px;
         color: #FFFFFF;
-        box-shadow: 0 10px 30px rgba(0, 126, 138, 0.16);
+        box-shadow: 0 12px 32px rgba(0, 119, 200, 0.18);
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -461,13 +444,13 @@
     }
     .blog-bottom-cta p {
         font-size: 14px;
-        color: rgba(255, 255, 255, 0.85);
+        color: rgba(255, 255, 255, 0.9);
         margin: 0;
         max-width: 620px;
     }
     .btn-bottom-cta {
         background: #FFFFFF;
-        color: #072836 !important;
+        color: #0A1C32 !important;
         font-size: 14px;
         font-weight: 800;
         padding: 12px 26px;
@@ -480,8 +463,8 @@
         gap: 8px;
     }
     .btn-bottom-cta:hover {
-        background: #E6F4F6;
-        color: var(--primary, #007E8A) !important;
+        background: #F0F6FB;
+        color: #0077C8 !important;
         transform: translateY(-2px);
     }
 </style>
@@ -573,7 +556,7 @@
                         </div>
                         <div class="featured-lead-body">
                             <div class="featured-meta-line">
-                                <span class="badge-cat-tag" style="color: {{ $fCatColor }}; background: {{ $fCatColor }}15;">
+                                <span class="badge-cat-tag">
                                     {{ $fCatName }}
                                 </span>
                                 <span style="font-size: 12.5px; color: #64748B;">
@@ -627,7 +610,7 @@
                                 <img src="{{ Str::startsWith($pImage, 'http') ? $pImage : asset($pImage) }}" alt="{{ $pTitle }}" loading="lazy">
                             </a>
                             <div class="blog-card-cat-badge">
-                                <span class="badge-cat-tag" style="color: {{ $pCatColor }}; background: #FFFFFF; box-shadow: 0 2px 8px rgba(0,0,0,0.12);">
+                                <span class="badge-cat-tag">
                                     {{ $pCatName }}
                                 </span>
                             </div>

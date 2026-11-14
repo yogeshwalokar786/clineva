@@ -164,7 +164,7 @@
         color: #0F172A;
     }
     .blog-details-cta-card {
-        background: linear-gradient(135deg, #072836 0%, #00505A 60%, #007E8A 100%);
+        background: linear-gradient(135deg, #0A1C32 0%, #0E294B 45%, #0077C8 100%);
         border-radius: 18px;
         padding: 34px 40px;
         color: #FFFFFF;
@@ -173,7 +173,7 @@
         justify-content: space-between;
         gap: 20px;
         flex-wrap: wrap;
-        box-shadow: 0 10px 30px rgba(0, 126, 138, 0.16);
+        box-shadow: 0 12px 32px rgba(0, 119, 200, 0.18);
         margin-bottom: 50px;
     }
     .blog-details-cta-card h3 {
@@ -184,13 +184,13 @@
     }
     .blog-details-cta-card p {
         font-size: 13.5px;
-        color: rgba(255, 255, 255, 0.85);
+        color: rgba(255, 255, 255, 0.9);
         margin: 0;
         max-width: 580px;
     }
     .btn-details-cta {
         background: #FFFFFF;
-        color: #072836 !important;
+        color: #0A1C32 !important;
         font-size: 13.5px;
         font-weight: 800;
         padding: 12px 24px;
@@ -203,8 +203,8 @@
         white-space: nowrap;
     }
     .btn-details-cta:hover {
-        background: #E6F4F6;
-        color: var(--primary, #007E8A) !important;
+        background: #F0F6FB;
+        color: #0077C8 !important;
         transform: translateY(-2px);
     }
 </style>
@@ -400,7 +400,7 @@
                         <div style="margin-top: 20px;">
                             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px;">
                                 <h3 style="font-size: 22px; font-weight: 800; color: #0F172A; margin: 0;">Related Insights</h3>
-                                <a href="{{ route('blog', ['category' => $categorySlug]) }}" style="font-size: 13.5px; font-weight: 700; color: var(--primary, #007E8A); text-decoration: underline;">
+                                <a href="{{ route('blog', ['category' => $categorySlug]) }}" style="font-size: 13.5px; font-weight: 700; color: #0077C8; text-decoration: underline;">
                                     View More in {{ $categoryName }}
                                 </a>
                             </div>
@@ -424,7 +424,7 @@
                                                     {{ $relTitle }}
                                                 </a>
                                                 <div style="margin-top: auto;">
-                                                    <a href="{{ route('blog.details', ['slug' => $relSlug]) }}" style="font-size: 13px; font-weight: 700; color: var(--primary, #007E8A); text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
+                                                    <a href="{{ route('blog.details', ['slug' => $relSlug]) }}" style="font-size: 13px; font-weight: 700; color: #0077C8; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
                                                         <span>Read Full Insight</span>
                                                         <i class="icon-arrow-right"></i>
                                                     </a>

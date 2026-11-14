@@ -15,20 +15,12 @@
             grid-template-columns: 1fr;
         }
     }
-    .cat-color-preview {
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        display: inline-block;
-        border: 2px solid #FFFFFF;
-        box-shadow: 0 0 0 1px #CBD5E1;
-    }
 </style>
 
 <div style="margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
     <div>
         <h1 style="font-size: 24px; font-weight: 800; color: #0F172A; margin: 0 0 4px 0;">Blog Categories</h1>
-        <p style="font-size: 13.5px; color: #64748B; margin: 0;">Manage strictly dynamic categories for clinical articles, filter badges, and SEO metadata.</p>
+        <p style="font-size: 13.5px; color: #64748B; margin: 0;">Manage strictly dynamic categories for clinical articles, filter pills, and SEO metadata.</p>
     </div>
     <div style="display: flex; gap: 10px;">
         <a href="{{ route('admin.blogs.index') }}" class="btn-admin btn-admin-secondary">
@@ -80,25 +72,12 @@
 
             <div style="margin-bottom: 16px;">
                 <label style="display: block; font-size: 13px; font-weight: 700; color: #334155; margin-bottom: 6px;">
-                    URL Slug
+                    URL Slug (Auto-Generated)
                 </label>
                 <input type="text" name="slug" id="newCatSlug" value="{{ old('slug') }}"
-                       placeholder="e.g. clinical-trials (auto-generated)"
-                       class="form-control" style="width: 100%; padding: 10px 14px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 14px;">
-                <div style="font-size: 11.5px; color: #64748B; margin-top: 4px;">Leave blank to generate automatically from name.</div>
-            </div>
-
-            <div style="margin-bottom: 16px;">
-                <label style="display: block; font-size: 13px; font-weight: 700; color: #334155; margin-bottom: 6px;">
-                    Badge Color Accent
-                </label>
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <input type="color" name="color" id="newCatColor" value="{{ old('color', '#007E8A') }}"
-                           style="width: 44px; height: 38px; border: 1px solid #CBD5E1; border-radius: 6px; padding: 2px; cursor: pointer;">
-                    <input type="text" id="newCatColorText" value="{{ old('color', '#007E8A') }}"
-                           style="flex: 1; padding: 9px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 13.5px;"
-                           placeholder="#007E8A">
-                </div>
+                       placeholder="clinical-trials"
+                       class="form-control" style="width: 100%; padding: 10px 14px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 13.5px; background: #F8FAFC;">
+                <div style="font-size: 11.5px; color: #64748B; margin-top: 4px;">Automatically generated from Category Name.</div>
             </div>
 
             <div style="margin-bottom: 16px;">
@@ -143,7 +122,6 @@
                 <table style="width: 100%; border-collapse: collapse; font-size: 13.5px;">
                     <thead>
                         <tr style="border-bottom: 2px solid #E2E8F0; text-align: left; color: #64748B; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">
-                            <th style="padding: 12px 14px;">Color</th>
                             <th style="padding: 12px 14px;">Name</th>
                             <th style="padding: 12px 14px;">Slug</th>
                             <th style="padding: 12px 14px; text-align: center;">Total Posts</th>
@@ -155,9 +133,6 @@
                     <tbody>
                         @foreach($categories as $cat)
                             <tr style="border-bottom: 1px solid #F1F5F9; transition: background 0.15s ease;" onmouseover="this.style.background='#F8FAFC'" onmouseout="this.style.background='transparent'">
-                                <td style="padding: 14px;">
-                                    <span class="cat-color-preview" style="background-color: {{ $cat->color }};" title="{{ $cat->color }}"></span>
-                                </td>
                                 <td style="padding: 14px;">
                                     <div style="font-weight: 700; color: #0F172A;">{{ $cat->name }}</div>
                                     @if($cat->description)
@@ -175,7 +150,7 @@
                                     </span>
                                 </td>
                                 <td style="padding: 14px; text-align: center;">
-                                    <span style="font-weight: 700; color: #059669; background: #ECFDF5; padding: 3px 8px; border-radius: 999px; font-size: 12px;">
+                                    <span style="font-weight: 700; color: var(--primary, #0077C8); background: #F0F6FB; padding: 3px 8px; border-radius: 999px; font-size: 12px;">
                                         {{ $cat->published_posts_count ?? 0 }}
                                     </span>
                                 </td>
@@ -189,7 +164,7 @@
                                 <td style="padding: 14px; text-align: right;">
                                     <div style="display: inline-flex; align-items: center; gap: 8px;">
                                         <!-- Edit Button (Opens inline form) -->
-                                        <button type="button" onclick="openEditModal({{ $cat->id }}, '{{ addslashes($cat->name) }}', '{{ $cat->slug }}', '{{ $cat->color }}', '{{ addslashes($cat->description ?? '') }}', {{ $cat->is_active ? 1 : 0 }})"
+                                        <button type="button" onclick="openEditModal({{ $cat->id }}, '{{ addslashes($cat->name) }}', '{{ $cat->slug }}', '{{ addslashes($cat->description ?? '') }}', {{ $cat->is_active ? 1 : 0 }})"
                                                 class="btn-admin btn-admin-secondary" style="padding: 6px 10px; font-size: 12px;" title="Edit Category">
                                             <i class="icon-file-word"></i>
                                             <span>Edit</span>
@@ -232,16 +207,8 @@
             </div>
 
             <div style="margin-bottom: 16px;">
-                <label style="display: block; font-size: 13px; font-weight: 700; color: #334155; margin-bottom: 6px;">URL Slug</label>
-                <input type="text" name="slug" id="modalCatSlug" required class="form-control" style="width: 100%; padding: 10px 14px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 14px;">
-            </div>
-
-            <div style="margin-bottom: 16px;">
-                <label style="display: block; font-size: 13px; font-weight: 700; color: #334155; margin-bottom: 6px;">Badge Color Accent</label>
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <input type="color" name="color" id="modalCatColor" style="width: 44px; height: 38px; border: 1px solid #CBD5E1; border-radius: 6px; padding: 2px; cursor: pointer;">
-                    <input type="text" id="modalCatColorText" class="form-control" style="flex: 1; padding: 9px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 13.5px;">
-                </div>
+                <label style="display: block; font-size: 13px; font-weight: 700; color: #334155; margin-bottom: 6px;">URL Slug (Auto-Generated)</label>
+                <input type="text" name="slug" id="modalCatSlug" required class="form-control" style="width: 100%; padding: 10px 14px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 13.5px; background: #F8FAFC;">
             </div>
 
             <div style="margin-bottom: 16px;">
@@ -268,58 +235,48 @@
     document.addEventListener('DOMContentLoaded', function () {
         const nameInput = document.getElementById('newCatName');
         const slugInput = document.getElementById('newCatSlug');
-        const colorInput = document.getElementById('newCatColor');
-        const colorText = document.getElementById('newCatColorText');
+
+        function generateSlug(val) {
+            return val.toLowerCase().trim()
+                .replace(/[^\w\s-]/g, '')
+                .replace(/[\s_-]+/g, '-')
+                .replace(/^-+|-+$/g, '');
+        }
 
         if (nameInput && slugInput) {
+            let userEditedSlug = false;
             nameInput.addEventListener('input', function () {
-                if (!slugInput.value || slugInput.getAttribute('data-manual') !== 'true') {
-                    slugInput.value = nameInput.value.toLowerCase().trim()
-                        .replace(/[^\w\s-]/g, '')
-                        .replace(/[\s_-]+/g, '-')
-                        .replace(/^-+|-+$/g, '');
+                if (!userEditedSlug) {
+                    slugInput.value = generateSlug(nameInput.value);
                 }
             });
-
             slugInput.addEventListener('input', function () {
-                slugInput.setAttribute('data-manual', 'true');
+                userEditedSlug = slugInput.value.trim().length > 0;
             });
         }
 
-        if (colorInput && colorText) {
-            colorInput.addEventListener('input', function () {
-                colorText.value = colorInput.value;
-            });
-            colorText.addEventListener('input', function () {
-                if (/^#[0-9A-Fa-f]{6}$/.test(colorText.value)) {
-                    colorInput.value = colorText.value;
+        const modalName = document.getElementById('modalCatName');
+        const modalSlug = document.getElementById('modalCatSlug');
+        if (modalName && modalSlug) {
+            let modalUserEdited = false;
+            modalName.addEventListener('input', function () {
+                if (!modalUserEdited) {
+                    modalSlug.value = generateSlug(modalName.value);
                 }
             });
-        }
-
-        const modalColor = document.getElementById('modalCatColor');
-        const modalColorText = document.getElementById('modalCatColorText');
-        if (modalColor && modalColorText) {
-            modalColor.addEventListener('input', function () {
-                modalColorText.value = modalColor.value;
-            });
-            modalColorText.addEventListener('input', function () {
-                if (/^#[0-9A-Fa-f]{6}$/.test(modalColorText.value)) {
-                    modalColor.value = modalColorText.value;
-                }
+            modalSlug.addEventListener('input', function () {
+                modalUserEdited = true;
             });
         }
     });
 
-    function openEditModal(id, name, slug, color, description, isActive) {
+    function openEditModal(id, name, slug, description, isActive) {
         const modal = document.getElementById('editCatModal');
         const form = document.getElementById('editCatForm');
         form.action = "{{ url('admin/blog-categories') }}/" + id;
 
         document.getElementById('modalCatName').value = name;
         document.getElementById('modalCatSlug').value = slug;
-        document.getElementById('modalCatColor').value = color || '#007E8A';
-        document.getElementById('modalCatColorText').value = color || '#007E8A';
         document.getElementById('modalCatDesc').value = description;
         document.getElementById('modalCatActive').checked = (isActive === 1);
 

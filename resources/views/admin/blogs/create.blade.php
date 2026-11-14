@@ -450,15 +450,19 @@
             metaDescCount.style.color = dLen > 160 ? '#DC2626' : (dLen >= 120 ? '#059669' : '#64748B');
         }
 
+        let isSlugManual = false;
         titleInput.addEventListener('input', function() {
-            if (!slugInput.value || slugInput.dataset.manual !== 'true') {
-                slugInput.value = titleInput.value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+            if (!isSlugManual) {
+                slugInput.value = titleInput.value.toLowerCase().trim()
+                    .replace(/[^\w\s-]/g, '')
+                    .replace(/[\s_-]+/g, '-')
+                    .replace(/^-+|-+$/g, '');
             }
             updateSerp();
         });
 
         slugInput.addEventListener('input', function() {
-            slugInput.dataset.manual = 'true';
+            isSlugManual = slugInput.value.trim().length > 0;
             updateSerp();
         });
 
