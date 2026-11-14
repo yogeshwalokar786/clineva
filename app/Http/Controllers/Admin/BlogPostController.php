@@ -114,6 +114,7 @@ class BlogPostController extends Controller
         $imagePath = $request->input('featured_image_path') ?: 'image/blog/tf-post-absolute-1.jpg';
         if ($request->hasFile('featured_image_file')) {
             $file = $request->file('featured_image_file');
+            \Illuminate\Support\Facades\File::ensureDirectoryExists(public_path('uploads/blog'));
             $fileName = 'blog_' . time() . '_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('uploads/blog'), $fileName);
             $imagePath = 'uploads/blog/' . $fileName;
@@ -227,6 +228,7 @@ class BlogPostController extends Controller
         }
         if ($request->hasFile('featured_image_file')) {
             $file = $request->file('featured_image_file');
+            \Illuminate\Support\Facades\File::ensureDirectoryExists(public_path('uploads/blog'));
             $fileName = 'blog_' . time() . '_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('uploads/blog'), $fileName);
             $imagePath = 'uploads/blog/' . $fileName;

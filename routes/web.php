@@ -58,6 +58,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('blogs/{blog}/featured', [\App\Http\Controllers\Admin\BlogPostController::class, 'toggleFeatured'])->name('blogs.featured');
         Route::resource('blog-categories', \App\Http\Controllers\Admin\BlogCategoryController::class)->except(['show', 'create', 'edit']);
 
+        // Media Library & Asset Manager
+        Route::get('media', [\App\Http\Controllers\Admin\MediaController::class, 'index'])->name('media.index');
+        Route::post('media/upload', [\App\Http\Controllers\Admin\MediaController::class, 'upload'])->name('media.upload');
+        Route::delete('media', [\App\Http\Controllers\Admin\MediaController::class, 'destroy'])->name('media.destroy');
+
         // Job Postings Management
         Route::resource('jobs', \App\Http\Controllers\Admin\JobPostingController::class)->except(['show']);
         Route::post('jobs/{job}/toggle', [\App\Http\Controllers\Admin\JobPostingController::class, 'toggle'])->name('jobs.toggle');

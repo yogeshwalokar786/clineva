@@ -876,6 +876,10 @@
                 <i class="icon-tag"></i>
                 <span>Categories</span>
             </a>
+            <a href="{{ route('admin.media.index') }}" class="nav-link {{ request()->routeIs('admin.media.*') ? 'active' : '' }}">
+                <i class="icon-camera"></i>
+                <span>Media Library</span>
+            </a>
 
             <div class="nav-section-title">Careers Portal</div>
             <a href="{{ route('admin.jobs.index') }}" class="nav-link {{ request()->routeIs('admin.jobs.*') ? 'active' : '' }}">
@@ -990,6 +994,7 @@
         </main>
     </div>
 
+    @yield('scripts')
 </body>
 </html>
 

@@ -8,7 +8,10 @@
     $readTime = is_object($article) ? $article->read_time : $article['read_time'];
     $date = is_object($article) ? ($article->published_at ? $article->published_at->format('d M Y') : $article->created_at->format('d M Y')) : $article['date'];
     $image = is_object($article) ? $article->featured_image : $article['image'];
-    $intro = is_object($article) ? ($article->content ?: $article->excerpt) : ($article['content']['intro'] ?? $article['excerpt']);
+    $hasRichContent = is_object($article) && !empty($article->content);
+    $richContent = $hasRichContent ? $article->content : null;
+    $excerptText = is_object($article) ? $article->excerpt : ($article['content']['intro'] ?? $article['excerpt']);
+    $intro = $hasRichContent ? null : $excerptText;
     $takeaways = is_object($article) ? $article->parsed_takeaways : ($article['content']['takeaways'] ?? []);
     $quote = is_object($article) ? $article->quote_text : ($article['content']['quote'] ?? null);
     $section1Title = is_object($article) ? $article->section1_title : ($article['content']['section1_title'] ?? null);
@@ -207,6 +210,81 @@
         color: #0077C8 !important;
         transform: translateY(-2px);
     }
+
+    /* WYSIWYG Rich Article Body Typography */
+    .article-rich-body {
+        font-size: 16.5px;
+        line-height: 1.85;
+        color: #334155;
+    }
+    .article-rich-body h1,
+    .article-rich-body h2 {
+        font-size: 26px;
+        font-weight: 800;
+        color: #0F172A;
+        margin: 36px 0 16px;
+    }
+    .article-rich-body h3 {
+        font-size: 21px;
+        font-weight: 800;
+        color: #0F172A;
+        margin: 28px 0 14px;
+    }
+    .article-rich-body h4 {
+        font-size: 18px;
+        font-weight: 700;
+        color: #0F172A;
+        margin: 22px 0 10px;
+    }
+    .article-rich-body p {
+        margin-bottom: 20px;
+        font-size: 16.5px;
+        line-height: 1.85;
+        color: #334155;
+    }
+    .article-rich-body img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 12px;
+        margin: 24px 0;
+        box-shadow: 0 4px 18px rgba(10, 28, 50, 0.08);
+    }
+    .article-rich-body ul,
+    .article-rich-body ol {
+        margin: 16px 0 24px 28px;
+        padding-left: 0;
+    }
+    .article-rich-body li {
+        margin-bottom: 8px;
+        line-height: 1.75;
+        color: #334155;
+    }
+    .article-rich-body blockquote {
+        border-left: 4px solid var(--primary, #0077C8);
+        background: #F8FAFC;
+        padding: 18px 24px;
+        border-radius: 0 12px 12px 0;
+        margin: 28px 0;
+        font-style: italic;
+        color: #0F172A;
+        font-size: 17px;
+    }
+    .article-rich-body table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 26px 0;
+        font-size: 14.5px;
+    }
+    .article-rich-body table th,
+    .article-rich-body table td {
+        border: 1px solid #E2E8F0;
+        padding: 12px 16px;
+    }
+    .article-rich-body table th {
+        background: #F1F5F9;
+        font-weight: 700;
+        color: #0F172A;
+    }
 </style>
 
 <!-- Theme Page Header with Details Metadata (Same as Previous) -->
@@ -263,14 +341,23 @@
                     </div>
 
                     <!-- Intro / Lead Section -->
-                    <div class="details-content mb-40">
+                    <div class="details-content mb-35">
                         <h3 class="title">
                             {{ $title }}
                         </h3>
-                        <div class="desc" style="font-size: 16.5px; line-height: 1.8;">
-                            {{ $intro }}
-                        </div>
+                        @if(!empty($excerptText))
+                            <div class="desc" style="font-size: 17px; line-height: 1.8; color: #475569; font-weight: 500; margin-top: 14px;">
+                                {{ $excerptText }}
+                            </div>
+                        @endif
                     </div>
+
+                    <!-- WYSIWYG Full Article Rich Content -->
+                    @if($hasRichContent && !empty($richContent))
+                        <div class="article-rich-body mb-40">
+                            {!! $richContent !!}
+                        </div>
+                    @endif
 
                     <!-- Executive Key Takeaways Callout -->
                     @if(!empty($takeaways) && count($takeaways) > 0)

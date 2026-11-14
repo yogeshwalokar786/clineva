@@ -226,21 +226,7 @@
             text-decoration: underline;
         }
 
-        .credentials-pill {
-            background: #F1F5F9;
-            border: 1px dashed #CBD5E1;
-            padding: 10px 12px;
-            border-radius: 8px;
-            font-size: 12px;
-            color: #475569;
-            margin-bottom: 20px;
-            text-align: center;
-        }
 
-        .credentials-pill code {
-            color: var(--primary);
-            font-weight: 700;
-        }
     </style>
 </head>
 <body>
@@ -272,10 +258,6 @@
             </div>
         @endif
 
-        <div class="credentials-pill">
-            Admin: <code>admin@clineva.in</code> &bull; Password: <code>admin123</code>
-        </div>
-
         <form action="{{ route('admin.login.submit') }}" method="POST">
             @csrf
 
@@ -283,7 +265,7 @@
                 <label class="form-label" for="email">Admin Email</label>
                 <div class="input-wrap">
                     <i class="icon-envelope input-icon"></i>
-                    <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email', 'admin@clineva.in') }}" placeholder="admin@clineva.in" required autofocus>
+                    <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="admin@clineva.in" required autofocus autocomplete="email">
                 </div>
             </div>
 
