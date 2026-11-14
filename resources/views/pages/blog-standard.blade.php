@@ -1,24 +1,29 @@
 @extends('layouts.app')
 
-@section('title', 'Clinical Insights & Research Perspectives | Clineva Blogs')
+@php
+    $pageSeo = \App\Models\Setting::getPageSeo('blog');
+@endphp
+
+@section('title', $pageSeo['title'])
 
 @section('seo')
-    <meta name="description" content="Explore authoritative clinical research perspectives, ICH-GCP regulatory intelligence, trial methodologies, and BA/BE breakthroughs curated by Clineva scientists.">
-    <link rel="canonical" href="{{ route('blog') }}">
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="description" content="{{ $pageSeo['description'] }}">
+    <meta name="keywords" content="{{ $pageSeo['keywords'] }}">
+    <link rel="canonical" href="{{ $pageSeo['canonical'] }}">
+    <meta name="robots" content="{{ $pageSeo['robots'] }}">
 
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Clinical Insights & Research Perspectives | Clineva Blogs">
-    <meta property="og:description" content="Explore authoritative clinical research perspectives, ICH-GCP regulatory intelligence, trial methodologies, and BA/BE breakthroughs curated by Clineva scientists.">
-    <meta property="og:url" content="{{ route('blog') }}">
-    <meta property="og:site_name" content="Clineva Research Laboratories">
-    <meta property="og:image" content="{{ asset('image/logo/logo-main.png') }}">
+    <meta property="og:title" content="{{ $pageSeo['og_title'] }}">
+    <meta property="og:description" content="{{ $pageSeo['og_description'] }}">
+    <meta property="og:url" content="{{ $pageSeo['canonical'] }}">
+    <meta property="og:site_name" content="{{ $siteSettings['site_name'] ?? 'Clineva Research Laboratories' }}">
+    <meta property="og:image" content="{{ asset($pageSeo['og_image']) }}">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Clinical Insights & Research Perspectives | Clineva Blogs">
-    <meta name="twitter:description" content="Explore authoritative clinical research perspectives, ICH-GCP regulatory intelligence, trial methodologies, and BA/BE breakthroughs curated by Clineva scientists.">
-    <meta name="twitter:image" content="{{ asset('image/logo/logo-main.png') }}">
+    <meta name="twitter:title" content="{{ $pageSeo['og_title'] }}">
+    <meta name="twitter:description" content="{{ $pageSeo['og_description'] }}">
+    <meta name="twitter:image" content="{{ asset($pageSeo['og_image']) }}">
 
     <script type="application/ld+json">
     {
@@ -26,13 +31,13 @@
         "@@graph": [
             {
                 "@@type": "CollectionPage",
-                "@@id": "{{ route('blog') }}#webpage",
-                "url": "{{ route('blog') }}",
-                "name": "Clinical Insights & Research Perspectives",
-                "description": "Explore authoritative clinical research perspectives, ICH-GCP regulatory intelligence, trial methodologies, and BA/BE breakthroughs curated by Clineva scientists.",
+                "@@id": "{{ $pageSeo['canonical'] }}#webpage",
+                "url": "{{ $pageSeo['canonical'] }}",
+                "name": "{{ $pageSeo['title'] }}",
+                "description": "{{ $pageSeo['description'] }}",
                 "publisher": {
                     "@@type": "Organization",
-                    "name": "Clineva Research Laboratories",
+                    "name": "{{ $siteSettings['site_name'] ?? 'Clineva Research Laboratories' }}",
                     "url": "{{ url('/') }}",
                     "logo": "{{ asset('image/logo/logo-main.png') }}"
                 }

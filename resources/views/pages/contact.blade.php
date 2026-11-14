@@ -1,6 +1,25 @@
 @extends('layouts.app')
 
-@section('title', 'Contact Us - Clineva Research Laboratories')
+@php
+    $pageSeo = \App\Models\Setting::getPageSeo('contact');
+@endphp
+
+@section('title', $pageSeo['title'])
+
+@section('seo')
+    <meta name="description" content="{{ $pageSeo['description'] }}">
+    <meta name="keywords" content="{{ $pageSeo['keywords'] }}">
+    <link rel="canonical" href="{{ $pageSeo['canonical'] }}">
+    <meta name="robots" content="{{ $pageSeo['robots'] }}">
+    <meta property="og:title" content="{{ $pageSeo['og_title'] }}">
+    <meta property="og:description" content="{{ $pageSeo['og_description'] }}">
+    <meta property="og:url" content="{{ $pageSeo['canonical'] }}">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="{{ asset($pageSeo['og_image']) }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $pageSeo['og_title'] }}">
+    <meta name="twitter:description" content="{{ $pageSeo['og_description'] }}">
+@endsection
 
 @section('content')
 <div class="page-title mt-30">
@@ -36,8 +55,8 @@
                                     <i class="icon-address"></i>
                                 </div>
                                 <div>
-                                    <span class="info-label">Office Address</span>
-                                    <span class="info-value">Shop No. 10, Patidar Complex,<br>Kannawmar Nagar 2,<br>Vikhroli (East), Mumbai 400083</span>
+                                    <span class="info-label">Facility Location</span>
+                                    <span class="info-value">{{ $siteSettings['contact_address'] ?? 'D-318, Phase II, Turbhe MIDC, TTC Industrial Area, Navi Mumbai, Maharashtra 400705' }}</span>
                                 </div>
                             </div>
 
@@ -46,9 +65,9 @@
                                     <i class="icon-contacts"></i>
                                 </div>
                                 <div>
-                                    <span class="info-label">Contact Details</span>
-                                    <a href="mailto:priti.gotpagar@clineva.in">priti.gotpagar@clineva.in</a>
-                                    <a href="tel:+919870484499">+91 9870484499</a>
+                                    <span class="info-label">Direct Communication</span>
+                                    <a href="mailto:{{ $siteSettings['contact_email'] ?? 'priti.gotpagar@clineva.in' }}">{{ $siteSettings['contact_email'] ?? 'priti.gotpagar@clineva.in' }}</a>
+                                    <a href="tel:{{ preg_replace('/[^0-9+]/', '', $siteSettings['contact_phone'] ?? '+919870484499') }}">{{ $siteSettings['contact_phone'] ?? '+91 9870484499' }}</a>
                                 </div>
                             </div>
 
@@ -57,18 +76,31 @@
                                     <i class="icon-working-hours"></i>
                                 </div>
                                 <div>
-                                    <span class="info-label">Working Hours</span>
-                                    <span class="info-value">Monday – Friday: 08:30 AM – 06:00 PM</span>
-                                    <span class="info-value" style="font-size: 13.5px; color: rgba(255,255,255,0.65);">Saturday &amp; Sunday: Closed</span>
+                                    <span class="info-label">Operating Schedule</span>
+                                    <span class="info-value">{{ $siteSettings['working_hours'] ?? 'Mon – Sat: 09:00 AM – 06:00 PM' }}</span>
+                                    <span class="info-value" style="font-size: 13px; color: rgba(255,255,255,0.65);">Sunday: Closed / Emergency On-Call</span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="clineva-contact-social">
-                            <a href="#" title="Facebook" aria-label="Facebook"><i class="icon-facebook"></i></a>
-                            <a href="#" title="Twitter" aria-label="Twitter"><i class="icon-twitter"></i></a>
-                            <a href="#" title="LinkedIn" aria-label="LinkedIn"><i class="icon-linkedin2"></i></a>
-                            <a href="#" title="Instagram" aria-label="Instagram"><i class="icon-instagram"></i></a>
+                            @if(!empty($siteSettings['social_facebook']))
+                                <a href="{{ $siteSettings['social_facebook'] }}" target="_blank" rel="noopener" title="Facebook" aria-label="Facebook"><i class="icon-facebook"></i></a>
+                            @endif
+                            @if(!empty($siteSettings['social_twitter']))
+                                <a href="{{ $siteSettings['social_twitter'] }}" target="_blank" rel="noopener" title="Twitter" aria-label="Twitter"><i class="icon-twitter"></i></a>
+                            @endif
+                            @if(!empty($siteSettings['social_linkedin']))
+                                <a href="{{ $siteSettings['social_linkedin'] }}" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><i class="icon-linkedin2"></i></a>
+                            @endif
+                            @if(!empty($siteSettings['social_instagram']))
+                                <a href="{{ $siteSettings['social_instagram'] }}" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram"><i class="icon-instagram"></i></a>
+                            @endif
+                            @if(!empty($siteSettings['social_youtube']))
+                                <a href="{{ $siteSettings['social_youtube'] }}" target="_blank" rel="noopener" title="YouTube" aria-label="YouTube" style="display: inline-flex; align-items: center; justify-content: center;">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                                </a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -148,6 +180,41 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Dynamic Interactive Location Map Widget -->
+            <div class="row mt-5">
+                <div class="col-12 wow fadeInUp" data-wow-delay=".3s">
+                    <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 20px; padding: 28px; box-shadow: 0 10px 30px rgba(10, 28, 50, 0.05);">
+                        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; margin-bottom: 20px;">
+                            <div>
+                                <span style="font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #0077C8; background: #F0F6FB; padding: 4px 12px; border-radius: 999px;">
+                                    <i class="icon-location-dot"></i> {{ $siteSettings['cta_location_badge'] ?? 'Turbhe MIDC, Navi Mumbai, India' }}
+                                </span>
+                                <h3 style="font-size: 22px; font-weight: 800; color: #0F172A; margin: 8px 0 4px;">Visit Our Research Facilities</h3>
+                                <p style="font-size: 14px; color: #64748B; margin: 0;">{{ $siteSettings['contact_address'] ?? 'D-318, Phase II, Turbhe MIDC, TTC Industrial Area, Navi Mumbai, Maharashtra 400705' }}</p>
+                            </div>
+                            <div>
+                                <a href="{{ $siteSettings['google_map_directions_url'] ?? 'https://maps.google.com/?q=D-318,+Phase+II,+Turbhe+MIDC,+TTC+Industrial+Area,+Navi+Mumbai,+Maharashtra+400705' }}" target="_blank" rel="noopener" class="tf-btn" style="padding: 10px 22px; font-size: 13.5px;">
+                                    <span>Open in Google Maps</span>
+                                    <i class="icon-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div style="border-radius: 14px; overflow: hidden; border: 1px solid #E2E8F0; line-height: 0;">
+                            <iframe src="{{ $siteSettings['google_map_embed'] ?? 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.8385078502014!2d73.01893427599026!3d19.070798952136015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c146e29788d7%3A0x6b44766ecad7f202!2sTurbhe%20MIDC%2C%20Navi%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin' }}" 
+                                    width="100%" 
+                                    height="380" 
+                                    style="border:0; width: 100%; display: block;" 
+                                    allowfullscreen="" 
+                                    loading="lazy" 
+                                    referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 </div>

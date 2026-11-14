@@ -92,6 +92,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('policy-pages', \App\Http\Controllers\Admin\PolicyPageController::class)->except(['show']);
         Route::post('policy-pages/{policy_page}/toggle', [\App\Http\Controllers\Admin\PolicyPageController::class, 'toggle'])->name('policy-pages.toggle');
 
+        // Dynamic Page SEO Management
+        Route::get('seo', [\App\Http\Controllers\Admin\SeoController::class, 'index'])->name('seo.index');
+        Route::post('seo', [\App\Http\Controllers\Admin\SeoController::class, 'update'])->name('seo.update');
+
         // General Website Settings
         Route::get('settings', [\App\Http\Controllers\Admin\SettingController::class, 'index'])->name('settings.index');
         Route::post('settings', [\App\Http\Controllers\Admin\SettingController::class, 'update'])->name('settings.update');

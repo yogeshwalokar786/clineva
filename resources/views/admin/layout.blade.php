@@ -884,6 +884,10 @@
                 <i class="icon-file-word"></i>
                 <span>Policy Pages</span>
             </a>
+            <a href="{{ route('admin.seo.index') }}" class="nav-link {{ request()->routeIs('admin.seo.*') ? 'active' : '' }}">
+                <i class="icon-globe"></i>
+                <span>Page SEO Manager</span>
+            </a>
 
             <div class="nav-section-title">Careers Portal</div>
             <a href="{{ route('admin.jobs.index') }}" class="nav-link {{ request()->routeIs('admin.jobs.*') ? 'active' : '' }}">
@@ -989,14 +993,16 @@
 
         <main class="admin-content">
             @if(session('success'))
-                <div class="alert alert-success">
-                    ✓ {{ session('success') }}
+                <div class="alert alert-success" style="display: flex; align-items: center; justify-content: space-between; border-radius: 12px; padding: 14px 20px; margin-bottom: 24px; font-weight: 600; font-size: 14px;">
+                    <div>✓ {{ session('success') }}</div>
+                    <button type="button" onclick="this.parentElement.remove()" style="background: none; border: none; font-size: 18px; line-height: 1; cursor: pointer; color: inherit; opacity: 0.7;">&times;</button>
                 </div>
             @endif
 
             @if(session('error'))
-                <div class="alert alert-danger">
-                    ✕ {{ session('error') }}
+                <div class="alert alert-danger" style="display: flex; align-items: center; justify-content: space-between; border-radius: 12px; padding: 14px 20px; margin-bottom: 24px; font-weight: 600; font-size: 14px;">
+                    <div>✕ {{ session('error') }}</div>
+                    <button type="button" onclick="this.parentElement.remove()" style="background: none; border: none; font-size: 18px; line-height: 1; cursor: pointer; color: inherit; opacity: 0.7;">&times;</button>
                 </div>
             @endif
 

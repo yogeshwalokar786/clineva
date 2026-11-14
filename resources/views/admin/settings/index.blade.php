@@ -20,12 +20,6 @@
         </div>
     </div>
 
-    @if(session('success'))
-        <div class="alert alert-success">
-            ✓ {{ session('success') }}
-        </div>
-    @endif
-
     @if($errors->any())
         <div style="background: #FEF2F2; border: 1px solid #FCA5A5; color: #991B1B; padding: 16px 20px; border-radius: 12px; margin-bottom: 24px;">
             <div style="font-weight: 800; margin-bottom: 6px;">Please correct the errors below:</div>
@@ -160,6 +154,70 @@
                         <input type="url" name="social_youtube" value="{{ old('social_youtube', $settings['social_youtube'] ?? '') }}" class="form-control" placeholder="https://youtube.com/@clineva">
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- 4. Dynamic Call to Action (CTA) & Location Widget -->
+        <div class="content-card" style="margin-bottom: 24px; padding: 28px;">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+                <div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(0, 119, 200, 0.1); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 15px;">
+                    <i class="icon-location-dot"></i>
+                </div>
+                <div class="form-section-title" style="margin: 0;">Dynamic CTA, Location &amp; Map Widget</div>
+            </div>
+            <div class="form-section-sub">Powers the interactive sponsor consultation CTA strip, location badges, and interactive Google Map widget across the website.</div>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label class="form-label">CTA Main Headline</label>
+                        <input type="text" name="cta_title" value="{{ old('cta_title', $settings['cta_title'] ?? 'Accelerate Your Clinical Studies with Clineva') }}" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-label">Facility Location Badge</label>
+                        <input type="text" name="cta_location_badge" value="{{ old('cta_location_badge', $settings['cta_location_badge'] ?? 'Turbhe MIDC, Navi Mumbai, India') }}" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">CTA Description Subtitle</label>
+                <textarea name="cta_subtitle" rows="2" class="form-control">{{ old('cta_subtitle', $settings['cta_subtitle'] ?? 'Partner with our GCP-compliant CRO network for Phase I–IV trials, bioanalytical studies, BA/BE testing, and CDSCO regulatory intelligence.') }}</textarea>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-label">Primary Button Text</label>
+                        <input type="text" name="cta_btn_text" value="{{ old('cta_btn_text', $settings['cta_btn_text'] ?? 'Schedule Sponsor Consultation') }}" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-label">Primary Button Target URL</label>
+                        <input type="text" name="cta_btn_url" value="{{ old('cta_btn_url', $settings['cta_btn_url'] ?? '/contact') }}" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-label">Secondary Button Text</label>
+                        <input type="text" name="cta_secondary_btn_text" value="{{ old('cta_secondary_btn_text', $settings['cta_secondary_btn_text'] ?? 'Call Our Scientists') }}" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Google Map Embed URL (iframe src)</label>
+                <input type="text" name="google_map_embed" value="{{ old('google_map_embed', $settings['google_map_embed'] ?? 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.8385078502014!2d73.01893427599026!3d19.070798952136015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c146e29788d7%3A0x6b44766ecad7f202!2sTurbhe%20MIDC%2C%20Navi%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin') }}" class="form-control">
+                <span class="form-text">Paste the standard Google Maps iframe embed URL. Renders an interactive map widget on the Contact page &amp; Location card.</span>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label">Google Maps Directions Link</label>
+                <input type="url" name="google_map_directions_url" value="{{ old('google_map_directions_url', $settings['google_map_directions_url'] ?? 'https://maps.google.com/?q=D-318,+Phase+II,+Turbhe+MIDC,+TTC+Industrial+Area,+Navi+Mumbai,+Maharashtra+400705') }}" class="form-control">
+                <span class="form-text">Direct Google Maps URL opened when visitors click "Get Directions".</span>
             </div>
         </div>
 

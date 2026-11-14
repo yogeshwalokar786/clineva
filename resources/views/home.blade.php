@@ -1,6 +1,25 @@
 @extends('layouts.app')
 
-@section('title', 'Clineva Research Laboratories - Clinical Research & Healthcare Solutions')
+@php
+    $pageSeo = \App\Models\Setting::getPageSeo('home');
+@endphp
+
+@section('title', $pageSeo['title'])
+
+@section('seo')
+    <meta name="description" content="{{ $pageSeo['description'] }}">
+    <meta name="keywords" content="{{ $pageSeo['keywords'] }}">
+    <link rel="canonical" href="{{ $pageSeo['canonical'] }}">
+    <meta name="robots" content="{{ $pageSeo['robots'] }}">
+    <meta property="og:title" content="{{ $pageSeo['og_title'] }}">
+    <meta property="og:description" content="{{ $pageSeo['og_description'] }}">
+    <meta property="og:url" content="{{ $pageSeo['canonical'] }}">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="{{ asset($pageSeo['og_image']) }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $pageSeo['og_title'] }}">
+    <meta name="twitter:description" content="{{ $pageSeo['og_description'] }}">
+@endsection
 
 @section('content')
         <section class="clineva-hero-minimal mt-30 mx-30">
@@ -1045,43 +1064,8 @@
                 </div>
             </section>
 
-            <section class="section-banner h-1 mx-30">
-                <div class="wg-banner">
-                    <div class="tf-container">
-                        <div class="banner-inner tf-spacing-2">
-                            <div class="banner-content">
-                                <h6 class="sub-title mb-10 text-anime">
-                                    Make an Appointment
-                                </h6>
-                                <h2 class="title mb-30 text-anime">
-                                    Looking for professionals &
-                                    <br>trusted medical healthcare?
-                                    <br>you're in the right place.
-                                </h2>
-                                <div class="benefit-list flex flex-wrap rg-30 g-50 mb-40">
-                                    <div class="benefit-items body-2 wow fadeInUp" data-wow-delay=".2s">
-                                        <i class="icon-check"></i>
-                                        <span class="body-2">Advanced Medical Technology</span>
-                                    </div>
-                                    <div class="benefit-items body-2 wow fadeInUp" data-wow-delay=".4s">
-                                        <i class="icon-check"></i>
-                                        <span class="body-2">Specialized Treatments & Services</span>
-                                    </div>
-                                </div>
-                                <div class="text-anime-wave">
-                                    <a href="{{ route('contact') }}" class="tf-btn hover-bg-white">
-                                        <span>Contact Us</span>
-                                        <i class="icon-arrow-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="image img-item tf-animate-3">
-                                <img src="{{ asset('image/section/banner-item.png') }}" data-src="{{ asset('image/section/banner-item.png') }}" alt="" class="lazyload">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <!-- Dynamic Sponsor Consultation CTA with Location & Map Widget -->
+            @include('components.cta-section')
 
             <section class="section-blog h-1 tf-spacing-2">
                 <div class="tf-container">

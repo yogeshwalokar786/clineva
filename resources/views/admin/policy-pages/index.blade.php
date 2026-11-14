@@ -18,12 +18,6 @@
     </div>
 </div>
 
-@if(session('success'))
-    <div class="alert alert-success">
-        ✓ {{ session('success') }}
-    </div>
-@endif
-
 <!-- Policy Pages Table -->
 <div class="content-card">
     <div class="table-responsive">

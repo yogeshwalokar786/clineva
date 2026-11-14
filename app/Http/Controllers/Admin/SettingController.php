@@ -35,6 +35,14 @@ class SettingController extends Controller
             'social_linkedin' => ['nullable', 'url', 'max:500'],
             'social_instagram' => ['nullable', 'url', 'max:500'],
             'social_youtube' => ['nullable', 'url', 'max:500'],
+            'cta_title' => ['nullable', 'string', 'max:255'],
+            'cta_subtitle' => ['nullable', 'string', 'max:1000'],
+            'cta_btn_text' => ['nullable', 'string', 'max:100'],
+            'cta_btn_url' => ['nullable', 'string', 'max:255'],
+            'cta_secondary_btn_text' => ['nullable', 'string', 'max:100'],
+            'cta_location_badge' => ['nullable', 'string', 'max:255'],
+            'google_map_embed' => ['nullable', 'string', 'max:2000'],
+            'google_map_directions_url' => ['nullable', 'string', 'max:1000'],
         ]);
 
         foreach ($validated as $key => $value) {

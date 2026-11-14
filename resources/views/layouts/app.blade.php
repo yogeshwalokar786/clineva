@@ -27,6 +27,28 @@
         <meta name="twitter:card" content="summary_large_image">
     @endif
 
+    <!-- Global Structured JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@@context": "https://schema.org",
+        "@@type": "MedicalOrganization",
+        "name": "{{ $siteSettings['site_name'] ?? 'Clineva Research Laboratories' }}",
+        "url": "{{ url('/') }}",
+        "logo": "{{ asset('image/logo/logo-main.png') }}",
+        "description": "{{ $siteSettings['footer_description'] ?? 'Clineva Research Laboratories is a premier global Clinical Research Organization (CRO).' }}",
+        "telephone": "{{ $siteSettings['contact_phone'] ?? '+91 9870484499' }}",
+        "email": "{{ $siteSettings['contact_email'] ?? 'priti.gotpagar@clineva.in' }}",
+        "address": {
+            "@@type": "PostalAddress",
+            "streetAddress": "{{ $siteSettings['contact_address'] ?? 'D-318, Phase II, Turbhe MIDC, TTC Industrial Area' }}",
+            "addressLocality": "Navi Mumbai",
+            "addressRegion": "Maharashtra",
+            "postalCode": "400705",
+            "addressCountry": "IN"
+        }
+    }
+    </script>
+
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="csrf-token" content="{{ csrf_token() }}">

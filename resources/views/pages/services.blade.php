@@ -1,6 +1,25 @@
 @extends('layouts.app')
 
-@section('title', 'Services - Clineva Research Laboratories')
+@php
+    $pageSeo = \App\Models\Setting::getPageSeo('services');
+@endphp
+
+@section('title', $pageSeo['title'])
+
+@section('seo')
+    <meta name="description" content="{{ $pageSeo['description'] }}">
+    <meta name="keywords" content="{{ $pageSeo['keywords'] }}">
+    <link rel="canonical" href="{{ $pageSeo['canonical'] }}">
+    <meta name="robots" content="{{ $pageSeo['robots'] }}">
+    <meta property="og:title" content="{{ $pageSeo['og_title'] }}">
+    <meta property="og:description" content="{{ $pageSeo['og_description'] }}">
+    <meta property="og:url" content="{{ $pageSeo['canonical'] }}">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="{{ asset($pageSeo['og_image']) }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $pageSeo['og_title'] }}">
+    <meta name="twitter:description" content="{{ $pageSeo['og_description'] }}">
+@endsection
 
 @section('content')
 <div class="page-title mt-30">
@@ -138,6 +157,9 @@
         </div>
     </section>
     @endforeach
+
+    <!-- Dynamic Sponsor Consultation CTA with Location & Map Widget -->
+    @include('components.cta-section')
 
 </div>
 @endsection

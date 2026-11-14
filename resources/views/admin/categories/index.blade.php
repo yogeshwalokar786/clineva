@@ -17,20 +17,6 @@
     </div>
 </div>
 
-@if (session('success'))
-    <div style="background: #ECFDF5; border: 1px solid #A7F3D0; color: #065F46; padding: 14px 18px; border-radius: 12px; margin-bottom: 20px; font-size: 13.5px; font-weight: 600;">
-        <i class="icon-check" style="margin-right: 6px;"></i>
-        {{ session('success') }}
-    </div>
-@endif
-
-@if (session('error'))
-    <div style="background: #FEF2F2; border: 1px solid #FCA5A5; color: #991B1B; padding: 14px 18px; border-radius: 12px; margin-bottom: 20px; font-size: 13.5px; font-weight: 600;">
-        <i class="icon-cross" style="margin-right: 6px;"></i>
-        {{ session('error') }}
-    </div>
-@endif
-
 @if ($errors->any())
     <div style="background: #FEF2F2; border: 1px solid #FCA5A5; color: #991B1B; padding: 14px 18px; border-radius: 12px; margin-bottom: 20px; font-size: 13.5px;">
         <div style="font-weight: 700; margin-bottom: 4px;">Please correct the errors below:</div>

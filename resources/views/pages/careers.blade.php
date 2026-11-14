@@ -1,18 +1,37 @@
 @extends('layouts.app')
 
-@section('title', "Career's - Clineva Research Laboratories")
+@php
+    $pageSeo = \App\Models\Setting::getPageSeo('careers');
+@endphp
+
+@section('title', $pageSeo['title'])
+
+@section('seo')
+    <meta name="description" content="{{ $pageSeo['description'] }}">
+    <meta name="keywords" content="{{ $pageSeo['keywords'] }}">
+    <link rel="canonical" href="{{ $pageSeo['canonical'] }}">
+    <meta name="robots" content="{{ $pageSeo['robots'] }}">
+    <meta property="og:title" content="{{ $pageSeo['og_title'] }}">
+    <meta property="og:description" content="{{ $pageSeo['og_description'] }}">
+    <meta property="og:url" content="{{ $pageSeo['canonical'] }}">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="{{ asset($pageSeo['og_image']) }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $pageSeo['og_title'] }}">
+    <meta name="twitter:description" content="{{ $pageSeo['og_description'] }}">
+@endsection
 
 @section('content')
 <div class="page-title mt-30">
     <div class="mx-30">
         <div class="page-title-content paralax-bg">
             <h1 class="title text-anime">
-                Career's
+                Careers
             </h1>
             <div class="breadkcum text-anime">
                 <h3><a href="{{ route('home') }}" class="link-breadkcum">Home</a></h3>
                 <span class="dot bg-white mx-27"></span>
-                <h3 class="page-breadkcum pl-0">Career's</h3>
+                <h3 class="page-breadkcum pl-0">Careers</h3>
             </div>
         </div>
     </div>
