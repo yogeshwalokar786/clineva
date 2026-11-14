@@ -552,17 +552,17 @@
                                 <div class="team-item hover-img px-mobile-sm">
                                     <div class="top-item">
                                         <h5 class="name-team">
-                                            <a href="{{ route('doctors.details') }}">Rafael D. Bratcher</a>
+                                            <a href="#">Rafael D. Bratcher</a>
                                         </h5>
                                         <a href="#" class="position">
                                             Neurologist
                                         </a>
                                     </div>
-                                    <a href="{{ route('doctors.details') }}" class="image">
+                                    <a href="#" class="image">
                                         <img src="{{ asset('image/team-item/team-item-1.jpg') }}" data-src="{{ asset('image/team-item/team-item-1.jpg') }}" alt="" class="lazyload">
                                     </a>
                                     <div class="bottom-btn">
-                                        <a href="{{ route('doctors.details') }}" class="tf-btn style-small style-border hover-bg-red">
+                                        <a href="#" class="tf-btn style-small style-border hover-bg-red">
                                             <span class="color-title">Make Appointment</span>
                                             <i class="icon-arrow-right color-title"></i>
                                         </a>
@@ -579,17 +579,17 @@
                                 <div class="team-item hover-img px-mobile-sm">
                                     <div class="top-item">
                                         <h5 class="name-team">
-                                            <a href="{{ route('doctors.details') }}">Santiago K. Wilson</a>
+                                            <a href="#">Santiago K. Wilson</a>
                                         </h5>
                                         <a href="#" class="position">
                                             Senior Dentist
                                         </a>
                                     </div>
-                                    <a href="{{ route('doctors.details') }}" class="image">
+                                    <a href="#" class="image">
                                         <img src="{{ asset('image/team-item/team-item-2.jpg') }}" data-src="{{ asset('image/team-item/team-item-2.jpg') }}" alt="" class="lazyload">
                                     </a>
                                     <div class="bottom-btn">
-                                        <a href="{{ route('doctors.details') }}" class="tf-btn style-small style-border hover-bg-red">
+                                        <a href="#" class="tf-btn style-small style-border hover-bg-red">
                                             <span class="color-title">Make Appointment</span>
                                             <i class="icon-arrow-right color-title"></i>
                                         </a>
@@ -606,17 +606,17 @@
                                 <div class="team-item hover-img px-mobile-sm">
                                     <div class="top-item">
                                         <h5 class="name-team">
-                                            <a href="{{ route('doctors.details') }}">Micheal C. Simmons</a>
+                                            <a href="#">Micheal C. Simmons</a>
                                         </h5>
                                         <a href="#" class="position">
                                             Medicine Specialist
                                         </a>
                                     </div>
-                                    <a href="{{ route('doctors.details') }}" class="image">
+                                    <a href="#" class="image">
                                         <img src="{{ asset('image/team-item/team-item-3.jpg') }}" data-src="{{ asset('image/team-item/team-item-3.jpg') }}" alt="" class="lazyload">
                                     </a>
                                     <div class="bottom-btn">
-                                        <a href="{{ route('doctors.details') }}" class="tf-btn style-small style-border hover-bg-red">
+                                        <a href="#" class="tf-btn style-small style-border hover-bg-red">
                                             <span class="color-title">Make Appointment</span>
                                             <i class="icon-arrow-right color-title"></i>
                                         </a>
@@ -633,17 +633,17 @@
                                 <div class="team-item hover-img px-mobile-sm">
                                     <div class="top-item">
                                         <h5 class="name-team">
-                                            <a href="{{ route('doctors.details') }}">Columbus A. Davis</a>
+                                            <a href="#">Columbus A. Davis</a>
                                         </h5>
                                         <a href="#" class="position">
                                             Neuro Surgeon
                                         </a>
                                     </div>
-                                    <a href="{{ route('doctors.details') }}" class="image">
+                                    <a href="#" class="image">
                                         <img src="{{ asset('image/team-item/team-item-4.jpg') }}" data-src="{{ asset('image/team-item/team-item-4.jpg') }}" alt="" class="lazyload">
                                     </a>
                                     <div class="bottom-btn">
-                                        <a href="{{ route('doctors.details') }}" class="tf-btn style-small style-border hover-bg-red">
+                                        <a href="#" class="tf-btn style-small style-border hover-bg-red">
                                             <span class="color-title">Make Appointment</span>
                                             <i class="icon-arrow-right color-title"></i>
                                         </a>
@@ -1069,8 +1069,8 @@
                                     </div>
                                 </div>
                                 <div class="text-anime-wave">
-                                    <a href="{{ route('appointment') }}" class="tf-btn hover-bg-white">
-                                        <span>Make Appointment</span>
+                                    <a href="{{ route('contact') }}" class="tf-btn hover-bg-white">
+                                        <span>Contact Us</span>
                                         <i class="icon-arrow-right"></i>
                                     </a>
                                 </div>

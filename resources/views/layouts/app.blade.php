@@ -119,7 +119,7 @@
                                     <span>Home</span>
                                 </a>
                             </li>
-                            <li class="menu-item {{ request()->routeIs('about*') || request()->routeIs('history') || request()->routeIs('faq') ? 'current-menu-item' : '' }}">
+                            <li class="menu-item {{ request()->routeIs('about*') ? 'current-menu-item' : '' }}">
                                 <a href="{{ route('about') }}" class="item-link body-2">
                                     <span>About Us</span>
                                 </a>
@@ -201,8 +201,8 @@
                         </div>
                     </div>
                     <div class="nav-btn">
-                        <a href="{{ route('appointment') }}" class="tf-btn style-small">
-                            <span>Make Appointment</span>
+                        <a href="{{ route('contact') }}" class="tf-btn style-small">
+                            <span>Contact Us</span>
                             <i class="icon-arrow-right"></i>
                         </a>
                     </div>
@@ -225,7 +225,7 @@
                                     <span>Home</span>
                                 </a>
                             </li>
-                            <li class="menu-item {{ request()->routeIs('about*') || request()->routeIs('history') || request()->routeIs('faq') ? 'current-menu-item' : '' }}">
+                            <li class="menu-item {{ request()->routeIs('about*') ? 'current-menu-item' : '' }}">
                                 <a href="{{ route('about') }}" class="item-link body-2">
                                     <span>About Us</span>
                                 </a>
@@ -307,8 +307,8 @@
                         </div>
                     </div>
                     <div class="nav-btn">
-                        <a href="{{ route('appointment') }}" class="tf-btn style-small">
-                            <span>Make Appointment</span>
+                        <a href="{{ route('contact') }}" class="tf-btn style-small">
+                            <span>Contact Us</span>
                             <i class="icon-arrow-right"></i>
                         </a>
                     </div>
@@ -357,8 +357,8 @@
                                     diagnostic, and treatment services.
                                 </div>
 
-                                <a href="{{ route('appointment') }}" class="tf-btn style-small style-border border-color-white">
-                                    <span>Make Appointment</span>
+                                <a href="{{ route('contact') }}" class="tf-btn style-small style-border border-color-white">
+                                    <span>Contact Us</span>
                                     <i class="icon-arrow-right"></i>
                                 </a>
 
