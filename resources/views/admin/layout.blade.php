@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@yield('title', 'Admin Dashboard') - Clineva Research Laboratories</title>
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('icons/icomoon/style.css') }}">
+    <style>
+        :root {
+            --primary: #0077C8;
+            --primary-hover: #005FA3;
+            --primary-light: rgba(0, 119, 200, 0.08);
+            --dark: #0A1C32;
+            --sidebar-bg: #0B192C;
+            --sidebar-text: #94A3B8;
+            --sidebar-active: #0077C8;
+            --bg-body: #F4F7FB;
+            --card-bg: #FFFFFF;
+            --border-color: #E2E8F0;
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* Sidebar */
+        aside.admin-sidebar {
+            width: 260px;
+            background: var(--sidebar-bg);
+            color: var(--sidebar-text);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 50;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-brand {
+            padding: 24px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .sidebar-brand img {
+            height: 38px;
+            width: auto;
+            background: #ffffff;
+            padding: 4px 8px;
+            border-radius: 8px;
+        }
+
+        .sidebar-brand-text {
+            font-size: 15px;
+            font-weight: 700;
+            color: #FFFFFF;
+            line-height: 1.2;
+        }
+
+        .sidebar-brand-text span {
+            display: block;
+            font-size: 11px;
+            font-weight: 500;
+            color: #38BDF8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 2px;
+        }
+
+        .sidebar-nav {
+            padding: 20px 12px;
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .nav-section-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            color: #64748B;
+            padding: 12px 12px 6px;
+            font-weight: 700;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 14px;
+            color: var(--sidebar-text);
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link i {
+            font-size: 17px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .nav-link:hover {
+            color: #FFFFFF;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .nav-link.active {
+            color: #FFFFFF;
+            background: var(--primary);
+            box-shadow: 0 4px 12px rgba(0, 119, 200, 0.35);
+        }
+
+        .sidebar-footer {
+            padding: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        .user-profile-widget {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .user-profile-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            overflow: hidden;
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #0077C8, #00A3E0);
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .user-meta {
+            overflow: hidden;
+        }
+
+        .user-name {
+            font-size: 13.5px;
+            font-weight: 600;
+            color: #FFFFFF;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .user-email {
+            font-size: 11px;
+            color: #94A3B8;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .logout-btn {
+            background: none;
+            border: none;
+            color: #94A3B8;
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .logout-btn:hover {
+            color: #EF4444;
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        /* Main Content Wrapper */
+        .admin-main {
+            margin-left: 260px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Top Header */
+        header.admin-header {
+            background: #FFFFFF;
+            border-bottom: 1px solid var(--border-color);
+            padding: 14px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 40;
+        }
+
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .btn-live-site {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            background: #F1F5F9;
+            color: #334155;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+        }
+
+        .btn-live-site:hover {
+            background: #E2E8F0;
+            color: #0F172A;
+        }
+
+        .badge-status-online {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 10px;
+            background: rgba(16, 185, 129, 0.1);
+            color: #059669;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 999px;
+        }
+
+        .badge-status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: #10B981;
+        }
+
+        /* Content Area */
+        .admin-content {
+            padding: 28px;
+            flex: 1;
+        }
+
+        /* Flash Alerts */
+        .alert {
+            padding: 14px 18px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .alert-success {
+            background: #ECFDF5;
+            color: #065F46;
+            border: 1px solid #A7F3D0;
+        }
+
+        .alert-danger {
+            background: #FEF2F2;
+            color: #991B1B;
+            border: 1px solid #FECACA;
+        }
+
+        /* Responsive Mobile Drawer */
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        @media (max-width: 991px) {
+            aside.admin-sidebar {
+                transform: translateX(-100%);
+            }
+
+            aside.admin-sidebar.open {
+                transform: translateX(0);
+            }
+
+            .admin-main {
+                margin-left: 0;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+        }
+    </style>
+    @yield('styles')
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <aside class="admin-sidebar" id="adminSidebar">
+        <div class="sidebar-brand">
+            <img src="{{ asset('image/logo/logo.svg') }}" alt="Clineva">
+            <div class="sidebar-brand-text">
+                Clineva
+                <span>Admin Console</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="nav-section-title">Overview</div>
+            <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                <i class="icon-advance"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <div class="nav-section-title">Content &amp; Divisions</div>
+            <a href="{{ route('services') }}" target="_blank" class="nav-link">
+                <i class="icon-stethoscope"></i>
+                <span>Clinical Trials</span>
+            </a>
+            <a href="{{ route('services') }}#babe-services" target="_blank" class="nav-link">
+                <i class="icon-atom-simple"></i>
+                <span>BA / BE Services</span>
+            </a>
+            <a href="{{ route('services.details', ['service' => 'medical-affairs-medico-marketing']) }}" target="_blank" class="nav-link">
+                <i class="icon-globe"></i>
+                <span>Medico-Marketing</span>
+            </a>
+            <a href="{{ route('blog') }}" target="_blank" class="nav-link">
+                <i class="icon-file-word"></i>
+                <span>Blogs</span>
+            </a>
+
+            <div class="nav-section-title">Site Inquiries</div>
+            <a href="{{ route('contact') }}" target="_blank" class="nav-link">
+                <i class="icon-phone"></i>
+                <span>Contact Inquiries</span>
+            </a>
+            <a href="{{ route('careers') }}" target="_blank" class="nav-link">
+                <i class="icon-suitcase"></i>
+                <span>Careers Portal</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-profile-widget">
+                <div class="user-profile-info">
+                    <div class="user-avatar">
+                        {{ strtoupper(substr(Auth::guard('admin')->user()->name ?? 'A', 0, 1)) }}
+                    </div>
+                    <div class="user-meta">
+                        <div class="user-name">{{ Auth::guard('admin')->user()->name ?? 'Administrator' }}</div>
+                        <div class="user-email">{{ Auth::guard('admin')->user()->email ?? 'admin@clineva.in' }}</div>
+                    </div>
+                </div>
+                <form action="{{ route('admin.logout') }}" method="POST" style="margin: 0;">
+                    @csrf
+                    <button type="submit" class="logout-btn" title="Sign Out">
+                        <i class="icon-arrow-right"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="admin-main">
+        <header class="admin-header">
+            <div style="display: flex; align-items: center; gap: 14px;">
+                <button class="mobile-toggle" onclick="document.getElementById('adminSidebar').classList.toggle('open')">
+                    ☰
+                </button>
+                <h1 class="header-title">@yield('page_title', 'Dashboard')</h1>
+            </div>
+
+            <div class="header-actions">
+                <span class="badge-status-online">
+                    <span class="badge-status-dot"></span>
+                    System Live
+                </span>
+                <a href="{{ route('home') }}" target="_blank" class="btn-live-site">
+                    <span>View Public Site</span>
+                    <i class="icon-arrow-right"></i>
+                </a>
+                <form action="{{ route('admin.logout') }}" method="POST" style="margin: 0;">
+                    @csrf
+                    <button type="submit" class="btn-live-site" style="color: #EF4444; cursor: pointer; border-color: rgba(239, 68, 68, 0.2);">
+                        <span>Sign Out</span>
+                    </button>
+                </form>
+            </div>
+        </header>
+
+        <main class="admin-content">
+            @if(session('success'))
+                <div class="alert alert-success">
+                    ✓ {{ session('success') }}
+                </div>
+            @endif
+
+            @if(session('error'))
+                <div class="alert alert-danger">
+                    ✕ {{ session('error') }}
+                </div>
+            @endif
+
+            @yield('content')
+        </main>
+    </div>
+
+</body>
+</html>

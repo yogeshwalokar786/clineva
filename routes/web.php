@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\Admin\AuthController as AdminAuthController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,5 +35,19 @@ Route::get('/blog', [PageController::class, 'blog'])->name('blog');
 Route::get('/blog-standard', [PageController::class, 'blog']);
 Route::get('/blog-details', [PageController::class, 'blogDetails'])->name('blog.details');
 
-// Auth / Admin Login
+// Admin Authentication & Dashboard
+Route::prefix('admin')->name('admin.')->group(function () {
+    // Admin Guest / Login
+    Route::get('/login', [AdminAuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AdminAuthController::class, 'login'])->name('login.submit');
+
+    // Protected Admin Routes
+    Route::middleware('admin')->group(function () {
+        Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
+        Route::get('/dashboard', [AdminDashboardController::class, 'index']);
+        Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
+    });
+});
+
+// Legacy / Shortcut Auth Redirection
 Route::redirect('/login', '/admin/login')->name('login');
