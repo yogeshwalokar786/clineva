@@ -29,6 +29,9 @@ class DashboardController extends Controller
             $pendingApplicationsCount = JobApplication::where('status', 'pending')->count();
             $totalApplicationsCount = JobApplication::count();
             $recentApplications = JobApplication::latest()->take(5)->get();
+            $unreadInquiriesCount = \App\Models\Contact::where('status', 'unread')->count();
+            $totalInquiriesCount = \App\Models\Contact::count();
+            $recentInquiries = \App\Models\Contact::latest()->take(5)->get();
         } catch (\Throwable $e) {
             $admins = collect();
             $activeJobsCount = 0;
@@ -36,6 +39,9 @@ class DashboardController extends Controller
             $pendingApplicationsCount = 0;
             $totalApplicationsCount = 0;
             $recentApplications = collect();
+            $unreadInquiriesCount = 0;
+            $totalInquiriesCount = 0;
+            $recentInquiries = collect();
         }
 
         $stats = [
@@ -48,6 +54,8 @@ class DashboardController extends Controller
             'total_jobs' => $totalJobsCount,
             'pending_applications' => $pendingApplicationsCount,
             'total_applications' => $totalApplicationsCount,
+            'unread_inquiries' => $unreadInquiriesCount,
+            'total_inquiries' => $totalInquiriesCount,
         ];
 
         $systemInfo = [
@@ -67,6 +75,7 @@ class DashboardController extends Controller
             'admins',
             'stats',
             'recentApplications',
+            'recentInquiries',
             'systemInfo'
         ));
     }

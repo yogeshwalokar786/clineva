@@ -36,7 +36,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (6, '2026_11_05_000003_create_subscribers_table', 2),
 (7, '2026_11_14_000000_create_admins_table', 3),
 (8, '2026_11_14_000001_create_job_postings_table', 4),
-(9, '2026_11_14_000002_create_job_applications_table', 4);
+(9, '2026_11_14_000002_create_job_applications_table', 4),
+(10, '2026_11_14_000003_create_contacts_table', 5);
 
 -- --------------------------------------------------------
 -- Table structure for table `admins`
@@ -190,9 +191,12 @@ CREATE TABLE `contacts` (
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `phone` varchar(255) DEFAULT NULL,
+  `company` varchar(255) DEFAULT NULL,
+  `service` varchar(255) DEFAULT NULL,
   `subject` varchar(255) DEFAULT NULL,
   `message` text NOT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'unread',
+  `admin_notes` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)

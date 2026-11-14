@@ -667,6 +667,22 @@
                 @endif
             </a>
 
+            <div class="nav-section-title">Site Inquiries</div>
+            <a href="{{ route('admin.inquiries.index') }}" class="nav-link {{ request()->routeIs('admin.inquiries.*') ? 'active' : '' }}">
+                <i class="icon-contacts"></i>
+                <span>Contact Messages</span>
+                @php
+                    try {
+                        $unreadInquiriesCount = \App\Models\Contact::where('status', 'unread')->count();
+                    } catch (\Throwable $e) {
+                        $unreadInquiriesCount = 0;
+                    }
+                @endphp
+                @if($unreadInquiriesCount > 0)
+                    <span style="margin-left: auto; background: #EF4444; color: #fff; font-size: 11px; padding: 2px 7px; border-radius: 999px; font-weight: 700;">{{ $unreadInquiriesCount }}</span>
+                @endif
+            </a>
+
             <div class="nav-section-title">Account</div>
             <form id="sidebarLogoutForm" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
                 @csrf

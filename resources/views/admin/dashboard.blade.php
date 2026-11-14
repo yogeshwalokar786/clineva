@@ -19,7 +19,7 @@
 
         <div class="stat-card">
             <div class="stat-info">
-                <div class="stat-label">Active Job Openings</div>
+                <div class="stat-label">Active Openings</div>
                 <div class="stat-value">{{ $stats['active_jobs'] ?? 0 }}</div>
             </div>
             <div class="stat-icon success">
@@ -29,11 +29,28 @@
 
         <div class="stat-card">
             <div class="stat-info">
-                <div class="stat-label">Received Applications</div>
+                <div class="stat-label">Job Applications</div>
                 <div class="stat-value">{{ $stats['total_applications'] ?? 0 }}</div>
             </div>
             <div class="stat-icon warning">
                 <i class="icon-file-word"></i>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-info">
+                <div class="stat-label">Client Inquiries</div>
+                <div class="stat-value">
+                    {{ $stats['total_inquiries'] ?? 0 }}
+                    @if(($stats['unread_inquiries'] ?? 0) > 0)
+                        <span style="font-size: 11.5px; font-weight: 700; background: #FEF2F2; color: #DC2626; padding: 2px 7px; border-radius: 999px; margin-left: 4px; vertical-align: middle;">
+                            {{ $stats['unread_inquiries'] }} new
+                        </span>
+                    @endif
+                </div>
+            </div>
+            <div class="stat-icon primary">
+                <i class="icon-envelope"></i>
             </div>
         </div>
 
@@ -116,6 +133,77 @@
                                 <tr>
                                     <td colspan="5" style="text-align: center; padding: 28px; color: var(--text-muted); font-size: 13.5px;">
                                         No candidate applications received yet.
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Recent Contact Inquiries -->
+            <div class="content-card" style="margin-bottom: 24px;">
+                <div class="card-head">
+                    <div class="card-head-title">Recent Contact Inquiries</div>
+                    <div style="display: flex; gap: 8px;">
+                        <a href="{{ route('admin.inquiries.index') }}" class="btn-live-site" style="font-size: 12px; padding: 4px 10px;">
+                            View All ({{ $stats['total_inquiries'] ?? 0 }})
+                        </a>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Client / Sender</th>
+                                <th>Subject / Service</th>
+                                <th>Status</th>
+                                <th>Received</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($recentInquiries as $inquiry)
+                                <tr @if($inquiry->status === 'unread') style="background: rgba(14, 165, 233, 0.04);" @endif>
+                                    <td>
+                                        <div style="font-weight: 700; color: var(--dark); font-size: 13.5px;">{{ $inquiry->name }}</div>
+                                        <div style="font-size: 12px; color: var(--text-muted);">
+                                            {{ $inquiry->email }}
+                                            @if($inquiry->phone) &bull; {{ $inquiry->phone }} @endif
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div style="font-weight: 600; color: #1E293B; font-size: 13px;">
+                                            {{ $inquiry->subject ?: ($inquiry->service ?: 'General Inquiry') }}
+                                        </div>
+                                        @if($inquiry->company)
+                                            <div style="font-size: 12px; color: var(--text-muted);">{{ $inquiry->company }}</div>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($inquiry->status === 'unread')
+                                            <span style="background: #FEF2F2; color: #991B1B; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 700;">Unread</span>
+                                        @elseif($inquiry->status === 'read')
+                                            <span style="background: #EFF6FF; color: #1D4ED8; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 700;">Read</span>
+                                        @elseif($inquiry->status === 'replied')
+                                            <span style="background: #ECFDF5; color: #065F46; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 700;">Replied</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <span style="font-size: 12px; color: var(--text-muted);">
+                                            {{ $inquiry->created_at ? $inquiry->created_at->diffForHumans() : '—' }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('admin.inquiries.show', ['inquiry' => $inquiry->id]) }}" class="btn-live-site" style="padding: 4px 10px; font-size: 12px; color: var(--primary);">
+                                            Review
+                                        </a>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="5" style="text-align: center; padding: 28px; color: var(--text-muted); font-size: 13.5px;">
+                                        No contact inquiries received yet.
                                     </td>
                                 </tr>
                             @endforelse

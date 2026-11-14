@@ -30,6 +30,7 @@ Route::get('/careers', [PageController::class, 'careers'])->name('careers');
 Route::get('/career', [PageController::class, 'careers']);
 Route::post('/careers/apply', [PageController::class, 'submitApplication'])->name('careers.apply');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+Route::post('/contact', [PageController::class, 'submitContact'])->name('contact.submit');
 
 // Blog
 Route::get('/blog', [PageController::class, 'blog'])->name('blog');
@@ -57,6 +58,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('applications/{application}/resume', [\App\Http\Controllers\Admin\JobApplicationController::class, 'resume'])->name('applications.resume');
         Route::post('applications/{application}/status', [\App\Http\Controllers\Admin\JobApplicationController::class, 'updateStatus'])->name('applications.status');
         Route::delete('applications/{application}', [\App\Http\Controllers\Admin\JobApplicationController::class, 'destroy'])->name('applications.destroy');
+
+        // Contact Inquiries Management
+        Route::get('inquiries', [\App\Http\Controllers\Admin\ContactInquiryController::class, 'index'])->name('inquiries.index');
+        Route::get('inquiries/{inquiry}', [\App\Http\Controllers\Admin\ContactInquiryController::class, 'show'])->name('inquiries.show');
+        Route::post('inquiries/{inquiry}/status', [\App\Http\Controllers\Admin\ContactInquiryController::class, 'updateStatus'])->name('inquiries.status');
+        Route::delete('inquiries/{inquiry}', [\App\Http\Controllers\Admin\ContactInquiryController::class, 'destroy'])->name('inquiries.destroy');
 
         Route::match(['get', 'post'], '/logout', [AdminAuthController::class, 'logout'])->name('logout');
     });
