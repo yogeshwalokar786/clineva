@@ -52,10 +52,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
         Route::get('/dashboard', [AdminDashboardController::class, 'index']);
 
-        // Blog Posts & SEO Management
+        // Blog Posts & Categories Management
         Route::resource('blogs', \App\Http\Controllers\Admin\BlogPostController::class)->except(['show']);
         Route::post('blogs/{blog}/toggle', [\App\Http\Controllers\Admin\BlogPostController::class, 'toggleStatus'])->name('blogs.toggle');
         Route::post('blogs/{blog}/featured', [\App\Http\Controllers\Admin\BlogPostController::class, 'toggleFeatured'])->name('blogs.featured');
+        Route::resource('blog-categories', \App\Http\Controllers\Admin\BlogCategoryController::class)->except(['show', 'create', 'edit']);
 
         // Job Postings Management
         Route::resource('jobs', \App\Http\Controllers\Admin\JobPostingController::class)->except(['show']);

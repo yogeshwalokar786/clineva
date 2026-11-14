@@ -661,6 +661,10 @@
                     <span style="margin-left: auto; background: rgba(0, 126, 138, 0.15); color: var(--primary); font-size: 11px; padding: 2px 7px; border-radius: 999px; font-weight: 700;">{{ $publishedBlogsCount }}</span>
                 @endif
             </a>
+            <a href="{{ route('admin.blog-categories.index') }}" class="nav-link {{ request()->routeIs('admin.blog-categories.*') ? 'active' : '' }}">
+                <i class="icon-tag"></i>
+                <span>Categories</span>
+            </a>
 
             <div class="nav-section-title">Careers Portal</div>
             <a href="{{ route('admin.jobs.index') }}" class="nav-link {{ request()->routeIs('admin.jobs.*') ? 'active' : '' }}">

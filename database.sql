@@ -337,5 +337,31 @@ INSERT INTO `blog_posts` (`id`, `title`, `slug`, `category`, `category_name`, `f
 (6, 'Translating Complex Clinical Study Data into High-Impact Medical Publications', 'scientific-rigor-medico-marketing-publications', 'medico-marketing', 'Medico-Marketing', 'image/blog/tf-port-grid-5.jpg', 'Best practices for ICMJE compliance, Good Publication Practice (GPP 2022), and developing clear manuscripts that withstand rigorous peer review.', 'Ensure complete alignment with ICMJE authorship criteria.\nDevelop compelling graphical abstracts to maximize manuscript engagement.\nDisclose all sponsor funding, author contributions, and data availability statements.\nMaintain consistent scientific messaging between CSRs and published articles.', 'Ethical, high-impact medical writing bridges the gap between raw statistical datasets and actionable clinical practice.', 'Adhering to GPP 2022 and ICMJE Guidelines', 'Ethical medical publication requires strict observance of GPP 2022 guidelines, transparent author contributions, and trial registry pre-registration.', 'Effective Scientific Visualizations', 'Journal editors and clinicians prioritize intuitive graphical abstracts, forest plots, and Kaplan-Meier curves that convey primary safety signals clearly.', 'Target Journal Selection and Strategy', 'Matching study scope, novelty, and clinical impact with appropriate indexed medical journals optimizes acceptance rates and minimizes publication delays.', '4 min read', 54, 1, 0, '2026-10-15 16:30:00', 'Medical Publications Writing', 'High-Impact Medical Publications Writing | Clineva', 'Expert strategies for ICMJE and GPP 2022 compliant clinical trial manuscripts and scientific publications.', 'Medical Writing, ICMJE, Clinical Study Reports, GPP 2022, Medico-Marketing', NULL, 'High-Impact Medical Publications Writing | Clineva', 'Expert strategies for ICMJE and GPP 2022 compliant clinical trial manuscripts and scientific publications.', 'MedicalScholarlyArticle', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1', '2026-10-15 16:30:00', '2026-11-14 06:00:00'),
 (7, 'Modern Pharmacovigilance: Automated Signal Detection & Risk Management in Global Post-Marketing Surveillance', 'pharmacovigilance-signal-detection-post-marketing', 'regulatory-gcp', 'Regulatory & GCP', 'image/blog/tf-port-grid-6.jpg', 'Harnessing structured safety databases, disproportionality analysis, and CIOMS/PSUR reporting workflows to stay compliant with global regulatory safety mandates.', 'Implement automated disproportionality alerts within safety databases.\nEnsure strict compliance with 15-day expedited reporting windows for serious adverse events.\nAlign local safety affiliates with centralized Global Safety Officers.\nProactively monitor real-world evidence registries for off-label safety trends.', 'Patient safety is an enduring lifecycle commitment that begins in early phase trials and deepens throughout commercial availability.', 'Statistical Disproportionality Scoring', 'Modern safety surveillance employs PRR and BCPNN algorithms to uncover subtle safety signals amidst millions of spontaneous adverse event reports.', 'Harmonized Periodic Safety Update Reports (PSUR/PBRER)', 'Synthesizing global risk-benefit evaluations requires seamless cross-functional alignment between operations, biostatistics, and safety personnel.', 'Risk Evaluation and Mitigation Strategies (REMS)', 'Designing workable risk management plans protects patients while preserving product access for appropriate clinical populations.', '6 min read', 71, 1, 0, '2026-10-09 10:20:00', 'Pharmacovigilance Signal Detection', 'Modern Pharmacovigilance & Signal Detection | Clineva', 'Proactive safety surveillance, PSUR reporting, and automated disproportionality algorithms for global sponsors.', 'Pharmacovigilance, Drug Safety, Signal Detection, PSUR, Regulatory Submissions', NULL, 'Modern Pharmacovigilance & Signal Detection | Clineva', 'Proactive safety surveillance, PSUR reporting, and automated disproportionality algorithms for global sponsors.', 'MedicalScholarlyArticle', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1', '2026-10-09 10:20:00', '2026-11-14 06:00:00');
 
+-- --------------------------------------------------------
+-- Table structure for table `blog_categories`
+-- --------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `blog_categories` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(150) NOT NULL,
+  `slug` varchar(150) NOT NULL,
+  `color` varchar(30) NOT NULL DEFAULT '#007E8A',
+  `description` text DEFAULT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `blog_categories_slug_unique` (`slug`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO `blog_categories` (`id`, `name`, `slug`, `color`, `description`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 'Clinical Trials', 'clinical-trials', '#007E8A', 'Phase I-IV clinical trial operations, patient recruitment, protocol design, and decentralized monitoring.', 1, '2026-11-14 06:00:00', '2026-11-14 06:00:00'),
+(2, 'BA/BE Studies', 'babe-services', '#0284C7', 'Bioavailability and Bioequivalence protocols, pharmacokinetic modeling, and complex generic dossiers.', 1, '2026-11-14 06:00:00', '2026-11-14 06:00:00'),
+(3, 'Regulatory & GCP', 'regulatory-gcp', '#059669', 'ICH GCP compliance, CDSCO, USFDA, and EMA regulatory intelligence, audits, and pharmacovigilance.', 1, '2026-11-14 06:00:00', '2026-11-14 06:00:00'),
+(4, 'Bioanalytical & PK', 'bioanalytics-pk', '#6366F1', 'High-throughput LC-MS/MS method development, matrix effects mitigation, and pharmacokinetic analysis.', 1, '2026-11-14 06:00:00', '2026-11-14 06:00:00'),
+(5, 'Medico-Marketing', 'medico-marketing', '#8B5CF6', 'Scientific medical writing, ICMJE-compliant publications, clinical study reports, and visual abstracts.', 1, '2026-11-14 06:00:00', '2026-11-14 06:00:00');
+
+INSERT INTO `migrations` (`migration`, `batch`) VALUES ('2026_11_14_000005_create_blog_categories_table', 3);
+
 SET FOREIGN_KEY_CHECKS=1;
 COMMIT;

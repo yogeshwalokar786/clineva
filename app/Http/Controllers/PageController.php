@@ -181,23 +181,50 @@ class PageController extends Controller
             $allArticles = \App\Models\BlogPost::published()->get();
             $featuredArticle = $allArticles->where('is_featured', true)->first() ?: $allArticles->first();
             $recentArticles = $allArticles->take(3);
-
-            // Live category counts from database
             $allCount = $allArticles->count();
-            $catCounts = [];
-            foreach ($allArticles as $p) {
-                $c = $p->category;
-                $catCounts[$c] = ($catCounts[$c] ?? 0) + 1;
-            }
 
+            // Strict dynamic categories from database
             $categories = [
                 ['slug' => 'all', 'name' => 'All Insights', 'count' => $allCount],
-                ['slug' => 'clinical-trials', 'name' => 'Clinical Trials', 'count' => $catCounts['clinical-trials'] ?? 0],
-                ['slug' => 'babe-services', 'name' => 'BA/BE Studies', 'count' => $catCounts['babe-services'] ?? 0],
-                ['slug' => 'regulatory-gcp', 'name' => 'Regulatory & GCP', 'count' => $catCounts['regulatory-gcp'] ?? 0],
-                ['slug' => 'bioanalytics-pk', 'name' => 'Bioanalytical & PK', 'count' => $catCounts['bioanalytics-pk'] ?? 0],
-                ['slug' => 'medico-marketing', 'name' => 'Medico-Marketing', 'count' => $catCounts['medico-marketing'] ?? 0],
             ];
+
+            try {
+                $dbCategories = \App\Models\BlogCategory::active()->orderBy('name')->get();
+                if ($dbCategories->isNotEmpty()) {
+                    foreach ($dbCategories as $cat) {
+                        $cCount = $allArticles->where('category', $cat->slug)->count();
+                        $categories[] = [
+                            'slug' => $cat->slug,
+                            'name' => $cat->name,
+                            'count' => $cCount,
+                            'color' => $cat->color,
+                        ];
+                    }
+                } else {
+                    $catGroups = $allArticles->groupBy('category');
+                    foreach ($catGroups as $catSlug => $group) {
+                        if (empty($catSlug)) continue;
+                        $categories[] = [
+                            'slug' => $catSlug,
+                            'name' => $group->first()->category_name ?: \Illuminate\Support\Str::title(str_replace('-', ' ', $catSlug)),
+                            'count' => $group->count(),
+                            'color' => $group->first()->category_color,
+                        ];
+                    }
+                }
+            } catch (\Throwable $e) {
+                // If table doesn't exist, group by articles
+                $catGroups = $allArticles->groupBy('category');
+                foreach ($catGroups as $catSlug => $group) {
+                    if (empty($catSlug)) continue;
+                    $categories[] = [
+                        'slug' => $catSlug,
+                        'name' => $group->first()->category_name ?: \Illuminate\Support\Str::title(str_replace('-', ' ', $catSlug)),
+                        'count' => $group->count(),
+                        'color' => $group->first()->category_color,
+                    ];
+                }
+            }
         } catch (\Throwable $e) {
             $articles = collect();
             $allArticles = collect();
@@ -277,13 +304,21 @@ class PageController extends Controller
             $recentArticles = collect();
         }
 
-        $categories = [
-            ['slug' => 'clinical-trials', 'name' => 'Clinical Trials'],
-            ['slug' => 'babe-services', 'name' => 'BA/BE Studies'],
-            ['slug' => 'regulatory-gcp', 'name' => 'Regulatory & GCP'],
-            ['slug' => 'bioanalytics-pk', 'name' => 'Bioanalytical & PK'],
-            ['slug' => 'medico-marketing', 'name' => 'Medico-Marketing'],
-        ];
+        try {
+            $dbCategories = \App\Models\BlogCategory::active()->orderBy('name')->get();
+            if ($dbCategories->isNotEmpty()) {
+                $categories = $dbCategories->map(fn($c) => ['slug' => $c->slug, 'name' => $c->name])->toArray();
+            } else {
+                $categories = \App\Models\BlogPost::published()
+                    ->select('category as slug', 'category_name as name')
+                    ->distinct()
+                    ->whereNotNull('category')
+                    ->get()
+                    ->toArray();
+            }
+        } catch (\Throwable $e) {
+            $categories = [];
+        }
 
         return view('pages.blog-details', [
             'article' => $post,

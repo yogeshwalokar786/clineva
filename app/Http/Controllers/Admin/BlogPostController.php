@@ -124,6 +124,13 @@ class BlogPostController extends Controller
         $categoryLabels = BlogPost::categoryLabels();
         $categoryName = $validated['category_name'] ?: ($categoryLabels[$validated['category']] ?? Str::title(str_replace('-', ' ', $validated['category'])));
 
+        try {
+            \App\Models\BlogCategory::firstOrCreate(
+                ['slug' => $validated['category']],
+                ['name' => $categoryName, 'is_active' => true]
+            );
+        } catch (\Throwable $e) {}
+
         $post = BlogPost::create([
             'title' => $validated['title'],
             'slug' => $slug,
@@ -229,6 +236,13 @@ class BlogPostController extends Controller
 
         $categoryLabels = BlogPost::categoryLabels();
         $categoryName = $validated['category_name'] ?: ($categoryLabels[$validated['category']] ?? Str::title(str_replace('-', ' ', $validated['category'])));
+
+        try {
+            \App\Models\BlogCategory::firstOrCreate(
+                ['slug' => $validated['category']],
+                ['name' => $categoryName, 'is_active' => true]
+            );
+        } catch (\Throwable $e) {}
 
         $blog->update([
             'title' => $validated['title'],

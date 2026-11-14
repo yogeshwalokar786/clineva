@@ -91,24 +91,47 @@ class BlogPost extends Model
     }
 
     /**
-     * Category mappings.
+     * Category mappings loaded strictly from database.
      */
     public static function categoryLabels(): array
     {
-        return [
-            'clinical-trials' => 'Clinical Trials',
-            'babe-services' => 'BA/BE Studies',
-            'regulatory-gcp' => 'Regulatory & GCP',
-            'bioanalytics-pk' => 'Bioanalytical & PK',
-            'medico-marketing' => 'Medico-Marketing',
-        ];
+        try {
+            $cats = BlogCategory::active()->orderBy('name')->pluck('name', 'slug')->toArray();
+            if (!empty($cats)) {
+                return $cats;
+            }
+        } catch (\Throwable $e) {}
+
+        try {
+            $distinct = self::select('category', 'category_name')->distinct()->whereNotNull('category')->pluck('category_name', 'category')->toArray();
+            if (!empty($distinct)) {
+                return $distinct;
+            }
+        } catch (\Throwable $e) {}
+
+        return [];
     }
 
     /**
-     * Get category badge color.
+     * Associated category model.
+     */
+    public function categoryModel()
+    {
+        return $this->belongsTo(BlogCategory::class, 'category', 'slug');
+    }
+
+    /**
+     * Get category badge color dynamically from database.
      */
     public function getCategoryColorAttribute(): string
     {
+        try {
+            $color = BlogCategory::where('slug', $this->category)->value('color');
+            if ($color) {
+                return $color;
+            }
+        } catch (\Throwable $e) {}
+
         $colors = [
             'regulatory-gcp' => '#059669', // Emerald
             'babe-services' => '#0284C7',   // Sky Blue

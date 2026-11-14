@@ -337,13 +337,20 @@
                 <div class="form-section-sub">Status and visibility settings.</div>
 
                 <div class="form-group" style="margin-bottom: 16px;">
-                    <label class="form-label" style="font-weight: 700;">Research Category *</label>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <label class="form-label" style="font-weight: 700; margin: 0;">Research Category *</label>
+                        <a href="{{ route('admin.blog-categories.index') }}" target="_blank" style="font-size: 11.5px; color: var(--primary); font-weight: 600; text-decoration: underline;">
+                            + Manage Categories
+                        </a>
+                    </div>
                     <select name="category" class="form-control" required style="font-size: 13.5px;">
-                        @foreach($categories as $catSlug => $catLabel)
+                        @forelse($categories as $catSlug => $catLabel)
                             <option value="{{ $catSlug }}" {{ old('category', $blog->category) === $catSlug ? 'selected' : '' }}>
                                 {{ $catLabel }}
                             </option>
-                        @endforeach
+                        @empty
+                            <option value="" disabled selected>No categories found — please create one first</option>
+                        @endforelse
                     </select>
                 </div>
 
