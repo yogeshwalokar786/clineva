@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Blog Standard - Clineva')
+@section('title', 'Blogs - Clineva Research Laboratories')
 
 @section('content')
 <!-- Page-title -->
@@ -8,12 +8,12 @@
             <div class="mx-30">
                 <div class="page-title-content paralax-bg">
                     <h1 class="title text-anime">
-                        Blog Standard
+                        Blogs
                     </h1>
                     <div class="breadkcum text-anime">
                         <h3><a href="{{ route('home') }}" class="link-breadkcum">Home</a></h3>
                         <span class="dot bg-white"></span>
-                        <h3 class="page-breadkcum">Blog Standard</h3>
+                        <h3 class="page-breadkcum">Blogs</h3>
                     </div>
                 </div>
             </div>

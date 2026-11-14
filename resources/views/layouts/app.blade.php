@@ -177,6 +177,11 @@
                                     <span>Career's</span>
                                 </a>
                             </li>
+                            <li class="menu-item {{ request()->routeIs('blog*') ? 'current-menu-item' : '' }}">
+                                <a href="{{ route('blog') }}" class="item-link body-2">
+                                    <span>Blogs</span>
+                                </a>
+                            </li>
                             <li class="menu-item {{ request()->routeIs('contact') ? 'current-menu-item' : '' }}">
                                 <a href="{{ route('contact') }}" class="item-link body-2">
                                     <span>Contact Us</span>
@@ -278,6 +283,11 @@
                                     <span>Career's</span>
                                 </a>
                             </li>
+                            <li class="menu-item {{ request()->routeIs('blog*') ? 'current-menu-item' : '' }}">
+                                <a href="{{ route('blog') }}" class="item-link body-2">
+                                    <span>Blogs</span>
+                                </a>
+                            </li>
                             <li class="menu-item {{ request()->routeIs('contact') ? 'current-menu-item' : '' }}">
                                 <a href="{{ route('contact') }}" class="item-link body-2">
                                     <span>Contact Us</span>
@@ -365,6 +375,7 @@
                                         <li class="support-item-footer"><a href="{{ route('about') }}">About Us</a></li>
                                         <li class="support-item-footer"><a href="{{ route('services') }}">Services</a></li>
                                         <li class="support-item-footer"><a href="{{ route('careers') }}">Career's</a></li>
+                                        <li class="support-item-footer"><a href="{{ route('blog') }}">Blogs</a></li>
                                         <li class="support-item-footer"><a href="{{ route('contact') }}">Contact Us</a></li>
                                     </ul>
                                 </div>
@@ -525,6 +536,9 @@
                         </li>
                         <li class="menu-item {{ request()->routeIs('careers') ? 'current-menu-mobile-item' : '' }}">
                             <a href="{{ route('careers') }}">Career's</a>
+                        </li>
+                        <li class="menu-item {{ request()->routeIs('blog*') ? 'current-menu-mobile-item' : '' }}">
+                            <a href="{{ route('blog') }}">Blogs</a>
                         </li>
                         <li class="menu-item {{ request()->routeIs('contact') ? 'current-menu-mobile-item' : '' }}">
                             <a href="{{ route('contact') }}">Contact Us</a>
