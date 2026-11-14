@@ -492,7 +492,8 @@
         <div class="tf-container">
 
             <!-- Category Filter & Search Toolbar -->
-            <div class="blog-filter-toolbar">
+            <div class="blog-filter-toolbar" style="{{ count($categories) <= 1 ? 'justify-content: flex-end;' : '' }}">
+                @if(count($categories) > 1)
                 <div class="blog-categories-group">
                     @foreach($categories as $cat)
                         <a href="{{ route('blog', ['category' => $cat['slug']]) }}"
@@ -502,7 +503,8 @@
                         </a>
                     @endforeach
                 </div>
-                <div class="blog-search-wrap">
+                @endif
+                <div class="blog-search-wrap" style="{{ count($categories) <= 1 ? 'max-width: 380px; width: 100%;' : '' }}">
                     <form action="{{ route('blog') }}" method="GET">
                         <input type="text"
                                name="q"
@@ -644,11 +646,13 @@
                         <i class="icon-file-word" style="font-size: 44px; color: #94A3B8; margin-bottom: 12px; display: block;"></i>
                         <h4 style="font-size: 20px; font-weight: 700; color: #1E293B; margin-bottom: 8px;">No Insights Found</h4>
                         <p style="font-size: 14px; color: #64748B; margin-bottom: 20px;">
-                            We couldn't find any articles matching your search query.
+                            {{ !empty($searchQuery) || $selectedCategory !== 'all' ? "We couldn't find any articles matching your search query or category." : "No blog articles have been published yet. Check back soon for the latest clinical trial updates and regulatory insights." }}
                         </p>
-                        <a href="{{ route('blog') }}" class="btn-read-lead" style="display: inline-flex;">
-                            View All Insights
-                        </a>
+                        @if(!empty($searchQuery) || $selectedCategory !== 'all')
+                            <a href="{{ route('blog') }}" class="btn-read-lead" style="display: inline-flex;">
+                                View All Insights
+                            </a>
+                        @endif
                     </div>
                 @endforelse
             </div>

@@ -183,7 +183,7 @@ class PageController extends Controller
             $recentArticles = $allArticles->take(3);
             $allCount = $allArticles->count();
 
-            // Strict dynamic categories from database
+            // Strict dynamic categories from database - ZERO DEMO DATA
             $categories = [
                 ['slug' => 'all', 'name' => 'All Insights', 'count' => $allCount],
             ];
@@ -197,34 +197,10 @@ class PageController extends Controller
                             'slug' => $cat->slug,
                             'name' => $cat->name,
                             'count' => $cCount,
-                            'color' => $cat->color,
-                        ];
-                    }
-                } else {
-                    $catGroups = $allArticles->groupBy('category');
-                    foreach ($catGroups as $catSlug => $group) {
-                        if (empty($catSlug)) continue;
-                        $categories[] = [
-                            'slug' => $catSlug,
-                            'name' => $group->first()->category_name ?: \Illuminate\Support\Str::title(str_replace('-', ' ', $catSlug)),
-                            'count' => $group->count(),
-                            'color' => $group->first()->category_color,
                         ];
                     }
                 }
-            } catch (\Throwable $e) {
-                // If table doesn't exist, group by articles
-                $catGroups = $allArticles->groupBy('category');
-                foreach ($catGroups as $catSlug => $group) {
-                    if (empty($catSlug)) continue;
-                    $categories[] = [
-                        'slug' => $catSlug,
-                        'name' => $group->first()->category_name ?: \Illuminate\Support\Str::title(str_replace('-', ' ', $catSlug)),
-                        'count' => $group->count(),
-                        'color' => $group->first()->category_color,
-                    ];
-                }
-            }
+            } catch (\Throwable $e) {}
         } catch (\Throwable $e) {
             $articles = collect();
             $allArticles = collect();
@@ -232,11 +208,6 @@ class PageController extends Controller
             $recentArticles = collect();
             $categories = [
                 ['slug' => 'all', 'name' => 'All Insights', 'count' => 0],
-                ['slug' => 'clinical-trials', 'name' => 'Clinical Trials', 'count' => 0],
-                ['slug' => 'babe-services', 'name' => 'BA/BE Studies', 'count' => 0],
-                ['slug' => 'regulatory-gcp', 'name' => 'Regulatory & GCP', 'count' => 0],
-                ['slug' => 'bioanalytics-pk', 'name' => 'Bioanalytical & PK', 'count' => 0],
-                ['slug' => 'medico-marketing', 'name' => 'Medico-Marketing', 'count' => 0],
             ];
         }
 
@@ -306,16 +277,7 @@ class PageController extends Controller
 
         try {
             $dbCategories = \App\Models\BlogCategory::active()->orderBy('name')->get();
-            if ($dbCategories->isNotEmpty()) {
-                $categories = $dbCategories->map(fn($c) => ['slug' => $c->slug, 'name' => $c->name])->toArray();
-            } else {
-                $categories = \App\Models\BlogPost::published()
-                    ->select('category as slug', 'category_name as name')
-                    ->distinct()
-                    ->whereNotNull('category')
-                    ->get()
-                    ->toArray();
-            }
+            $categories = $dbCategories->map(fn($c) => ['slug' => $c->slug, 'name' => $c->name])->toArray();
         } catch (\Throwable $e) {
             $categories = [];
         }
