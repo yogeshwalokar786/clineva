@@ -415,28 +415,8 @@
                     @endforeach
                 </div>
             </div>
-
-            <!-- Quick Links -->
-            <div class="content-card">
-                <div class="card-head">
-                    <div class="card-head-title">Quick Shortcuts</div>
-                </div>
-                <div style="padding: 16px 20px; display: flex; flex-direction: column; gap: 10px;">
-                    <a href="{{ route('services') }}" target="_blank" class="btn-live-site" style="justify-content: space-between;">
-                        <span>Services Hub</span>
-                        <i class="icon-arrow-right"></i>
-                    </a>
-                    <a href="{{ route('careers') }}" target="_blank" class="btn-live-site" style="justify-content: space-between;">
-                        <span>Careers &amp; Openings</span>
-                        <i class="icon-arrow-right"></i>
-                    </a>
-                    <a href="{{ route('contact') }}" target="_blank" class="btn-live-site" style="justify-content: space-between;">
-                        <span>Contact Page</span>
-                        <i class="icon-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
         </div>
     </div>
 
 @endsection
+

@@ -58,3 +58,4 @@ class AuthController extends Controller
             ->with('success', 'You have been successfully logged out.');
     }
 }
+

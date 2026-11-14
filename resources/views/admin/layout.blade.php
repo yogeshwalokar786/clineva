@@ -138,6 +138,16 @@
             box-shadow: 0 4px 12px rgba(0, 119, 200, 0.35);
         }
 
+        .nav-link.nav-link-logout {
+            color: #F87171;
+            margin-top: 4px;
+        }
+
+        .nav-link.nav-link-logout:hover {
+            color: #EF4444;
+            background: rgba(239, 68, 68, 0.12);
+        }
+
         .sidebar-footer {
             padding: 16px;
             border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -353,38 +363,18 @@
         </div>
 
         <nav class="sidebar-nav">
-            <div class="nav-section-title">Overview</div>
+            <div class="nav-section-title">Navigation</div>
             <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                 <i class="icon-advance"></i>
                 <span>Dashboard</span>
             </a>
 
-            <div class="nav-section-title">Content &amp; Divisions</div>
-            <a href="{{ route('services') }}" target="_blank" class="nav-link">
-                <i class="icon-stethoscope"></i>
-                <span>Clinical Trials</span>
-            </a>
-            <a href="{{ route('services') }}#babe-services" target="_blank" class="nav-link">
-                <i class="icon-atom-simple"></i>
-                <span>BA / BE Services</span>
-            </a>
-            <a href="{{ route('services.details', ['service' => 'medical-affairs-medico-marketing']) }}" target="_blank" class="nav-link">
-                <i class="icon-globe"></i>
-                <span>Medico-Marketing</span>
-            </a>
-            <a href="{{ route('blog') }}" target="_blank" class="nav-link">
-                <i class="icon-file-word"></i>
-                <span>Blogs</span>
-            </a>
-
-            <div class="nav-section-title">Site Inquiries</div>
-            <a href="{{ route('contact') }}" target="_blank" class="nav-link">
-                <i class="icon-phone"></i>
-                <span>Contact Inquiries</span>
-            </a>
-            <a href="{{ route('careers') }}" target="_blank" class="nav-link">
-                <i class="icon-suitcase"></i>
-                <span>Careers Portal</span>
+            <form id="sidebarLogoutForm" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+            <a href="{{ route('admin.logout') }}" onclick="event.preventDefault(); document.getElementById('sidebarLogoutForm').submit();" class="nav-link nav-link-logout">
+                <i class="icon-arrow-right"></i>
+                <span>Logout</span>
             </a>
         </nav>
 
@@ -456,3 +446,4 @@
 
 </body>
 </html>
+
