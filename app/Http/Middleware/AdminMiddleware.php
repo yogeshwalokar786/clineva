@@ -14,8 +14,12 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (! Auth::guard('admin')->check()) {
-            return redirect()->route('admin.login')->with('error', 'Please sign in to access the admin console.');
+        try {
+            if (! Auth::guard('admin')->check()) {
+                return redirect()->route('admin.login')->with('error', 'Please sign in to access the admin console.');
+            }
+        } catch (\Throwable $e) {
+            return redirect()->route('admin.login')->with('error', 'Database connection check: ' . $e->getMessage());
         }
 
         return $next($request);

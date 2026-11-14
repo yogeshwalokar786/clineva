@@ -32,15 +32,20 @@ class JobApplicationController extends Controller
             });
         }
 
-        $applications = $query->paginate(15)->withQueryString();
+        try {
+            $applications = $query->paginate(15)->withQueryString();
 
-        $counts = [
-            'all' => JobApplication::count(),
-            'pending' => JobApplication::where('status', 'pending')->count(),
-            'reviewed' => JobApplication::where('status', 'reviewed')->count(),
-            'shortlisted' => JobApplication::where('status', 'shortlisted')->count(),
-            'rejected' => JobApplication::where('status', 'rejected')->count(),
-        ];
+            $counts = [
+                'all' => JobApplication::count(),
+                'pending' => JobApplication::where('status', 'pending')->count(),
+                'reviewed' => JobApplication::where('status', 'reviewed')->count(),
+                'shortlisted' => JobApplication::where('status', 'shortlisted')->count(),
+                'rejected' => JobApplication::where('status', 'rejected')->count(),
+            ];
+        } catch (\Throwable $e) {
+            $applications = new \Illuminate\Pagination\LengthAwarePaginator(collect(), 0, 15);
+            $counts = ['all' => 0, 'pending' => 0, 'reviewed' => 0, 'shortlisted' => 0, 'rejected' => 0];
+        }
 
         return view('admin.applications.index', compact('applications', 'counts', 'status', 'search'));
     }

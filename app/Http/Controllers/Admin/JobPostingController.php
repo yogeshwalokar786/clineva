@@ -14,7 +14,11 @@ class JobPostingController extends Controller
      */
     public function index()
     {
-        $jobs = JobPosting::withCount('applications')->latest()->get();
+        try {
+            $jobs = JobPosting::withCount('applications')->latest()->get();
+        } catch (\Throwable $e) {
+            $jobs = collect();
+        }
 
         $stats = [
             'total' => $jobs->count(),

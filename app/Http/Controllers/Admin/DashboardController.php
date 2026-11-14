@@ -21,15 +21,16 @@ class DashboardController extends Controller
         $clinicalServices = ServicesCatalog::getByCategory('clinical-trials');
         $babeServices = ServicesCatalog::getByCategory('babe-services');
         $medicoServices = ServicesCatalog::getByCategory('medico-marketing');
-        $admins = Admin::latest()->get();
 
         try {
+            $admins = Admin::latest()->get();
             $activeJobsCount = JobPosting::where('is_active', true)->count();
             $totalJobsCount = JobPosting::count();
             $pendingApplicationsCount = JobApplication::where('status', 'pending')->count();
             $totalApplicationsCount = JobApplication::count();
             $recentApplications = JobApplication::latest()->take(5)->get();
         } catch (\Throwable $e) {
+            $admins = collect();
             $activeJobsCount = 0;
             $totalJobsCount = 0;
             $pendingApplicationsCount = 0;

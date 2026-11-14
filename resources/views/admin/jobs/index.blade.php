@@ -97,7 +97,7 @@
                             <td style="text-align: right;">
                                 <div style="display: inline-flex; align-items: center; gap: 6px;">
                                     <!-- Toggle Active -->
-                                    <form action="{{ route('admin.jobs.toggle', $job) }}" method="POST" style="margin: 0;">
+                                    <form action="{{ route('admin.jobs.toggle', ['job' => $job->id]) }}" method="POST" style="margin: 0;">
                                         @csrf
                                         <button type="submit" class="btn-live-site" style="padding: 5px 10px; font-size: 12px;" title="{{ $job->is_active ? 'Deactivate' : 'Activate' }}">
                                             {{ $job->is_active ? 'Close' : 'Publish' }}
@@ -105,12 +105,12 @@
                                     </form>
 
                                     <!-- Edit -->
-                                    <a href="{{ route('admin.jobs.edit', $job) }}" class="btn-live-site" style="padding: 5px 10px; font-size: 12px; color: var(--primary);" title="Edit Job">
+                                    <a href="{{ route('admin.jobs.edit', ['job' => $job->id]) }}" class="btn-live-site" style="padding: 5px 10px; font-size: 12px; color: var(--primary);" title="Edit Job">
                                         Edit
                                     </a>
 
                                     <!-- Delete -->
-                                    <form action="{{ route('admin.jobs.destroy', $job) }}" method="POST" style="margin: 0;" onsubmit="return confirm('Are you sure you want to delete this job posting?');">
+                                    <form action="{{ route('admin.jobs.destroy', ['job' => $job->id]) }}" method="POST" style="margin: 0;" onsubmit="return confirm('Are you sure you want to delete this job posting?');">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn-live-site" style="padding: 5px 10px; font-size: 12px; color: #EF4444; border-color: rgba(239, 68, 68, 0.2);" title="Delete Job">
