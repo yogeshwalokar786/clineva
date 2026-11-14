@@ -880,6 +880,10 @@
                 <i class="icon-camera"></i>
                 <span>Media Library</span>
             </a>
+            <a href="{{ route('admin.policy-pages.index') }}" class="nav-link {{ request()->routeIs('admin.policy-pages.*') ? 'active' : '' }}">
+                <i class="icon-file-word"></i>
+                <span>Policy Pages</span>
+            </a>
 
             <div class="nav-section-title">Careers Portal</div>
             <a href="{{ route('admin.jobs.index') }}" class="nav-link {{ request()->routeIs('admin.jobs.*') ? 'active' : '' }}">
@@ -916,6 +920,12 @@
                 @if($unreadInquiriesCount > 0)
                     <span style="margin-left: auto; background: #EF4444; color: #fff; font-size: 11px; padding: 2px 7px; border-radius: 999px; font-weight: 700;">{{ $unreadInquiriesCount }}</span>
                 @endif
+            </a>
+
+            <div class="nav-section-title">Configuration</div>
+            <a href="{{ route('admin.settings.index') }}" class="nav-link {{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
+                <i class="icon-wrench"></i>
+                <span>General Settings</span>
             </a>
 
             <div class="nav-section-title">Account</div>

@@ -17,6 +17,8 @@ DROP TABLE IF EXISTS `job_applications`;
 DROP TABLE IF EXISTS `job_postings`;
 DROP TABLE IF EXISTS `blog_posts`;
 DROP TABLE IF EXISTS `blog_categories`;
+DROP TABLE IF EXISTS `policy_pages`;
+DROP TABLE IF EXISTS `settings`;
 DROP TABLE IF EXISTS `contacts`;
 DROP TABLE IF EXISTS `appointments`;
 DROP TABLE IF EXISTS `subscribers`;
@@ -50,7 +52,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (6, '2026_11_14_000002_create_job_applications_table', 2),
 (7, '2026_11_14_000003_create_contacts_table', 2),
 (8, '2026_11_14_000004_create_blog_posts_table', 2),
-(9, '2026_11_14_000005_create_blog_categories_table', 2);
+(9, '2026_11_14_000005_create_blog_categories_table', 2),
+(10, '2026_11_14_000006_create_settings_table', 3),
+(11, '2026_11_14_000007_create_policy_pages_table', 3);
 
 -- --------------------------------------------------------
 -- Table structure for table `admins`
@@ -358,6 +362,58 @@ CREATE TABLE `blog_categories` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `blog_categories_slug_unique` (`slug`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+-- Table structure for table `settings`
+-- --------------------------------------------------------
+DROP TABLE IF EXISTS `settings`;
+CREATE TABLE `settings` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `key` varchar(100) NOT NULL,
+  `value` longtext DEFAULT NULL,
+  `group` varchar(50) NOT NULL DEFAULT 'general',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `settings_key_unique` (`key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO `settings` (`id`, `key`, `value`, `group`, `created_at`, `updated_at`) VALUES
+(1, 'site_name', 'Clineva Research Laboratories', 'general', '2026-11-14 00:00:00', '2026-11-14 00:00:00'),
+(2, 'contact_email', 'priti.gotpagar@clineva.in', 'contact', '2026-11-14 00:00:00', '2026-11-14 00:00:00'),
+(3, 'contact_phone', '+91 9870484499', 'contact', '2026-11-14 00:00:00', '2026-11-14 00:00:00'),
+(4, 'contact_address', 'D-318, Phase II, Turbhe MIDC, TTC Industrial Area, Navi Mumbai, Maharashtra 400705', 'contact', '2026-11-14 00:00:00', '2026-11-14 00:00:00'),
+(5, 'working_hours', 'Mon – Sat: 9:00 AM – 6:00 PM', 'contact', '2026-11-14 00:00:00', '2026-11-14 00:00:00'),
+(6, 'footer_description', 'Clineva Research Laboratories is a premier global Clinical Research Organization (CRO) delivering Phase I–IV clinical operations, BA/BE studies, bioanalytical PK/PD investigations, and regulatory intelligence across global markets.', 'footer', '2026-11-14 00:00:00', '2026-11-14 00:00:00'),
+(7, 'copyright_text', '© 2026 Clineva Research Laboratories. All rights reserved.', 'footer', '2026-11-14 00:00:00', '2026-11-14 00:00:00'),
+(8, 'social_facebook', 'https://facebook.com', 'social', '2026-11-14 00:00:00', '2026-11-14 00:00:00'),
+(9, 'social_twitter', 'https://twitter.com', 'social', '2026-11-14 00:00:00', '2026-11-14 00:00:00'),
+(10, 'social_linkedin', 'https://linkedin.com', 'social', '2026-11-14 00:00:00', '2026-11-14 00:00:00'),
+(11, 'social_instagram', 'https://instagram.com', 'social', '2026-11-14 00:00:00', '2026-11-14 00:00:00'),
+(12, 'social_youtube', 'https://youtube.com', 'social', '2026-11-14 00:00:00', '2026-11-14 00:00:00');
+
+-- --------------------------------------------------------
+-- Table structure for table `policy_pages`
+-- --------------------------------------------------------
+DROP TABLE IF EXISTS `policy_pages`;
+CREATE TABLE `policy_pages` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `content` longtext NOT NULL,
+  `meta_title` varchar(255) DEFAULT NULL,
+  `meta_description` text DEFAULT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `policy_pages_slug_unique` (`slug`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO `policy_pages` (`id`, `title`, `slug`, `content`, `meta_title`, `meta_description`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 'Privacy Policy & Data Protection', 'privacy-policy', '<h2>1. Introduction & Commitment to Privacy</h2>\r\n<p>Clineva Research Laboratories (\"Clineva\", \"we\", \"us\", or \"our\") respects the privacy of our website visitors, clinical study sponsors, principal investigators, clinical trial participants, and prospective candidates. This Privacy Policy details how we collect, process, safeguard, and disclose personal and clinical data in accordance with applicable global regulations, including the Digital Personal Data Protection Act (DPDP), ICH GCP guidelines, and ISO 27001 data security principles.</p>\r\n\r\n<h2>2. Information We Collect</h2>\r\n<p>We may collect information directly from you when you interact with our website or services:</p>\r\n<ul>\r\n    <li><strong>Direct Contact Data:</strong> Name, professional title, corporate email address, contact telephone number, organization name, and service inquiry specifics submitted through our contact and consultation forms.</li>\r\n    <li><strong>Careers & Recruitment Data:</strong> Curriculum Vitae (CV), professional qualifications, work experience, certifications, and candidate summaries provided during job applications.</li>\r\n    <li><strong>Clinical & Sponsor Communications:</strong> Study protocol inquiries, non-disclosure agreements, and regulatory feasibility discussions.</li>\r\n    <li><strong>Automated Analytics Data:</strong> IP addresses, browser types, device identifiers, and page interaction timestamps collected via cookies to optimize site performance and security.</li>\r\n</ul>\r\n\r\n<h2>3. Purpose & Legal Basis for Processing</h2>\r\n<p>All data collected by Clineva is utilized exclusively for legitimate business and scientific operations:</p>\r\n<ul>\r\n    <li>Responding to clinical trial, BA/BE, or bioanalytical proposals.</li>\r\n    <li>Evaluating job candidates for active vacancies within our laboratory network.</li>\r\n    <li>Maintaining regulatory compliance, audit trails, and pharmacovigilance commitments.</li>\r\n    <li>Protecting our digital infrastructure against security incidents and unauthorized access.</li>\r\n</ul>\r\n\r\n<h2>4. Confidentiality & Security Standards</h2>\r\n<p>We implement stringent physical, administrative, and technical safeguards. All data transmission across our website is protected using 256-bit SSL encryption. Access to candidate files and sponsor inquiries is strictly restricted on a need-to-know basis.</p>\r\n\r\n<h2>5. Data Retention & Your Rights</h2>\r\n<p>We retain personal information only for as long as necessary to fulfill the purposes for which it was gathered, or as required by regulatory statutory retention mandates. You have the right to request access to, rectification of, or erasure of your personal data by contacting our Data Protection Officer at <a href=\"mailto:priti.gotpagar@clineva.in\">priti.gotpagar@clineva.in</a>.</p>', 'Privacy Policy & Data Protection | Clineva Research Laboratories', 'Comprehensive privacy and clinical data governance guidelines at Clineva Research Laboratories.', 1, '2026-11-14 00:00:00', '2026-11-14 00:00:00'),
+(2, 'Terms of Use & Regulatory Notice', 'terms-conditions', '<h2>1. Acceptance of Terms</h2>\r\n<p>Welcome to the digital portal of Clineva Research Laboratories. By accessing or using this website, you acknowledge that you have read, understood, and agree to be bound by these Terms of Use and comply with all applicable laws and regulations.</p>\r\n\r\n<h2>2. Scientific & Informational Use Only</h2>\r\n<p>The materials, whitepapers, clinical methodologies, and regulatory analyses published on this website are provided solely for general informational, educational, and professional reference. They do not constitute formal legal advice, regulatory authorization, or medical consultation. Binding clinical study protocols, BA/BE contracts, and service agreements are governed strictly by executed bilateral Master Service Agreements (MSAs).</p>\r\n\r\n<h2>3. Intellectual Property Rights</h2>\r\n<p>All content on this website—including scientific summaries, research abstracts, brand trademarks, logos, diagrams, graphics, and interface designs—is the exclusive intellectual property of Clineva Research Laboratories or its licensors and is protected by international copyright, trademark, and intellectual property statutes. Unauthorized reproduction, modification, or distribution is prohibited.</p>\r\n\r\n<h2>4. External Links & Third-Party Resources</h2>\r\n<p>This portal may provide hyperlinks to external regulatory bodies (such as CDSCO, USFDA, EMA, and ICH). Clineva does not control or assume liability for the availability, accuracy, or privacy practices of external third-party domains.</p>\r\n\r\n<h2>5. Governing Law & Jurisdiction</h2>\r\n<p>These terms and any disputes arising out of the use of this website shall be governed by and construed in accordance with the laws of India, under the exclusive jurisdiction of the competent courts in Navi Mumbai / Mumbai, Maharashtra.</p>', 'Terms & Conditions of Service | Clineva Research Laboratories', 'Terms governing the access, scientific publications, and use of the Clineva Research Laboratories digital portal.', 1, '2026-11-14 00:00:00', '2026-11-14 00:00:00'),
+(3, 'Cookie & Tracking Policy', 'cookie-policy', '<h2>1. Use of Cookies</h2>\r\n<p>Clineva Research Laboratories uses essential cookies to ensure our website functions correctly, remembers your session security, and provides a smooth browsing experience.</p>\r\n<h2>2. Analytics & Performance</h2>\r\n<p>We use non-invasive aggregated analytics cookies to monitor website performance, understand user reading patterns on clinical whitepapers, and identify technical errors.</p>\r\n<h2>3. Managing Cookie Preferences</h2>\r\n<p>You can adjust your browser settings at any time to block or notify you about cookies. Disabling essential cookies may impact certain interactive features such as inquiry submissions.</p>', 'Cookie Policy | Clineva Research Laboratories', 'Learn how Clineva Research Laboratories uses essential and analytical cookies.', 1, '2026-11-14 00:00:00', '2026-11-14 00:00:00');
 
 SET FOREIGN_KEY_CHECKS=1;
 COMMIT;

@@ -310,4 +310,60 @@ class PageController extends Controller
             'blogPosts' => $blogPosts,
         ])->header('Content-Type', 'text/xml');
     }
+
+    /**
+     * Display a dynamic policy / regulatory notice page.
+     */
+    public function policyPage(string $slug)
+    {
+        $normalizedSlug = \Illuminate\Support\Str::slug($slug);
+
+        // Normalize common slug variations (e.g. terms-and-conditions -> terms-conditions)
+        if ($normalizedSlug === 'terms-and-conditions') {
+            $normalizedSlug = 'terms-conditions';
+        }
+
+        try {
+            $page = \App\Models\PolicyPage::active()->where('slug', $normalizedSlug)->first();
+        } catch (\Throwable $e) {
+            $page = null;
+        }
+
+        if (!$page) {
+            // Check default fallback dictionary
+            $default = \App\Models\PolicyPage::getDefaultPolicy($normalizedSlug);
+            if ($default) {
+                $page = (object) [
+                    'title' => $default['title'],
+                    'slug' => $default['slug'],
+                    'content' => $default['content'],
+                    'meta_title' => $default['meta_title'],
+                    'meta_description' => $default['meta_description'],
+                    'updated_at' => now(),
+                ];
+            } else {
+                abort(404, 'Policy page not found.');
+            }
+        }
+
+        // Fetch all active policies for sidebar navigation
+        try {
+            $allPolicies = \App\Models\PolicyPage::active()->select('title', 'slug')->orderBy('title')->get();
+            if ($allPolicies->isEmpty()) {
+                $allPolicies = collect([
+                    (object) ['title' => 'Privacy Policy & Data Protection', 'slug' => 'privacy-policy'],
+                    (object) ['title' => 'Terms of Use & Regulatory Notice', 'slug' => 'terms-conditions'],
+                    (object) ['title' => 'Cookie & Tracking Policy', 'slug' => 'cookie-policy'],
+                ]);
+            }
+        } catch (\Throwable $e) {
+            $allPolicies = collect([
+                (object) ['title' => 'Privacy Policy & Data Protection', 'slug' => 'privacy-policy'],
+                (object) ['title' => 'Terms of Use & Regulatory Notice', 'slug' => 'terms-conditions'],
+                (object) ['title' => 'Cookie & Tracking Policy', 'slug' => 'cookie-policy'],
+            ]);
+        }
+
+        return view('pages.policy', compact('page', 'allPolicies'));
+    }
 }

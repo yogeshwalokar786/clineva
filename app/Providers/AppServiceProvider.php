@@ -80,8 +80,11 @@ class AppServiceProvider extends ServiceProvider
         try {
             $settings = Setting::getAll();
             View::share('settings', $settings);
+            View::share('siteSettings', $settings);
         } catch (\Throwable $e) {
-            View::share('settings', []);
+            $defaults = Setting::defaults();
+            View::share('settings', $defaults);
+            View::share('siteSettings', $defaults);
         }
     }
 }

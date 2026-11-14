@@ -38,6 +38,13 @@ Route::get('/blog-standard', [PageController::class, 'blog']);
 Route::get('/blog/{slug}', [PageController::class, 'blogDetails'])->name('blog.details');
 Route::get('/blog-details/{slug?}', [PageController::class, 'blogDetails']);
 
+// Dynamic Policy Pages
+Route::get('/policy/{slug}', [PageController::class, 'policyPage'])->name('policy.show');
+Route::get('/privacy-policy', fn() => redirect()->route('policy.show', ['slug' => 'privacy-policy']))->name('privacy.policy');
+Route::get('/terms-and-conditions', fn() => redirect()->route('policy.show', ['slug' => 'terms-conditions']))->name('terms.conditions');
+Route::get('/terms', fn() => redirect()->route('policy.show', ['slug' => 'terms-conditions']));
+Route::get('/cookie-policy', fn() => redirect()->route('policy.show', ['slug' => 'cookie-policy']));
+
 // Dynamic XML Sitemap
 Route::get('/sitemap.xml', [PageController::class, 'sitemap'])->name('sitemap');
 
@@ -79,6 +86,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('inquiries/{inquiry}', [\App\Http\Controllers\Admin\ContactInquiryController::class, 'show'])->name('inquiries.show');
         Route::post('inquiries/{inquiry}/status', [\App\Http\Controllers\Admin\ContactInquiryController::class, 'updateStatus'])->name('inquiries.status');
         Route::delete('inquiries/{inquiry}', [\App\Http\Controllers\Admin\ContactInquiryController::class, 'destroy'])->name('inquiries.destroy');
+
+        // Dynamic Policy Pages Management
+        Route::resource('policy-pages', \App\Http\Controllers\Admin\PolicyPageController::class)->except(['show']);
+        Route::post('policy-pages/{policy_page}/toggle', [\App\Http\Controllers\Admin\PolicyPageController::class, 'toggle'])->name('policy-pages.toggle');
+
+        // General Website Settings
+        Route::get('settings', [\App\Http\Controllers\Admin\SettingController::class, 'index'])->name('settings.index');
+        Route::post('settings', [\App\Http\Controllers\Admin\SettingController::class, 'update'])->name('settings.update');
 
         Route::match(['get', 'post'], '/logout', [AdminAuthController::class, 'logout'])->name('logout');
     });

@@ -86,14 +86,14 @@
                     </div>
                     <span class="topbar-separator"></span>
                     <div class="topbar-contact-group flex align-items-center">
-                        <a href="tel:+919870484499" class="topbar-item topbar-link">
+                        <a href="tel:{{ preg_replace('/[^0-9+]/', '', $siteSettings['contact_phone'] ?? '+919870484499') }}" class="topbar-item topbar-link">
                             <span class="icon-wrap"><i class="icon-phone-volume"></i></span>
-                            <span class="content"><span>Call:</span> +91 9870484499</span>
+                            <span class="content"><span>Call:</span> {{ $siteSettings['contact_phone'] ?? '+91 9870484499' }}</span>
                         </a>
                         <span class="topbar-separator"></span>
-                        <a href="mailto:priti.gotpagar@clineva.in" class="topbar-item topbar-link">
+                        <a href="mailto:{{ $siteSettings['contact_email'] ?? 'priti.gotpagar@clineva.in' }}" class="topbar-item topbar-link">
                             <span class="icon-wrap"><i class="icon-envelope"></i></span>
-                            <span class="content"><span>Email:</span> priti.gotpagar@clineva.in</span>
+                            <span class="content"><span>Email:</span> {{ $siteSettings['contact_email'] ?? 'priti.gotpagar@clineva.in' }}</span>
                         </a>
                     </div>
                 </div>
@@ -102,15 +102,26 @@
                         <span class="icon-wrap"><i class="icon-clock"></i></span>
                         <div class="content">
                             <span>Hours:</span>
-                            <span class="time-value">Mon – Fri: 08:30 AM – 06:00 PM</span>
+                            <span class="time-value">{{ $siteSettings['working_hours'] ?? 'Mon – Sat: 09:00 AM – 06:00 PM' }}</span>
                         </div>
                     </div>
                     <span class="topbar-separator"></span>
                     <ul class="topbar-social">
-                        <li><a href="#" class="social-btn" title="Facebook" aria-label="Facebook"><i class="icon-facebook"></i></a></li>
-                        <li><a href="#" class="social-btn" title="Twitter" aria-label="Twitter"><i class="icon-twitter"></i></a></li>
-                        <li><a href="#" class="social-btn" title="LinkedIn" aria-label="LinkedIn"><i class="icon-linkedin2"></i></a></li>
-                        <li><a href="#" class="social-btn" title="Instagram" aria-label="Instagram"><i class="icon-instagram"></i></a></li>
+                        @if(!empty($siteSettings['social_facebook']))
+                            <li><a href="{{ $siteSettings['social_facebook'] }}" target="_blank" rel="noopener" class="social-btn" title="Facebook" aria-label="Facebook"><i class="icon-facebook"></i></a></li>
+                        @endif
+                        @if(!empty($siteSettings['social_twitter']))
+                            <li><a href="{{ $siteSettings['social_twitter'] }}" target="_blank" rel="noopener" class="social-btn" title="Twitter" aria-label="Twitter"><i class="icon-twitter"></i></a></li>
+                        @endif
+                        @if(!empty($siteSettings['social_linkedin']))
+                            <li><a href="{{ $siteSettings['social_linkedin'] }}" target="_blank" rel="noopener" class="social-btn" title="LinkedIn" aria-label="LinkedIn"><i class="icon-linkedin2"></i></a></li>
+                        @endif
+                        @if(!empty($siteSettings['social_instagram']))
+                            <li><a href="{{ $siteSettings['social_instagram'] }}" target="_blank" rel="noopener" class="social-btn" title="Instagram" aria-label="Instagram"><i class="icon-instagram"></i></a></li>
+                        @endif
+                        @if(!empty($siteSettings['social_youtube']))
+                            <li><a href="{{ $siteSettings['social_youtube'] }}" target="_blank" rel="noopener" class="social-btn" title="YouTube" aria-label="YouTube"><i class="icon-youtube"></i></a></li>
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -365,9 +376,7 @@
                                 </div>
 
                                 <div class="desc">
-                                    Medical care is essential for maintaining
-                                    overall health to being providing preventive
-                                    diagnostic, and treatment services.
+                                    {{ $siteSettings['footer_description'] ?? 'Clineva Research Laboratories is a premier global Clinical Research Organization (CRO) delivering Phase I–IV clinical operations, BA/BE studies, bioanalytical PK/PD investigations, and regulatory intelligence across global markets.' }}
                                 </div>
 
                                 <a href="{{ route('contact') }}" class="tf-btn style-small style-border border-color-white">
@@ -431,7 +440,7 @@
                                             </h4>
                                         </div>
                                         <div class="desc body-2 lh-30">
-                                            Shop No. 10, Patidar Complex, Kannawmar Nagar 2, Vikhroli (East), Mumbai 400083
+                                            {{ $siteSettings['contact_address'] ?? 'D-318, Phase II, Turbhe MIDC, TTC Industrial Area, Navi Mumbai, Maharashtra 400705' }}
                                         </div>
                                     </div>
                                 </div>
@@ -446,8 +455,8 @@
                                         </div>
                                         <div class="desc">
                                             <ul>
-                                                <li class="body-2 lh-35">Email Us : <a href="mailto:priti.gotpagar@clineva.in"> priti.gotpagar@clineva.in</a></li>
-                                                <li class="body-2 lh-35">Phone no : <a href="tel:+919870484499"> +91 9870484499</a></li>
+                                                <li class="body-2 lh-35">Email Us : <a href="mailto:{{ $siteSettings['contact_email'] ?? 'priti.gotpagar@clineva.in' }}"> {{ $siteSettings['contact_email'] ?? 'priti.gotpagar@clineva.in' }}</a></li>
+                                                <li class="body-2 lh-35">Phone no : <a href="tel:{{ preg_replace('/[^0-9+]/', '', $siteSettings['contact_phone'] ?? '+919870484499') }}"> {{ $siteSettings['contact_phone'] ?? '+91 9870484499' }}</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -462,8 +471,7 @@
                                             </h4>
                                         </div>
                                         <div class="desc flex justify-content-between align-items-center lh-30 flex-wrap rg-10">
-                                            <span class="body-2 lh-30">Monday – Friday</span>
-                                            <span class="fw7 body-2 lh-30">08am - 09pm</span>
+                                            <span class="body-2 lh-30">{{ $siteSettings['working_hours'] ?? 'Mon – Sat: 09:00 AM – 06:00 PM' }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -473,11 +481,11 @@
                     </div>
                 </div>
                 <div class="bottom">
-                    <span><a href="#" class="color-white">© Clineva</a>, All Rights Reserved</span>
+                    <span>{{ $siteSettings['copyright_text'] ?? ('© ' . date('Y') . ' Clineva Research Laboratories. All rights reserved.') }}</span>
                     <ul>
-                        <li><a href="#">Privacy policy</a></li>
-                        <li><a href="#">Terms & Conditions</a></li>
-                        <li><a href="#">FAQs</a></li>
+                        <li><a href="{{ route('policy.show', ['slug' => 'privacy-policy']) }}">Privacy Policy</a></li>
+                        <li><a href="{{ route('policy.show', ['slug' => 'terms-conditions']) }}">Terms & Conditions</a></li>
+                        <li><a href="{{ route('policy.show', ['slug' => 'cookie-policy']) }}">Cookie Policy</a></li>
                     </ul>
                 </div>
             </div>
