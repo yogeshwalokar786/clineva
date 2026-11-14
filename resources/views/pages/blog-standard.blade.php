@@ -493,7 +493,7 @@
             @if(empty($searchQuery) && ($selectedCategory === 'all' || $selectedCategory === $featuredArticle['category']))
                 <div class="featured-lead-box">
                     <div class="featured-lead-thumb">
-                        <a href="{{ route('blog.details', ['article' => $featuredArticle['slug']]) }}">
+                        <a href="{{ route('blog.details', ['slug' => $featuredArticle['slug']]) }}">
                             <img src="{{ asset($featuredArticle['image']) }}" alt="{{ $featuredArticle['title'] }}" loading="lazy">
                         </a>
                         <span class="featured-pill-tag">
@@ -512,7 +512,7 @@
                                 <i class="icon-calendar"></i> {{ $featuredArticle['date'] }}
                             </span>
                         </div>
-                        <a href="{{ route('blog.details', ['article' => $featuredArticle['slug']]) }}" class="featured-post-title">
+                        <a href="{{ route('blog.details', ['slug' => $featuredArticle['slug']]) }}" class="featured-post-title">
                             {{ $featuredArticle['title'] }}
                         </a>
                         <p class="featured-post-desc">
@@ -526,7 +526,7 @@
                                     <div style="font-size: 11.5px; color: #64748B;">{{ $featuredArticle['author']['role'] }}</div>
                                 </div>
                             </div>
-                            <a href="{{ route('blog.details', ['article' => $featuredArticle['slug']]) }}" class="btn-read-lead">
+                            <a href="{{ route('blog.details', ['slug' => $featuredArticle['slug']]) }}" class="btn-read-lead">
                                 <span>Read Full Analysis</span>
                                 <i class="icon-arrow-right"></i>
                             </a>
@@ -544,7 +544,7 @@
                     @endif
                     <article class="blog-grid-card" data-category="{{ $post['category'] }}">
                         <div class="blog-card-thumb-wrap">
-                            <a href="{{ route('blog.details', ['article' => $post['slug']]) }}">
+                            <a href="{{ route('blog.details', ['slug' => $post['slug']]) }}">
                                 <img src="{{ asset($post['image']) }}" alt="{{ $post['title'] }}" loading="lazy">
                             </a>
                             <div class="blog-card-cat-badge">
@@ -560,7 +560,7 @@
                             <div class="blog-card-date">
                                 <i class="icon-calendar"></i> {{ $post['date'] }}
                             </div>
-                            <a href="{{ route('blog.details', ['article' => $post['slug']]) }}" class="blog-card-heading">
+                            <a href="{{ route('blog.details', ['slug' => $post['slug']]) }}" class="blog-card-heading">
                                 {{ $post['title'] }}
                             </a>
                             <p class="blog-card-excerpt">
@@ -571,7 +571,7 @@
                                     <img src="{{ asset($post['author']['avatar']) }}" alt="{{ $post['author']['name'] }}">
                                     <span>{{ $post['author']['name'] }}</span>
                                 </div>
-                                <a href="{{ route('blog.details', ['article' => $post['slug']]) }}" class="card-read-action">
+                                <a href="{{ route('blog.details', ['slug' => $post['slug']]) }}" class="card-read-action">
                                     <span>Read</span>
                                     <i class="icon-arrow-right"></i>
                                 </a>

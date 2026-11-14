@@ -1102,11 +1102,11 @@
                     <div class="row rg-30">
                         <div class="col-lg-6">
                             <div class="tf-post-grid style-absolute">
-                                <a href="{{ route('blog.details', ['article' => 'ich-gcp-e6-r3-modernization-clinical-trials']) }}" class="image">
+                                <a href="{{ route('blog.details', ['slug' => 'ich-gcp-e6-r3-modernization-clinical-trials']) }}" class="image">
                                     <img src="{{ asset('image/blog/tf-post-absolute-1.jpg') }}" data-src="{{ asset('image/blog/tf-post-absolute-1.jpg') }}" alt="ICH GCP E6 R3 Modernization">
                                 </a>
                                 <div class="tf-grid-post-content px-mobile-sm">
-                                    <a href="{{ route('blog.details', ['article' => 'ich-gcp-e6-r3-modernization-clinical-trials']) }}" class="title-post">
+                                    <a href="{{ route('blog.details', ['slug' => 'ich-gcp-e6-r3-modernization-clinical-trials']) }}" class="title-post">
                                         ICH GCP E6 (R3) Modernization: How Global Sponsors Are Structuring Agile, Risk-Based Clinical Trials
                                     </a>
                                     <ul class="post-metas style-2 flex-wrap">
@@ -1120,12 +1120,12 @@
                         <div class="col-lg-6">
                             <div class="list-post">
                                 <div class="tf-post-list style-small small-2 hover-img">
-                                    <a href="{{ route('blog.details', ['article' => 'navigating-usfda-ema-bioequivalence-complex-generics']) }}" class="image">
+                                    <a href="{{ route('blog.details', ['slug' => 'navigating-usfda-ema-bioequivalence-complex-generics']) }}" class="image">
                                         <img src="{{ asset('image/blog/tf-port-grid-1.jpg') }}" data-src="{{ asset('image/blog/tf-port-grid-1.jpg') }}" alt="Bioequivalence Generics" class="lazyload">
                                     </a>
                                     <div class="post-content px-mobile-sm">
                                         <h5>
-                                            <a href="{{ route('blog.details', ['article' => 'navigating-usfda-ema-bioequivalence-complex-generics']) }}" class="name-post">
+                                            <a href="{{ route('blog.details', ['slug' => 'navigating-usfda-ema-bioequivalence-complex-generics']) }}" class="name-post">
                                                 Navigating USFDA & EMA Bioequivalence Guidelines for Complex Generics
                                             </a>
                                         </h5>
@@ -1138,12 +1138,12 @@
                                 </div>
 
                                 <div class="tf-post-list style-small small-2 hover-img">
-                                    <a href="{{ route('blog.details', ['article' => 'decentralized-clinical-trials-hybrid-monitoring']) }}" class="image">
+                                    <a href="{{ route('blog.details', ['slug' => 'decentralized-clinical-trials-hybrid-monitoring']) }}" class="image">
                                         <img src="{{ asset('image/blog/tf-port-grid-2.jpg') }}" data-src="{{ asset('image/blog/tf-port-grid-2.jpg') }}" alt="Decentralized Trials" class="lazyload">
                                     </a>
                                     <div class="post-content px-mobile-sm">
                                         <h5>
-                                            <a href="{{ route('blog.details', ['article' => 'decentralized-clinical-trials-hybrid-monitoring']) }}" class="name-post">
+                                            <a href="{{ route('blog.details', ['slug' => 'decentralized-clinical-trials-hybrid-monitoring']) }}" class="name-post">
                                                 Hybrid & Decentralized Clinical Trials: Accelerating Recruitment & Data Integrity
                                             </a>
                                         </h5>
@@ -1156,12 +1156,12 @@
                                 </div>
 
                                 <div class="tf-post-list style-small small-2 hover-img">
-                                    <a href="{{ route('blog.details', ['article' => 'high-throughput-lc-msms-bioanalysis-clinical-trials']) }}" class="image">
+                                    <a href="{{ route('blog.details', ['slug' => 'high-throughput-lc-msms-bioanalysis-clinical-trials']) }}" class="image">
                                         <img src="{{ asset('image/blog/tf-port-grid-3.jpg') }}" data-src="{{ asset('image/blog/tf-port-grid-3.jpg') }}" alt="LC-MS/MS Bioanalysis" class="lazyload">
                                     </a>
                                     <div class="post-content px-mobile-sm">
                                         <h5>
-                                            <a href="{{ route('blog.details', ['article' => 'high-throughput-lc-msms-bioanalysis-clinical-trials']) }}" class="name-post">
+                                            <a href="{{ route('blog.details', ['slug' => 'high-throughput-lc-msms-bioanalysis-clinical-trials']) }}" class="name-post">
                                                 High-Throughput LC-MS/MS Bioanalysis: Overcoming Matrix Effects in PK Studies
                                             </a>
                                         </h5>

@@ -4,89 +4,50 @@
 
 @section('content')
 <style>
-    /* Article Details Clean Centered View */
-    .article-details-wrapper {
-        padding: 50px 0 80px;
+    /* Scoped Refinements for Blog Details */
+    .page-title.page-details .page-title-content {
+        padding-top: 45px;
+        padding-bottom: 45px;
     }
-    .article-details-card {
-        background: #FFFFFF;
-        border: 1px solid #E2E8F0;
-        border-radius: 20px;
-        padding: 44px;
-        box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
-        margin-bottom: 40px;
+    .page-title.page-details .title {
+        font-size: 38px;
+        line-height: 1.3;
+        margin-top: 14px;
+        margin-bottom: 20px;
+        color: #FFFFFF;
+        max-width: 960px;
     }
     @media (max-width: 768px) {
-        .article-details-card {
-            padding: 24px;
+        .page-title.page-details .title {
+            font-size: 26px;
         }
     }
-    .article-meta-bar {
+    .page-title.page-details .post-metas {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        padding-bottom: 24px;
-        margin-bottom: 28px;
-        border-bottom: 1px solid #F1F5F9;
+        gap: 24px;
         flex-wrap: wrap;
-        gap: 16px;
     }
-    .article-author-group {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-    .article-author-group img {
-        width: 46px;
-        height: 46px;
+    .page-title.page-details .post-user .image {
+        width: 36px;
+        height: 36px;
         border-radius: 50%;
-        object-fit: cover;
-        border: 2px solid #E2E8F0;
-    }
-    .article-meta-tags {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        font-size: 13px;
-        color: #64748B;
-        flex-wrap: wrap;
-    }
-    .article-hero-media {
-        width: 100%;
-        height: 440px;
-        border-radius: 16px;
         overflow: hidden;
-        margin-bottom: 36px;
-        background: #0B1E33;
+        border: 2px solid rgba(255, 255, 255, 0.4);
     }
-    @media (max-width: 768px) {
-        .article-hero-media {
-            height: 250px;
-        }
-    }
-    .article-hero-media img {
+    .page-title.page-details .post-user .image img {
         width: 100%;
         height: 100%;
         object-fit: cover;
     }
-    .article-lead-paragraph {
-        font-size: 18px;
-        line-height: 1.7;
-        color: #334155;
-        font-weight: 500;
-        margin-bottom: 30px;
-        padding-bottom: 24px;
-        border-bottom: 1px solid #F1F5F9;
-    }
-    .clinical-takeaways-card {
+    .clinical-takeaways-box {
         background: #F0FDF4;
         border: 1px solid #BBF7D0;
         border-left: 5px solid #16A34A;
         border-radius: 12px;
         padding: 24px 28px;
-        margin-bottom: 36px;
     }
-    .clinical-takeaways-card h4 {
+    .clinical-takeaways-box .takeaways-title {
         font-size: 16.5px;
         font-weight: 800;
         color: #14532D;
@@ -95,12 +56,12 @@
         align-items: center;
         gap: 8px;
     }
-    .clinical-takeaways-list {
+    .clinical-takeaways-box .takeaways-list {
         list-style: none;
         padding: 0;
         margin: 0;
     }
-    .clinical-takeaways-list li {
+    .clinical-takeaways-box .takeaways-list li {
         font-size: 14px;
         line-height: 1.6;
         color: #166534;
@@ -109,137 +70,77 @@
         align-items: flex-start;
         gap: 10px;
     }
-    .clinical-takeaways-list li:last-child {
+    .clinical-takeaways-box .takeaways-list li:last-child {
         margin-bottom: 0;
     }
-    .clinical-takeaways-list i {
+    .clinical-takeaways-box .takeaways-list i {
         color: #16A34A;
         margin-top: 3px;
         flex-shrink: 0;
     }
-    .article-prose-body h2 {
-        font-size: 24px;
-        font-weight: 800;
-        color: #0F172A;
-        margin-top: 36px;
-        margin-bottom: 16px;
-        line-height: 1.35;
+    .blog-details-content .image-blog-details .image {
+        height: 440px;
+        overflow: hidden;
+        border-radius: 14px;
     }
-    .article-prose-body p {
-        font-size: 15.5px;
-        line-height: 1.75;
-        color: #475569;
-        margin-bottom: 20px;
-    }
-    .clinical-quote-card {
-        background: linear-gradient(135deg, #E6F4F6 0%, #F0F9FF 100%);
-        border-left: 4px solid var(--primary, #007E8A);
-        border-radius: 12px;
-        padding: 26px 30px;
-        margin: 36px 0;
-    }
-    .clinical-quote-text {
-        font-size: 17.5px;
-        line-height: 1.6;
-        font-weight: 600;
-        color: #0F172A;
-        font-style: italic;
-        margin-bottom: 10px;
-    }
-    .clinical-quote-author {
-        font-size: 13.5px;
-        font-weight: 700;
-        color: var(--primary, #007E8A);
-    }
-    .article-footer-bar {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding-top: 26px;
-        margin-top: 38px;
-        border-top: 1px solid #E2E8F0;
-        flex-wrap: wrap;
-        gap: 18px;
-    }
-    .article-tag-cloud {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        flex-wrap: wrap;
-    }
-    .article-tag-item {
-        font-size: 12px;
-        font-weight: 600;
-        background: #F1F5F9;
-        color: #475569;
-        padding: 5px 12px;
-        border-radius: 999px;
-        text-decoration: none;
-        transition: all 0.2s ease;
-    }
-    .article-tag-item:hover {
-        background: var(--primary, #007E8A);
-        color: #FFFFFF;
-    }
-    .article-share-links {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-    .article-share-btn {
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        background: #F1F5F9;
-        color: #475569;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        transition: all 0.2s ease;
-    }
-    .article-share-btn:hover {
-        background: var(--primary, #007E8A);
-        color: #FFFFFF;
-        transform: translateY(-2px);
-    }
-    .author-signature-card {
-        background: #F8FAFC;
-        border: 1px solid #E2E8F0;
-        border-radius: 16px;
-        padding: 26px;
-        display: flex;
-        gap: 18px;
-        align-items: center;
-        margin-top: 36px;
-    }
-    @media (max-width: 600px) {
-        .author-signature-card {
-            flex-direction: column;
-            text-align: center;
+    @media (max-width: 768px) {
+        .blog-details-content .image-blog-details .image {
+            height: 240px;
         }
     }
-    .author-signature-avatar {
-        width: 72px;
-        height: 72px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 3px solid #E2E8F0;
-        flex-shrink: 0;
+    .blog-details-content .details-content .title {
+        font-size: 28px;
+        line-height: 1.35;
+        margin-bottom: 16px;
+        color: #0F172A;
     }
-    .article-bottom-nav {
+    .blog-details-cta-card {
+        background: linear-gradient(135deg, #072836 0%, #00505A 60%, #007E8A 100%);
+        border-radius: 18px;
+        padding: 34px 40px;
+        color: #FFFFFF;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-top: 32px;
-        padding-top: 22px;
-        border-top: 1px solid #E2E8F0;
+        gap: 20px;
         flex-wrap: wrap;
-        gap: 14px;
+        box-shadow: 0 10px 30px rgba(0, 126, 138, 0.16);
+        margin-bottom: 50px;
+    }
+    .blog-details-cta-card h3 {
+        font-size: 22px;
+        font-weight: 800;
+        color: #FFFFFF;
+        margin-bottom: 6px;
+    }
+    .blog-details-cta-card p {
+        font-size: 13.5px;
+        color: rgba(255, 255, 255, 0.85);
+        margin: 0;
+        max-width: 580px;
+    }
+    .btn-details-cta {
+        background: #FFFFFF;
+        color: #072836 !important;
+        font-size: 13.5px;
+        font-weight: 800;
+        padding: 12px 24px;
+        border-radius: 999px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+    }
+    .btn-details-cta:hover {
+        background: #E6F4F6;
+        color: var(--primary, #007E8A) !important;
+        transform: translateY(-2px);
     }
 </style>
 
-<!-- Original Standard Page Header (Same as Previous) -->
+<!-- Theme Page Header with Details Metadata (Same as Previous) -->
 <div class="page-title page-details mt-30">
     <div class="mx-30">
         <div class="page-title-content paralax-bg">
@@ -253,145 +154,206 @@
             <h1 class="title text-anime">
                 {{ $article['title'] }}
             </h1>
+            <div class="post-metas position-relative">
+                <div class="post-user metas-item">
+                    <div class="image">
+                        <img src="{{ asset($article['author']['avatar']) }}" alt="{{ $article['author']['name'] }}">
+                    </div>
+                    <div class="content">
+                        <span class="color-white fw7">{{ $article['author']['name'] }}</span>
+                    </div>
+                </div>
+
+                <div class="post-author metas-item">
+                    <div class="icon"><i class="icon-tag"></i></div>
+                    <span class="color-white fw7">{{ $article['category_name'] }}</span>
+                </div>
+
+                <div class="post-author metas-item">
+                    <div class="icon"><i class="icon-clock"></i></div>
+                    <span class="color-white fw7">{{ $article['read_time'] }}</span>
+                </div>
+
+                <div class="post-author metas-item">
+                    <div class="icon"><i class="icon-calendar"></i></div>
+                    <span class="color-white fw7">{{ $article['date'] }}</span>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 <!-- /.page-title -->
 
-<!-- Main Content Area (Clean Centered Full-Width Without Right Sidebar) -->
+<!-- Main Content (Full-Width Clean Reading Layout Without Sidebar) -->
 <div class="main-content">
-    <div class="article-details-wrapper">
-        <div class="tf-container">
-            <div class="row">
-                <div class="col-xl-9 col-lg-10 mx-auto">
+    <div class="tf-container tf-spacing-1">
+        <div class="row">
+            <div class="col-xl-9 col-lg-10 mx-auto">
+                <div class="blog-details-content">
 
-                    <article class="article-details-card">
-
-                        <!-- Meta Row -->
-                        <div class="article-meta-bar">
-                            <div class="article-author-group">
-                                <img src="{{ asset($article['author']['avatar']) }}" alt="{{ $article['author']['name'] }}">
-                                <div>
-                                    <div style="font-size: 14px; font-weight: 700; color: #1E293B;">{{ $article['author']['name'] }}</div>
-                                    <div style="font-size: 12px; color: #64748B;">{{ $article['author']['role'] }}</div>
-                                </div>
-                            </div>
-                            <div class="article-meta-tags">
-                                <span style="background: {{ $article['category_color'] }}15; color: {{ $article['category_color'] }}; font-weight: 700; padding: 3px 12px; border-radius: 999px; font-size: 12px; text-transform: uppercase;">
-                                    {{ $article['category_name'] }}
-                                </span>
-                                <span><i class="icon-calendar"></i> {{ $article['date'] }}</span>
-                                <span><i class="icon-clock"></i> {{ $article['read_time'] }}</span>
-                            </div>
+                    <!-- Featured Hero Image with Date Badge -->
+                    <div class="image-blog-details hover-img mb-40">
+                        <div class="image">
+                            <img src="{{ asset($article['image']) }}" alt="{{ $article['title'] }}" class="lazyload">
                         </div>
-
-                        <!-- Hero Cover -->
-                        <div class="article-hero-media">
-                            <img src="{{ asset($article['image']) }}" alt="{{ $article['title'] }}">
+                        <div class="date">
+                            <span class="day">{{ explode(' ', $article['date'])[0] ?? '12' }}</span>
+                            <span>{{ (explode(' ', $article['date'])[1] ?? 'Nov') . ' ' . (explode(' ', $article['date'])[2] ?? '2026') }}</span>
                         </div>
+                    </div>
 
-                        <!-- Lead Paragraph -->
-                        <div class="article-lead-paragraph">
+                    <!-- Intro / Lead Section -->
+                    <div class="details-content mb-40">
+                        <h3 class="title">
+                            {{ $article['title'] }}
+                        </h3>
+                        <div class="desc" style="font-size: 16.5px; line-height: 1.8;">
                             {{ $article['content']['intro'] ?? $article['excerpt'] }}
                         </div>
+                    </div>
 
-                        <!-- Key Takeaways -->
-                        @if(!empty($article['content']['takeaways']))
-                            <div class="clinical-takeaways-card">
-                                <h4><i class="icon-check"></i> Executive & Clinical Key Takeaways</h4>
-                                <ul class="clinical-takeaways-list">
-                                    @foreach($article['content']['takeaways'] as $takeaway)
-                                        <li>
-                                            <i class="icon-check"></i>
-                                            <span>{{ $takeaway }}</span>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-
-                        <!-- Prose Content -->
-                        <div class="article-prose-body">
-                            @if(!empty($article['content']['section1_title']))
-                                <h2>{{ $article['content']['section1_title'] }}</h2>
-                                <p>{{ $article['content']['section1_body'] }}</p>
-                            @endif
-
-                            @if(!empty($article['content']['section2_title']))
-                                <h2>{{ $article['content']['section2_title'] }}</h2>
-                                <p>{{ $article['content']['section2_body'] }}</p>
-                            @endif
-
-                            @if(!empty($article['content']['quote']))
-                                <div class="clinical-quote-card">
-                                    <div class="clinical-quote-text">
-                                        "{{ $article['content']['quote'] }}"
-                                    </div>
-                                    <div class="clinical-quote-author">
-                                        &mdash; {{ $article['author']['name'] }}, {{ $article['author']['role'] }}
-                                    </div>
-                                </div>
-                            @endif
-
-                            @if(!empty($article['content']['section3_title']))
-                                <h2>{{ $article['content']['section3_title'] }}</h2>
-                                <p>{{ $article['content']['section3_body'] }}</p>
-                            @endif
+                    <!-- Executive Key Takeaways Callout -->
+                    @if(!empty($article['content']['takeaways']))
+                        <div class="clinical-takeaways-box mb-40">
+                            <h4 class="takeaways-title">
+                                <i class="icon-check"></i> Executive & Clinical Key Takeaways
+                            </h4>
+                            <ul class="takeaways-list">
+                                @foreach($article['content']['takeaways'] as $takeaway)
+                                    <li>
+                                        <i class="icon-check"></i>
+                                        <span>{{ $takeaway }}</span>
+                                    </li>
+                                @endforeach
+                            </ul>
                         </div>
+                    @endif
 
-                        <!-- Tags & Share -->
-                        <div class="article-footer-bar">
-                            <div class="article-tag-cloud">
-                                <span style="font-size: 13px; font-weight: 700; color: #1E293B;">Topics:</span>
+                    <!-- Section 1 -->
+                    @if(!empty($article['content']['section1_title']))
+                        <div class="details-content-2 mb-40">
+                            <h4 class="title" style="font-size: 22px; font-weight: 800; color: #0F172A; margin-bottom: 14px;">
+                                {{ $article['content']['section1_title'] }}
+                            </h4>
+                            <div class="desc" style="font-size: 15.5px; line-height: 1.75;">
+                                {{ $article['content']['section1_body'] }}
+                            </div>
+                        </div>
+                    @endif
+
+                    <!-- Section 2 -->
+                    @if(!empty($article['content']['section2_title']))
+                        <div class="details-content-3 mb-40">
+                            <h5 class="title" style="font-size: 20px; font-weight: 800; color: #0F172A; margin-bottom: 14px;">
+                                {{ $article['content']['section2_title'] }}
+                            </h5>
+                            <div class="desc" style="font-size: 15.5px; line-height: 1.75;">
+                                {{ $article['content']['section2_body'] }}
+                            </div>
+                        </div>
+                    @endif
+
+                    <!-- Investigator / Expert Quote -->
+                    @if(!empty($article['content']['quote']))
+                        <div class="wg-quote mb-40">
+                            <h4 class="text">
+                                "{{ $article['content']['quote'] }}"
+                            </h4>
+                            <span class="name-quote">{{ $article['author']['name'] }} &bull; {{ $article['author']['role'] }}</span>
+                        </div>
+                    @endif
+
+                    <!-- Section 3 -->
+                    @if(!empty($article['content']['section3_title']))
+                        <div class="details-content-3 mb-40">
+                            <h5 class="title" style="font-size: 20px; font-weight: 800; color: #0F172A; margin-bottom: 14px;">
+                                {{ $article['content']['section3_title'] }}
+                            </h5>
+                            <div class="desc" style="font-size: 15.5px; line-height: 1.75;">
+                                {{ $article['content']['section3_body'] }}
+                            </div>
+                        </div>
+                    @endif
+
+                    <!-- Popular Tags & Social Share -->
+                    <div class="post-tags-share flex align-items-center justify-content-between flex-wrap g-30 mb-50">
+                        <div class="post-tags-wrap flex align-items-center g-10">
+                            <h6>Scientific Topics</h6>
+                            <div class="tabs-list style-radius">
                                 @foreach($article['tags'] as $tag)
-                                    <a href="{{ route('blog', ['q' => $tag]) }}" class="article-tag-item">
-                                        #{{ $tag }}
-                                    </a>
+                                    <a href="{{ route('blog', ['q' => $tag]) }}" class="tabs-item">#{{ $tag }}</a>
                                 @endforeach
                             </div>
-                            <div class="article-share-links">
-                                <span style="font-size: 13px; font-weight: 700; color: #1E293B;">Share:</span>
-                                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(url()->current()) }}" target="_blank" class="article-share-btn" title="Share on LinkedIn">
-                                    <i class="icon-linkedin2"></i>
-                                </a>
-                                <a href="https://twitter.com/intent/tweet?text={{ urlencode($article['title']) }}&url={{ urlencode(url()->current()) }}" target="_blank" class="article-share-btn" title="Share on X">
-                                    <i class="icon-twitter"></i>
-                                </a>
-                                <a href="mailto:?subject={{ rawurlencode($article['title']) }}&body={{ rawurlencode(url()->current()) }}" class="article-share-btn" title="Email Article">
-                                    <i class="icon-envelope"></i>
-                                </a>
+                        </div>
+                        <div class="post-share-wrap flex align-items-center g-10">
+                            <h6>Share</h6>
+                            <ul class="post-social style-border">
+                                <li><a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(url()->current()) }}" target="_blank" class="icon-social" title="Share on LinkedIn"><i class="icon-linkedin2"></i></a></li>
+                                <li><a href="https://twitter.com/intent/tweet?text={{ urlencode($article['title']) }}&url={{ urlencode(url()->current()) }}" target="_blank" class="icon-social" title="Share on X"><i class="icon-twitter"></i></a></li>
+                                <li><a href="mailto:?subject={{ rawurlencode($article['title']) }}&body={{ rawurlencode(url()->current()) }}" class="icon-social" title="Email Article"><i class="icon-envelope"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Author Biography Signature Box -->
+                    <div class="comment-item mb-50">
+                        <div class="left">
+                            <div class="image-avatar">
+                                <img src="{{ asset($article['author']['avatar']) }}" alt="{{ $article['author']['name'] }}">
                             </div>
                         </div>
-
-                        <!-- Author Bio -->
-                        <div class="author-signature-card">
-                            <img src="{{ asset($article['author']['avatar']) }}" alt="{{ $article['author']['name'] }}" class="author-signature-avatar">
-                            <div>
-                                <div style="font-size: 16px; font-weight: 800; color: #0F172A; margin-bottom: 2px;">{{ $article['author']['name'] }}</div>
-                                <div style="font-size: 12.5px; color: var(--primary, #007E8A); font-weight: 700; margin-bottom: 6px;">{{ $article['author']['role'] }} &bull; Clineva Research Laboratories</div>
-                                <p style="font-size: 13.5px; line-height: 1.55; color: #475569; margin: 0;">
-                                    Guiding sponsors through Phase I-IV trial setup, international GCP regulatory compliance, bioavailability/bioequivalence (BA/BE) studies, and CDSCO/USFDA/EMA submissions.
-                                </p>
+                        <div class="comment-content">
+                            <div class="user-comment">
+                                <h6><span class="name">{{ $article['author']['name'] }}</span></h6>
+                                <p class="author">{{ $article['author']['role'] }} &bull; Clineva Research Laboratories</p>
+                            </div>
+                            <div class="text-comment" style="font-size: 14px; line-height: 1.65; color: var(--color-paragraph);">
+                                Contributing expertise across Phase I-IV trial operations, ICH-GCP regulatory intelligence, BA/BE study protocols, and regulatory filings with USFDA, EMA, and CDSCO authorities.
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Back to Blogs & Consultation -->
-                        <div class="article-bottom-nav">
-                            <a href="{{ route('blog') }}" class="btn-live-site" style="font-size: 13.5px; font-weight: 700; padding: 9px 18px;">
-                                <i class="icon-arrow-left"></i>
-                                <span>Back to All Blogs</span>
-                            </a>
-                            <a href="{{ route('contact') }}" class="btn-live-site" style="font-size: 13.5px; font-weight: 700; padding: 9px 18px; background: var(--primary); color: #FFFFFF; border-color: var(--primary);">
-                                <span>Discuss Your Protocol</span>
-                                <i class="icon-arrow-right"></i>
-                            </a>
+                    <!-- Previous / Grid / Next Article Navigation -->
+                    <div class="list-btn flex justify-content-between align-items-center rg-30 mb-60">
+                        <a href="{{ route('blog.details', ['slug' => $prevArticle['slug']]) }}" class="btn-arrow-details previous-details">
+                            <span class="icon">
+                                <i class="icon-chevron-left"></i>
+                            </span>
+                            <span class="text lh-24 fw7">
+                                {{ Str::limit($prevArticle['title'], 55) }}
+                            </span>
+                        </a>
+                        <a href="{{ route('blog') }}" class="btn-grid" title="Back to All Blogs">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </a>
+                        <a href="{{ route('blog.details', ['slug' => $nextArticle['slug']]) }}" class="btn-arrow-details next-details">
+                            <span class="icon">
+                                <i class="icon-chevron-right"></i>
+                            </span>
+                            <span class="text lh-24 fw7">
+                                {{ Str::limit($nextArticle['title'], 55) }}
+                            </span>
+                        </a>
+                    </div>
+
+                    <!-- Sponsor Consultation CTA Box -->
+                    <div class="blog-details-cta-card">
+                        <div>
+                            <h3>Planning a Clinical Study or BA/BE Protocol?</h3>
+                            <p>Consult with our Principal Investigators, medical writers, and regulatory specialists for protocol feasibility and timeline projections.</p>
                         </div>
+                        <a href="{{ route('contact') }}" class="btn-details-cta">
+                            <span>Request Consultation</span>
+                            <i class="icon-arrow-right"></i>
+                        </a>
+                    </div>
 
-                    </article>
-
-                    <!-- Related Clinical Insights Section -->
+                    <!-- Related Clinical Insights -->
                     @if(!empty($relatedArticles) && count($relatedArticles) > 0)
-                        <div style="margin-top: 48px;">
+                        <div style="margin-top: 20px;">
                             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px;">
                                 <h3 style="font-size: 22px; font-weight: 800; color: #0F172A; margin: 0;">Related Insights</h3>
                                 <a href="{{ route('blog', ['category' => $article['category']]) }}" style="font-size: 13.5px; font-weight: 700; color: var(--primary, #007E8A); text-decoration: underline;">
@@ -402,16 +364,16 @@
                                 @foreach($relatedArticles as $rel)
                                     <div class="col-md-6 mb-24">
                                         <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 16px; overflow: hidden; height: 100%; display: flex; flex-direction: column; box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);">
-                                            <a href="{{ route('blog.details', ['article' => $rel['slug']]) }}" style="height: 170px; display: block; overflow: hidden;">
+                                            <a href="{{ route('blog.details', ['slug' => $rel['slug']]) }}" style="height: 170px; display: block; overflow: hidden;">
                                                 <img src="{{ asset($rel['image']) }}" alt="{{ $rel['title'] }}" style="width: 100%; height: 100%; object-fit: cover;">
                                             </a>
                                             <div style="padding: 22px; display: flex; flex-direction: column; flex-grow: 1;">
                                                 <div style="font-size: 12px; color: #64748B; margin-bottom: 6px;">{{ $rel['date'] }} &bull; {{ $rel['read_time'] }}</div>
-                                                <a href="{{ route('blog.details', ['article' => $rel['slug']]) }}" style="font-size: 16.5px; font-weight: 700; color: #0F172A; text-decoration: none; margin-bottom: 12px; line-height: 1.4;">
+                                                <a href="{{ route('blog.details', ['slug' => $rel['slug']]) }}" style="font-size: 16px; font-weight: 700; color: #0F172A; text-decoration: none; margin-bottom: 12px; line-height: 1.4;">
                                                     {{ $rel['title'] }}
                                                 </a>
                                                 <div style="margin-top: auto;">
-                                                    <a href="{{ route('blog.details', ['article' => $rel['slug']]) }}" style="font-size: 13px; font-weight: 700; color: var(--primary, #007E8A); text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
+                                                    <a href="{{ route('blog.details', ['slug' => $rel['slug']]) }}" style="font-size: 13px; font-weight: 700; color: var(--primary, #007E8A); text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
                                                         <span>Read Full Insight</span>
                                                         <i class="icon-arrow-right"></i>
                                                     </a>

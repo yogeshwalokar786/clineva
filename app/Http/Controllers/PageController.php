@@ -184,19 +184,33 @@ class PageController extends Controller
         ));
     }
 
-    public function blogDetails(Request $request, ?string $article = null)
+    public function blogDetails(Request $request, ?string $slug = null)
     {
-        $slug = $article ?: $request->query('article');
-        $articleData = \App\Data\BlogCatalog::findBySlug($slug) ?? \App\Data\BlogCatalog::featured();
+        $lookupSlug = $slug ?: ($request->route('slug') ?: ($request->route('article') ?: $request->query('article')));
+        $articleData = \App\Data\BlogCatalog::findBySlug($lookupSlug) ?? \App\Data\BlogCatalog::featured();
         $categories = \App\Data\BlogCatalog::categories();
         $recentArticles = \App\Data\BlogCatalog::recent(3);
         $relatedArticles = \App\Data\BlogCatalog::related($articleData['category'], $articleData['slug'], 2);
+
+        $allArticles = \App\Data\BlogCatalog::all();
+        $currentIndex = 0;
+        foreach ($allArticles as $idx => $item) {
+            if ($item['slug'] === $articleData['slug']) {
+                $currentIndex = $idx;
+                break;
+            }
+        }
+        $count = count($allArticles);
+        $prevArticle = $allArticles[($currentIndex - 1 + $count) % $count];
+        $nextArticle = $allArticles[($currentIndex + 1) % $count];
 
         return view('pages.blog-details', [
             'article' => $articleData,
             'categories' => $categories,
             'recentArticles' => $recentArticles,
             'relatedArticles' => $relatedArticles,
+            'prevArticle' => $prevArticle,
+            'nextArticle' => $nextArticle,
         ]);
     }
 }
