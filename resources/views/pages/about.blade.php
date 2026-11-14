@@ -96,7 +96,7 @@
                         </div>
                         <h3 class="mv-title">Our Mission</h3>
                         <p class="mv-desc">
-                            Our Mission is to be the preferred and trusted consulting partner for global pharmaceuticals and health care industry and to create benchmark by ensuring quality, reliability, integrity and ethical values.
+                            Our mission is to be preferred and trusted service provider for pharmaceutical, biotech and health care industry and to create benchmark by ensuring quality, reliability, integrity and ethical values.
                         </p>
                     </div>
                 </div>
