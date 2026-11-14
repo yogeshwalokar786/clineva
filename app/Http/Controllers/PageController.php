@@ -153,13 +153,50 @@ class PageController extends Controller
         return back()->with('contact_success', 'Thank you! Your message has been received. Our specialists will get back to you shortly.');
     }
 
-    public function blog()
+    public function blog(Request $request)
     {
-        return view('pages.blog-standard');
+        $categories = \App\Data\BlogCatalog::categories();
+        $featuredArticle = \App\Data\BlogCatalog::featured();
+        $allArticles = \App\Data\BlogCatalog::all();
+        $selectedCategory = $request->query('category', 'all');
+        $searchQuery = trim($request->query('q', ''));
+
+        $articles = \App\Data\BlogCatalog::getByCategory($selectedCategory);
+
+        if (!empty($searchQuery)) {
+            $articles = array_values(array_filter($articles, function ($a) use ($searchQuery) {
+                return stripos($a['title'], $searchQuery) !== false
+                    || stripos($a['excerpt'], $searchQuery) !== false
+                    || stripos($a['category_name'], $searchQuery) !== false;
+            }));
+        }
+
+        $recentArticles = \App\Data\BlogCatalog::recent(3);
+
+        return view('pages.blog-standard', compact(
+            'categories',
+            'featuredArticle',
+            'articles',
+            'allArticles',
+            'selectedCategory',
+            'searchQuery',
+            'recentArticles'
+        ));
     }
 
-    public function blogDetails()
+    public function blogDetails(Request $request, ?string $article = null)
     {
-        return view('pages.blog-details');
+        $slug = $article ?: $request->query('article');
+        $articleData = \App\Data\BlogCatalog::findBySlug($slug) ?? \App\Data\BlogCatalog::featured();
+        $categories = \App\Data\BlogCatalog::categories();
+        $recentArticles = \App\Data\BlogCatalog::recent(3);
+        $relatedArticles = \App\Data\BlogCatalog::related($articleData['category'], $articleData['slug'], 2);
+
+        return view('pages.blog-details', [
+            'article' => $articleData,
+            'categories' => $categories,
+            'recentArticles' => $recentArticles,
+            'relatedArticles' => $relatedArticles,
+        ]);
     }
 }

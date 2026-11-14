@@ -36,6 +36,7 @@ Route::post('/contact', [PageController::class, 'submitContact'])->name('contact
 Route::get('/blog', [PageController::class, 'blog'])->name('blog');
 Route::get('/blog-standard', [PageController::class, 'blog']);
 Route::get('/blog-details', [PageController::class, 'blogDetails'])->name('blog.details');
+Route::get('/blog/{article}', [PageController::class, 'blogDetails'])->name('blog.show');
 
 // Admin Authentication & Console
 Route::prefix('admin')->name('admin.')->group(function () {

@@ -1085,29 +1085,34 @@
 
             <section class="section-blog h-1 tf-spacing-2">
                 <div class="tf-container">
-                    <div class="heading-section mb-70 text-center">
-                        <h6 class="sub-title mb-10 text-anime">
-                            Blog & News
-                        </h6>
+                    <div class="heading-section mb-50 text-center">
+                        <div class="services-cat-badge" style="display: inline-flex; align-items: center; gap: 8px; padding: 5px 16px; background: #E6F4F6; color: var(--primary); border-radius: 999px; font-size: 13px; font-weight: 700; margin-bottom: 12px;">
+                            <i class="icon-atom-simple"></i>
+                            <span>Knowledge Hub & Research Insights</span>
+                        </div>
                         <h2 class="title text-anime">
-                            Stay Informed The Latest in
-                            <br>Medical Care & Wellness
+                            Clinical Perspectives & Regulatory Intelligence
                         </h2>
+                        <p class="desc mx-auto" style="max-width: 680px; font-size: 16px; color: var(--color-paragraph); margin-top: 10px;">
+                            Stay abreast of evolving GCP regulations, biostatistical methodologies, and BA/BE trial strategies curated by Clineva's clinical scientists.
+                        </p>
                     </div>
                 </div>
                 <div class="tf-container">
                     <div class="row rg-30">
                         <div class="col-lg-6">
                             <div class="tf-post-grid style-absolute">
-                                <a href="{{ route('blog.details') }}" class="image">
-                                    <img src="{{ asset('image/blog/tf-post-absolute-1.jpg') }}" data-src="{{ asset('image/blog/tf-post-absolute-1.jpg') }}" alt="">
+                                <a href="{{ route('blog.details', ['article' => 'ich-gcp-e6-r3-modernization-clinical-trials']) }}" class="image">
+                                    <img src="{{ asset('image/blog/tf-post-absolute-1.jpg') }}" data-src="{{ asset('image/blog/tf-post-absolute-1.jpg') }}" alt="ICH GCP E6 R3 Modernization">
                                 </a>
                                 <div class="tf-grid-post-content px-mobile-sm">
-                                    <a href="{{ route('blog.details') }}" class="title-post">Understanding Telemedicine The New Era of Virtual Care</a>
+                                    <a href="{{ route('blog.details', ['article' => 'ich-gcp-e6-r3-modernization-clinical-trials']) }}" class="title-post">
+                                        ICH GCP E6 (R3) Modernization: How Global Sponsors Are Structuring Agile, Risk-Based Clinical Trials
+                                    </a>
                                     <ul class="post-metas style-2 flex-wrap">
-                                        <li class="metas-item"><a href="#">Medical Care</a></li>
-                                        <li class="metas-item"><a href="#">10 February 2025</a></li>
-                                        <li class="metas-item"><a href="#">Comments (5)</a></li>
+                                        <li class="metas-item"><a href="{{ route('blog', ['category' => 'regulatory-gcp']) }}">Regulatory & GCP</a></li>
+                                        <li class="metas-item"><span>12 Nov 2026</span></li>
+                                        <li class="metas-item"><span>7 min read</span></li>
                                     </ul>
                                 </div>
                             </div>
@@ -1115,57 +1120,67 @@
                         <div class="col-lg-6">
                             <div class="list-post">
                                 <div class="tf-post-list style-small small-2 hover-img">
-                                    <a href="{{ route('blog.details') }}" class="image">
-                                        <img src="{{ asset('image/blog/tf-post-list-4.jpg') }}" data-src="{{ asset('image/blog/tf-post-list-4.jpg') }}" alt="" class="lazyload">
+                                    <a href="{{ route('blog.details', ['article' => 'navigating-usfda-ema-bioequivalence-complex-generics']) }}" class="image">
+                                        <img src="{{ asset('image/blog/tf-port-grid-1.jpg') }}" data-src="{{ asset('image/blog/tf-port-grid-1.jpg') }}" alt="Bioequivalence Generics" class="lazyload">
                                     </a>
                                     <div class="post-content px-mobile-sm">
                                         <h5>
-                                            <a href="{{ route('blog.details') }}" class="name-post">
-                                                The Future of Healthcare Innovations in Medical Care
+                                            <a href="{{ route('blog.details', ['article' => 'navigating-usfda-ema-bioequivalence-complex-generics']) }}" class="name-post">
+                                                Navigating USFDA & EMA Bioequivalence Guidelines for Complex Generics
                                             </a>
                                         </h5>
                                         <ul class="post-metas style-2">
-                                            <li class="metas-item"><a href="#">05 Feb 2025</a></li>
-                                            <li class="metas-item"><a href="#">Comments (5)</a></li>
+                                            <li class="metas-item"><a href="{{ route('blog', ['category' => 'babe-services']) }}">BA/BE Studies</a></li>
+                                            <li class="metas-item"><span>08 Nov 2026</span></li>
+                                            <li class="metas-item"><span>6 min read</span></li>
                                         </ul>
                                     </div>
                                 </div>
 
                                 <div class="tf-post-list style-small small-2 hover-img">
-                                    <a href="{{ route('blog.details') }}" class="image">
-                                        <img src="{{ asset('image/blog/tf-post-list-6.jpg') }}" data-src="{{ asset('image/blog/tf-post-list-6.jpg') }}" alt="" class="lazyload">
+                                    <a href="{{ route('blog.details', ['article' => 'decentralized-clinical-trials-hybrid-monitoring']) }}" class="image">
+                                        <img src="{{ asset('image/blog/tf-port-grid-2.jpg') }}" data-src="{{ asset('image/blog/tf-port-grid-2.jpg') }}" alt="Decentralized Trials" class="lazyload">
                                     </a>
                                     <div class="post-content px-mobile-sm">
                                         <h5>
-                                            <a href="{{ route('blog.details') }}" class="name-post">
-                                                Emergency Car You Need to Know Before a Crisis
+                                            <a href="{{ route('blog.details', ['article' => 'decentralized-clinical-trials-hybrid-monitoring']) }}" class="name-post">
+                                                Hybrid & Decentralized Clinical Trials: Accelerating Recruitment & Data Integrity
                                             </a>
                                         </h5>
                                         <ul class="post-metas style-2">
-                                            <li class="metas-item"><a href="#">05 Feb 2025</a></li>
-                                            <li class="metas-item"><a href="#">Comments (5)</a></li>
+                                            <li class="metas-item"><a href="{{ route('blog', ['category' => 'clinical-trials']) }}">Clinical Trials</a></li>
+                                            <li class="metas-item"><span>03 Nov 2026</span></li>
+                                            <li class="metas-item"><span>5 min read</span></li>
                                         </ul>
                                     </div>
                                 </div>
 
                                 <div class="tf-post-list style-small small-2 hover-img">
-                                    <a href="{{ route('blog.details') }}" class="image">
-                                        <img src="{{ asset('image/blog/tf-post-list-5.jpg') }}" data-src="{{ asset('image/blog/tf-post-list-5.jpg') }}" alt="" class="lazyload">
+                                    <a href="{{ route('blog.details', ['article' => 'high-throughput-lc-msms-bioanalysis-clinical-trials']) }}" class="image">
+                                        <img src="{{ asset('image/blog/tf-port-grid-3.jpg') }}" data-src="{{ asset('image/blog/tf-port-grid-3.jpg') }}" alt="LC-MS/MS Bioanalysis" class="lazyload">
                                     </a>
                                     <div class="post-content px-mobile-sm">
                                         <h5>
-                                            <a href="{{ route('blog.details') }}" class="name-post">
-                                                Best Role of Mental Health in Overall Well-Being
+                                            <a href="{{ route('blog.details', ['article' => 'high-throughput-lc-msms-bioanalysis-clinical-trials']) }}" class="name-post">
+                                                High-Throughput LC-MS/MS Bioanalysis: Overcoming Matrix Effects in PK Studies
                                             </a>
                                         </h5>
                                         <ul class="post-metas style-2">
-                                            <li class="metas-item"><a href="#">05 Feb 2025</a></li>
-                                            <li class="metas-item"><a href="#">Comments (5)</a></li>
+                                            <li class="metas-item"><a href="{{ route('blog', ['category' => 'bioanalytics-pk']) }}">Bioanalytical & PK</a></li>
+                                            <li class="metas-item"><span>28 Oct 2026</span></li>
+                                            <li class="metas-item"><span>6 min read</span></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="text-center mt-50">
+                        <a href="{{ route('blog') }}" class="tf-btn" style="background: var(--primary); color: #fff; padding: 14px 34px; border-radius: 999px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px;">
+                            <span>Explore All Clinical Insights & Articles</span>
+                            <i class="icon-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
             </section>
