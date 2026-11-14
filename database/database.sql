@@ -1,14 +1,23 @@
--- ========================================================
--- Trevanta International Database Dump
--- Compatible with MySQL 5.7+, MySQL 8.0+, MariaDB 10.3+
--- Generated for phpMyAdmin / Direct SQL Import
--- ========================================================
+-- ==============================================================
+-- Clineva Research Laboratories - MySQL Database Schema & Seed Dump
+-- Target DBMS: MySQL / MariaDB (>= 5.7 / 8.0)
+-- Character Set: utf8mb4 / utf8mb4_unicode_ci
+-- Generated Date: 2026-11-14
+-- ==============================================================
 
-SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
+SET FOREIGN_KEY_CHECKS=0;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+-- --------------------------------------------------------------
+-- Optional: Uncomment below if importing on a fresh local MySQL instance:
+-- CREATE DATABASE IF NOT EXISTS `clineva` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+-- USE `clineva`;
+-- --------------------------------------------------------------
 
 -- --------------------------------------------------------
--- Table structure for `migrations`
+-- Table structure for table `migrations`
 -- --------------------------------------------------------
 DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE `migrations` (
@@ -18,17 +27,39 @@ CREATE TABLE `migrations` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- --------------------------------------------------------
--- Dumping data for table `migrations`
--- --------------------------------------------------------
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '0001_01_01_000000_create_users_table', 1),
 (2, '0001_01_01_000001_create_cache_table', 1),
 (3, '0001_01_01_000002_create_jobs_table', 1),
-(4, '2026_11_03_000001_create_inquiries_table', 1);
+(4, '2026_11_05_000001_create_appointments_table', 2),
+(5, '2026_11_05_000002_create_contacts_table', 2),
+(6, '2026_11_05_000003_create_subscribers_table', 2),
+(7, '2026_11_14_000000_create_admins_table', 3);
 
 -- --------------------------------------------------------
--- Table structure for `users`
+-- Table structure for table `admins`
+-- --------------------------------------------------------
+DROP TABLE IF EXISTS `admins`;
+CREATE TABLE `admins` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `admins_email_unique` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Admin default credentials:
+-- Email: admin@clineva.in | Password: admin123
+INSERT INTO `admins` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', 'admin@clineva.in', NULL, '$2y$12$ytSYH7DLWcqdzudO7Z2sGO2XzAtFCcJx3UmjNiolXCR2UQuuqtmLe', NULL, '2026-11-14 04:58:43', '2026-11-14 04:58:43');
+
+-- --------------------------------------------------------
+-- Table structure for table `users`
 -- --------------------------------------------------------
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
@@ -44,15 +75,11 @@ CREATE TABLE `users` (
   UNIQUE KEY `users_email_unique` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- --------------------------------------------------------
--- Dumping data for table `users`
--- Admin Login: admin@trevanta.com / Password@123
--- --------------------------------------------------------
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Executive Director', 'admin@trevanta.com', NOW(), '$2y$10$rtFsvHHuVJQa8lb9FLLR9ep8wVxPgvw0mz5hOm7diOuVjeeuhLVIW', NULL, NOW(), NOW());
+(1, 'Admin', 'admin@clineva.in', NULL, '$2y$12$94KW2WfIuT5TSRSBNWM7eO.wkswSTYKa//2.PWAWRjVfyjEHMYYGC', NULL, '2026-11-14 04:32:44', '2026-11-14 04:32:44');
 
 -- --------------------------------------------------------
--- Table structure for `password_reset_tokens`
+-- Table structure for table `password_reset_tokens`
 -- --------------------------------------------------------
 DROP TABLE IF EXISTS `password_reset_tokens`;
 CREATE TABLE `password_reset_tokens` (
@@ -63,7 +90,7 @@ CREATE TABLE `password_reset_tokens` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
--- Table structure for `sessions`
+-- Table structure for table `sessions`
 -- --------------------------------------------------------
 DROP TABLE IF EXISTS `sessions`;
 CREATE TABLE `sessions` (
@@ -79,29 +106,31 @@ CREATE TABLE `sessions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
--- Table structure for `cache`
+-- Table structure for table `cache`
 -- --------------------------------------------------------
 DROP TABLE IF EXISTS `cache`;
 CREATE TABLE `cache` (
   `key` varchar(255) NOT NULL,
   `value` mediumtext NOT NULL,
   `expiration` int(11) NOT NULL,
-  PRIMARY KEY (`key`)
+  PRIMARY KEY (`key`),
+  KEY `cache_expiration_index` (`expiration`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
--- Table structure for `cache_locks`
+-- Table structure for table `cache_locks`
 -- --------------------------------------------------------
 DROP TABLE IF EXISTS `cache_locks`;
 CREATE TABLE `cache_locks` (
   `key` varchar(255) NOT NULL,
   `owner` varchar(255) NOT NULL,
   `expiration` int(11) NOT NULL,
-  PRIMARY KEY (`key`)
+  PRIMARY KEY (`key`),
+  KEY `cache_locks_expiration_index` (`expiration`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
--- Table structure for `jobs`
+-- Table structure for table `jobs`
 -- --------------------------------------------------------
 DROP TABLE IF EXISTS `jobs`;
 CREATE TABLE `jobs` (
@@ -117,7 +146,7 @@ CREATE TABLE `jobs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
--- Table structure for `job_batches`
+-- Table structure for table `job_batches`
 -- --------------------------------------------------------
 DROP TABLE IF EXISTS `job_batches`;
 CREATE TABLE `job_batches` (
@@ -135,7 +164,7 @@ CREATE TABLE `job_batches` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
--- Table structure for `failed_jobs`
+-- Table structure for table `failed_jobs`
 -- --------------------------------------------------------
 DROP TABLE IF EXISTS `failed_jobs`;
 CREATE TABLE `failed_jobs` (
@@ -151,32 +180,52 @@ CREATE TABLE `failed_jobs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
--- Table structure for `inquiries`
+-- Table structure for table `contacts`
 -- --------------------------------------------------------
-DROP TABLE IF EXISTS `inquiries`;
-CREATE TABLE `inquiries` (
+DROP TABLE IF EXISTS `contacts`;
+CREATE TABLE `contacts` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `type` varchar(50) NOT NULL DEFAULT 'rfp',
-  `name` varchar(191) NOT NULL,
-  `email` varchar(191) NOT NULL,
-  `phone` varchar(100) DEFAULT NULL,
-  `organization` varchar(191) DEFAULT NULL,
-  `phase` varchar(100) DEFAULT NULL,
-  `therapeutic_focus` varchar(100) DEFAULT NULL,
-  `message` text DEFAULT NULL,
-  `status` varchar(50) NOT NULL DEFAULT 'new',
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `subject` varchar(255) DEFAULT NULL,
+  `message` text NOT NULL,
+  `status` varchar(255) NOT NULL DEFAULT 'unread',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
--- Dumping data for table `inquiries`
+-- Table structure for table `appointments`
 -- --------------------------------------------------------
-INSERT INTO `inquiries` (`id`, `type`, `name`, `email`, `phone`, `organization`, `phase`, `therapeutic_focus`, `message`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'rfp', 'Dr. Maria Vasquez', 'm.vasquez@novacure.bio', '+1 (617) 555-0192', 'NovaCure BioTherapeutics', 'Phase II (Proof-of-Concept)', 'Oncology', 'Multi-center Phase II solid tumor clinical protocol across North America and Europe. Target sample size 180 subjects, primary endpoint PFS and ORR. Seeking full CRO management including EDC, monitoring, and Pharmacovigilance.', 'new', NOW(), NOW()),
-(2, 'rfp', 'Dr. Johan Lindqvist', 'j.lindqvist@nordichealth.se', '+46 8 123 4567', 'Nordic Health Sciences AB', 'Phase III (Pivotal Global)', 'Neurology', 'Pivotal Phase III neurodegenerative protocol targeting 650 patients across 45 clinical sites in the UK, Poland, and Canada. Requires full CDISC data mapping, biostatistics, and regulatory dossier submission to EMA & FDA.', 'in_review', NOW(), NOW()),
-(3, 'contact', 'Dr. Sanjay Patel', 's.patel@genomixlabs.in', '+91 22 5550 4432', 'Genomix Laboratories', 'Phase I (FIH / PK-PD)', 'Immunology', 'Seeking fast feasibility assessment for a healthy volunteer PK/PD trial with escalating single doses (SAD/MAD). Need rapid IRB review and bioanalytical assay integration.', 'contacted', NOW(), NOW()),
-(4, 'rfp', 'Dr. Émilie Dupont', 'e.dupont@biovance.fr', '+33 1 42 68 55 00', 'BioVance Pharma SAS', 'Phase II (Proof-of-Concept)', 'Rare Disease', 'Orphan drug pediatric indication protocol for lysosomal storage disorder. Multi-national feasibility study involving specialized hospital clinical networks in France, Germany, and the US.', 'closed', NOW(), NOW());
+DROP TABLE IF EXISTS `appointments`;
+CREATE TABLE `appointments` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `service` varchar(255) DEFAULT NULL,
+  `doctor` varchar(255) DEFAULT NULL,
+  `appointment_date` varchar(255) DEFAULT NULL,
+  `message` text DEFAULT NULL,
+  `status` varchar(255) NOT NULL DEFAULT 'pending',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-SET FOREIGN_KEY_CHECKS = 1;
+-- --------------------------------------------------------
+-- Table structure for table `subscribers`
+-- --------------------------------------------------------
+DROP TABLE IF EXISTS `subscribers`;
+CREATE TABLE `subscribers` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+SET FOREIGN_KEY_CHECKS=1;
+COMMIT;
