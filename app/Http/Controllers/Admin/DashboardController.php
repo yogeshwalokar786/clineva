@@ -32,6 +32,8 @@ class DashboardController extends Controller
             $unreadInquiriesCount = \App\Models\Contact::where('status', 'unread')->count();
             $totalInquiriesCount = \App\Models\Contact::count();
             $recentInquiries = \App\Models\Contact::latest()->take(5)->get();
+            $totalBlogsCount = \App\Models\BlogPost::count();
+            $publishedBlogsCount = \App\Models\BlogPost::where('is_published', true)->count();
         } catch (\Throwable $e) {
             $admins = collect();
             $activeJobsCount = 0;
@@ -42,6 +44,8 @@ class DashboardController extends Controller
             $unreadInquiriesCount = 0;
             $totalInquiriesCount = 0;
             $recentInquiries = collect();
+            $totalBlogsCount = count(\App\Data\BlogCatalog::all());
+            $publishedBlogsCount = count(\App\Data\BlogCatalog::all());
         }
 
         $stats = [
@@ -56,6 +60,8 @@ class DashboardController extends Controller
             'total_applications' => $totalApplicationsCount,
             'unread_inquiries' => $unreadInquiriesCount,
             'total_inquiries' => $totalInquiriesCount,
+            'total_blogs' => $totalBlogsCount,
+            'published_blogs' => $publishedBlogsCount,
         ];
 
         $systemInfo = [

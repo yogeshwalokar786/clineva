@@ -646,6 +646,22 @@
                 <span>Dashboard</span>
             </a>
 
+            <div class="nav-section-title">Content & SEO</div>
+            <a href="{{ route('admin.blogs.index') }}" class="nav-link {{ request()->routeIs('admin.blogs.*') ? 'active' : '' }}">
+                <i class="icon-file-word"></i>
+                <span>Blog Posts</span>
+                @php
+                    try {
+                        $publishedBlogsCount = \App\Models\BlogPost::where('is_published', true)->count();
+                    } catch (\Throwable $e) {
+                        $publishedBlogsCount = 0;
+                    }
+                @endphp
+                @if($publishedBlogsCount > 0)
+                    <span style="margin-left: auto; background: rgba(0, 126, 138, 0.15); color: var(--primary); font-size: 11px; padding: 2px 7px; border-radius: 999px; font-weight: 700;">{{ $publishedBlogsCount }}</span>
+                @endif
+            </a>
+
             <div class="nav-section-title">Careers Portal</div>
             <a href="{{ route('admin.jobs.index') }}" class="nav-link {{ request()->routeIs('admin.jobs.*') ? 'active' : '' }}">
                 <i class="icon-suitcase"></i>

@@ -1,6 +1,64 @@
 @extends('layouts.app')
 
-@section('title', 'Blogs - Clineva Research Laboratories')
+@section('title', 'Clinical Insights & Research Perspectives | Clineva Blogs')
+
+@section('seo')
+    <meta name="description" content="Explore authoritative clinical research perspectives, ICH-GCP regulatory intelligence, trial methodologies, and BA/BE breakthroughs curated by Clineva scientists.">
+    <link rel="canonical" href="{{ route('blog') }}">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Clinical Insights & Research Perspectives | Clineva Blogs">
+    <meta property="og:description" content="Explore authoritative clinical research perspectives, ICH-GCP regulatory intelligence, trial methodologies, and BA/BE breakthroughs curated by Clineva scientists.">
+    <meta property="og:url" content="{{ route('blog') }}">
+    <meta property="og:site_name" content="Clineva Research Laboratories">
+    <meta property="og:image" content="{{ asset('image/logo/logo-main.png') }}">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Clinical Insights & Research Perspectives | Clineva Blogs">
+    <meta name="twitter:description" content="Explore authoritative clinical research perspectives, ICH-GCP regulatory intelligence, trial methodologies, and BA/BE breakthroughs curated by Clineva scientists.">
+    <meta name="twitter:image" content="{{ asset('image/logo/logo-main.png') }}">
+
+    <script type="application/ld+json">
+    {
+        "@@context": "https://schema.org",
+        "@@graph": [
+            {
+                "@@type": "CollectionPage",
+                "@@id": "{{ route('blog') }}#webpage",
+                "url": "{{ route('blog') }}",
+                "name": "Clinical Insights & Research Perspectives",
+                "description": "Explore authoritative clinical research perspectives, ICH-GCP regulatory intelligence, trial methodologies, and BA/BE breakthroughs curated by Clineva scientists.",
+                "publisher": {
+                    "@@type": "Organization",
+                    "name": "Clineva Research Laboratories",
+                    "url": "{{ url('/') }}",
+                    "logo": "{{ asset('image/logo/logo-main.png') }}"
+                }
+            },
+            {
+                "@@type": "BreadcrumbList",
+                "@@id": "{{ route('blog') }}#breadcrumb",
+                "itemListElement": [
+                    {
+                        "@@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "{{ url('/') }}"
+                    },
+                    {
+                        "@@type": "ListItem",
+                        "position": 2,
+                        "name": "Blogs",
+                        "item": "{{ route('blog') }}"
+                    }
+                ]
+            }
+        ]
+    }
+    </script>
+@endsection
 
 @section('content')
 <style>
@@ -490,11 +548,23 @@
             @endif
 
             <!-- Lead Featured Story (when viewing All or matching category) -->
-            @if(empty($searchQuery) && ($selectedCategory === 'all' || $selectedCategory === $featuredArticle['category']))
+            @php
+                $fSlug = is_object($featuredArticle) ? $featuredArticle->slug : $featuredArticle['slug'];
+                $fTitle = is_object($featuredArticle) ? $featuredArticle->title : $featuredArticle['title'];
+                $fCat = is_object($featuredArticle) ? $featuredArticle->category : $featuredArticle['category'];
+                $fCatName = is_object($featuredArticle) ? $featuredArticle->category_name : $featuredArticle['category_name'];
+                $fCatColor = is_object($featuredArticle) ? $featuredArticle->category_color : $featuredArticle['category_color'];
+                $fImage = is_object($featuredArticle) ? $featuredArticle->featured_image : $featuredArticle['image'];
+                $fExcerpt = is_object($featuredArticle) ? $featuredArticle->excerpt : $featuredArticle['excerpt'];
+                $fDate = is_object($featuredArticle) ? ($featuredArticle->published_at ? $featuredArticle->published_at->format('d M Y') : $featuredArticle->created_at->format('d M Y')) : $featuredArticle['date'];
+                $fRead = is_object($featuredArticle) ? $featuredArticle->read_time : $featuredArticle['read_time'];
+            @endphp
+
+            @if(empty($searchQuery) && ($selectedCategory === 'all' || $selectedCategory === $fCat))
                 <div class="featured-lead-box">
                     <div class="featured-lead-thumb">
-                        <a href="{{ route('blog.details', ['slug' => $featuredArticle['slug']]) }}">
-                            <img src="{{ asset($featuredArticle['image']) }}" alt="{{ $featuredArticle['title'] }}" loading="lazy">
+                        <a href="{{ route('blog.details', ['slug' => $fSlug]) }}">
+                            <img src="{{ Str::startsWith($fImage, 'http') ? $fImage : asset($fImage) }}" alt="{{ $fTitle }}" loading="lazy">
                         </a>
                         <span class="featured-pill-tag">
                             <i class="icon-star"></i> Featured Insight
@@ -502,27 +572,27 @@
                     </div>
                     <div class="featured-lead-body">
                         <div class="featured-meta-line">
-                            <span class="badge-cat-tag" style="color: {{ $featuredArticle['category_color'] }}; background: {{ $featuredArticle['category_color'] }}15;">
-                                {{ $featuredArticle['category_name'] }}
+                            <span class="badge-cat-tag" style="color: {{ $fCatColor }}; background: {{ $fCatColor }}15;">
+                                {{ $fCatName }}
                             </span>
                             <span style="font-size: 12.5px; color: #64748B;">
-                                <i class="icon-clock"></i> {{ $featuredArticle['read_time'] }}
+                                <i class="icon-clock"></i> {{ $fRead }}
                             </span>
                             <span style="font-size: 12.5px; color: #64748B;">
-                                <i class="icon-calendar"></i> {{ $featuredArticle['date'] }}
+                                <i class="icon-calendar"></i> {{ $fDate }}
                             </span>
                         </div>
-                        <a href="{{ route('blog.details', ['slug' => $featuredArticle['slug']]) }}" class="featured-post-title">
-                            {{ $featuredArticle['title'] }}
+                        <a href="{{ route('blog.details', ['slug' => $fSlug]) }}" class="featured-post-title">
+                            {{ $fTitle }}
                         </a>
                         <p class="featured-post-desc">
-                            {{ $featuredArticle['excerpt'] }}
+                            {{ $fExcerpt }}
                         </p>
                         <div class="featured-bottom-row">
                             <div style="font-size: 13.5px; color: #64748B; display: inline-flex; align-items: center; gap: 6px;">
-                                <i class="icon-calendar"></i> Published {{ $featuredArticle['date'] }} &bull; {{ $featuredArticle['read_time'] }}
+                                <i class="icon-calendar"></i> Published {{ $fDate }} &bull; {{ $fRead }}
                             </div>
-                            <a href="{{ route('blog.details', ['slug' => $featuredArticle['slug']]) }}" class="btn-read-lead">
+                            <a href="{{ route('blog.details', ['slug' => $fSlug]) }}" class="btn-read-lead">
                                 <span>Read Full Analysis</span>
                                 <i class="icon-arrow-right"></i>
                             </a>
@@ -534,39 +604,50 @@
             <!-- 3-Column Articles Grid -->
             <div class="blog-grid-3col" id="blogGridFull">
                 @forelse($articles as $post)
-                    @if(empty($searchQuery) && $selectedCategory === 'all' && $post['slug'] === $featuredArticle['slug'])
+                    @php
+                        $pSlug = is_object($post) ? $post->slug : $post['slug'];
+                        $pTitle = is_object($post) ? $post->title : $post['title'];
+                        $pCat = is_object($post) ? $post->category : $post['category'];
+                        $pCatName = is_object($post) ? $post->category_name : $post['category_name'];
+                        $pCatColor = is_object($post) ? $post->category_color : $post['category_color'];
+                        $pImage = is_object($post) ? $post->featured_image : $post['image'];
+                        $pExcerpt = is_object($post) ? $post->excerpt : $post['excerpt'];
+                        $pDate = is_object($post) ? ($post->published_at ? $post->published_at->format('d M Y') : $post->created_at->format('d M Y')) : $post['date'];
+                        $pRead = is_object($post) ? $post->read_time : $post['read_time'];
+                    @endphp
+                    @if(empty($searchQuery) && $selectedCategory === 'all' && $pSlug === $fSlug)
                         {{-- Skip featured lead card from repeating in grid --}}
                         @continue
                     @endif
-                    <article class="blog-grid-card" data-category="{{ $post['category'] }}">
+                    <article class="blog-grid-card" data-category="{{ $pCat }}">
                         <div class="blog-card-thumb-wrap">
-                            <a href="{{ route('blog.details', ['slug' => $post['slug']]) }}">
-                                <img src="{{ asset($post['image']) }}" alt="{{ $post['title'] }}" loading="lazy">
+                            <a href="{{ route('blog.details', ['slug' => $pSlug]) }}">
+                                <img src="{{ Str::startsWith($pImage, 'http') ? $pImage : asset($pImage) }}" alt="{{ $pTitle }}" loading="lazy">
                             </a>
                             <div class="blog-card-cat-badge">
-                                <span class="badge-cat-tag" style="color: {{ $post['category_color'] }}; background: #FFFFFF; box-shadow: 0 2px 8px rgba(0,0,0,0.12);">
-                                    {{ $post['category_name'] }}
+                                <span class="badge-cat-tag" style="color: {{ $pCatColor }}; background: #FFFFFF; box-shadow: 0 2px 8px rgba(0,0,0,0.12);">
+                                    {{ $pCatName }}
                                 </span>
                             </div>
                             <div class="blog-card-readtime">
-                                <i class="icon-clock"></i> {{ $post['read_time'] }}
+                                <i class="icon-clock"></i> {{ $pRead }}
                             </div>
                         </div>
                         <div class="blog-card-content">
                             <div class="blog-card-date">
-                                <i class="icon-calendar"></i> {{ $post['date'] }}
+                                <i class="icon-calendar"></i> {{ $pDate }}
                             </div>
-                            <a href="{{ route('blog.details', ['slug' => $post['slug']]) }}" class="blog-card-heading">
-                                {{ $post['title'] }}
+                            <a href="{{ route('blog.details', ['slug' => $pSlug]) }}" class="blog-card-heading">
+                                {{ $pTitle }}
                             </a>
                             <p class="blog-card-excerpt">
-                                {{ $post['excerpt'] }}
+                                {{ $pExcerpt }}
                             </p>
                             <div class="blog-card-footer">
                                 <span style="font-size: 12.5px; color: #64748B; display: inline-flex; align-items: center; gap: 5px;">
-                                    <i class="icon-clock"></i> {{ $post['read_time'] }}
+                                    <i class="icon-clock"></i> {{ $pRead }}
                                 </span>
-                                <a href="{{ route('blog.details', ['slug' => $post['slug']]) }}" class="card-read-action">
+                                <a href="{{ route('blog.details', ['slug' => $pSlug]) }}" class="card-read-action">
                                     <span>Read Insight</span>
                                     <i class="icon-arrow-right"></i>
                                 </a>

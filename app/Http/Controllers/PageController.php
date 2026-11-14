@@ -155,12 +155,68 @@ class PageController extends Controller
 
     public function blog(Request $request)
     {
-        $categories = \App\Data\BlogCatalog::categories();
-        $featuredArticle = \App\Data\BlogCatalog::featured();
-        $allArticles = \App\Data\BlogCatalog::all();
         $selectedCategory = $request->query('category', 'all');
         $searchQuery = trim($request->query('q', ''));
 
+        try {
+            $query = \App\Models\BlogPost::published();
+
+            if ($selectedCategory !== 'all' && !empty($selectedCategory)) {
+                $query->where('category', $selectedCategory);
+            }
+
+            if (!empty($searchQuery)) {
+                $query->where(function ($q) use ($searchQuery) {
+                    $q->where('title', 'like', "%{$searchQuery}%")
+                      ->orWhere('excerpt', 'like', "%{$searchQuery}%")
+                      ->orWhere('category_name', 'like', "%{$searchQuery}%")
+                      ->orWhere('focus_keyword', 'like', "%{$searchQuery}%");
+                });
+            }
+
+            $dbPosts = $query->get();
+
+            if ($dbPosts->isNotEmpty()) {
+                $articles = $dbPosts;
+                $featuredArticle = \App\Models\BlogPost::published()->featured()->first() ?: $dbPosts->first();
+                $allArticles = \App\Models\BlogPost::published()->get();
+                $recentArticles = \App\Models\BlogPost::published()->take(3)->get();
+
+                // Live category counts from database
+                $allCount = $allArticles->count();
+                $catCounts = [];
+                foreach ($allArticles as $p) {
+                    $c = $p->category;
+                    $catCounts[$c] = ($catCounts[$c] ?? 0) + 1;
+                }
+
+                $categories = [
+                    ['slug' => 'all', 'name' => 'All Insights', 'count' => $allCount],
+                    ['slug' => 'clinical-trials', 'name' => 'Clinical Trials', 'count' => $catCounts['clinical-trials'] ?? 0],
+                    ['slug' => 'babe-services', 'name' => 'BA/BE Studies', 'count' => $catCounts['babe-services'] ?? 0],
+                    ['slug' => 'regulatory-gcp', 'name' => 'Regulatory & GCP', 'count' => $catCounts['regulatory-gcp'] ?? 0],
+                    ['slug' => 'bioanalytics-pk', 'name' => 'Bioanalytical & PK', 'count' => $catCounts['bioanalytics-pk'] ?? 0],
+                    ['slug' => 'medico-marketing', 'name' => 'Medico-Marketing', 'count' => $catCounts['medico-marketing'] ?? 0],
+                ];
+
+                return view('pages.blog-standard', compact(
+                    'categories',
+                    'featuredArticle',
+                    'articles',
+                    'allArticles',
+                    'selectedCategory',
+                    'searchQuery',
+                    'recentArticles'
+                ));
+            }
+        } catch (\Throwable $e) {
+            // Graceful fallback to static catalog
+        }
+
+        // Static fallback to ensure continuous zero-downtime availability
+        $categories = \App\Data\BlogCatalog::categories();
+        $featuredArticle = \App\Data\BlogCatalog::featured();
+        $allArticles = \App\Data\BlogCatalog::all();
         $articles = \App\Data\BlogCatalog::getByCategory($selectedCategory);
 
         if (!empty($searchQuery)) {
@@ -187,6 +243,55 @@ class PageController extends Controller
     public function blogDetails(Request $request, ?string $slug = null)
     {
         $lookupSlug = $slug ?: ($request->route('slug') ?: ($request->route('article') ?: $request->query('article')));
+
+        try {
+            $post = \App\Models\BlogPost::published()->where('slug', $lookupSlug)->first();
+            if ($post) {
+                try {
+                    $post->increment('views_count');
+                } catch (\Throwable $e) {}
+
+                $allArticles = \App\Models\BlogPost::published()->get();
+                $currentIndex = 0;
+                foreach ($allArticles as $idx => $item) {
+                    if ($item->slug === $post->slug) {
+                        $currentIndex = $idx;
+                        break;
+                    }
+                }
+                $count = $allArticles->count();
+                $prevArticle = $allArticles[($currentIndex - 1 + $count) % $count];
+                $nextArticle = $allArticles[($currentIndex + 1) % $count];
+
+                $relatedArticles = \App\Models\BlogPost::published()
+                    ->where('id', '!=', $post->id)
+                    ->where('category', $post->category)
+                    ->take(2)
+                    ->get();
+
+                if ($relatedArticles->count() < 2) {
+                    $relatedArticles = \App\Models\BlogPost::published()
+                        ->where('id', '!=', $post->id)
+                        ->take(2)
+                        ->get();
+                }
+
+                $categories = \App\Data\BlogCatalog::categories();
+                $recentArticles = \App\Models\BlogPost::published()->where('id', '!=', $post->id)->take(3)->get();
+
+                return view('pages.blog-details', [
+                    'article' => $post,
+                    'categories' => $categories,
+                    'recentArticles' => $recentArticles,
+                    'relatedArticles' => $relatedArticles,
+                    'prevArticle' => $prevArticle,
+                    'nextArticle' => $nextArticle,
+                ]);
+            }
+        } catch (\Throwable $e) {
+            // Fallback to static catalog
+        }
+
         $articleData = \App\Data\BlogCatalog::findBySlug($lookupSlug) ?? \App\Data\BlogCatalog::featured();
         $categories = \App\Data\BlogCatalog::categories();
         $recentArticles = \App\Data\BlogCatalog::recent(3);
@@ -212,5 +317,27 @@ class PageController extends Controller
             'prevArticle' => $prevArticle,
             'nextArticle' => $nextArticle,
         ]);
+    }
+
+    /**
+     * Generate dynamic XML Sitemap for Google Search Console and SEO crawlers.
+     */
+    public function sitemap()
+    {
+        $services = \App\Data\ServicesCatalog::all();
+
+        try {
+            $blogPosts = \App\Models\BlogPost::published()->get();
+            if ($blogPosts->isEmpty()) {
+                $blogPosts = collect(\App\Data\BlogCatalog::all());
+            }
+        } catch (\Throwable $e) {
+            $blogPosts = collect(\App\Data\BlogCatalog::all());
+        }
+
+        return response()->view('sitemap', [
+            'services' => $services,
+            'blogPosts' => $blogPosts,
+        ])->header('Content-Type', 'text/xml');
     }
 }

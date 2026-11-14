@@ -9,10 +9,23 @@
     <!-- Basic Page Needs -->
     <meta charset="utf-8" />
     <!-- [if IE ]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><![endif] -->
-    <title>@yield('title', 'Clineva - Research Laboratories')</title>
-    <meta name="description" content="Clineva Research Laboratories is a modern healthcare and laboratory center dedicated to professional medical diagnostics and research.">
-    <meta name="keywords" content="medical html template, healthcare website, hospital, clinic, doctor, responsive, bootstrap 5, appointment, dentist, health care, medical landing page">
-    <meta name="author" content="themesflat.com" />
+    <title>@yield('title', 'Clineva Research Laboratories - Leading Global CRO & BA/BE Services')</title>
+
+    @hasSection('seo')
+        @yield('seo')
+    @else
+        <meta name="description" content="@yield('meta_description', 'Clineva Research Laboratories is an ISO 9001 and GCP compliant Contract Research Organization (CRO) specializing in clinical trials, BA/BE studies, bioanalytical LC-MS/MS, and medico-marketing services.')">
+        <meta name="keywords" content="clinical trials CRO, bioequivalence studies, BA/BE India, ICH-GCP clinical research, bioanalytical LC-MS/MS, medico-marketing publications, Clineva Research Laboratories">
+        <meta name="author" content="Clineva Research Laboratories" />
+        <link rel="canonical" href="{{ url()->current() }}">
+        <meta property="og:site_name" content="Clineva Research Laboratories">
+        <meta property="og:url" content="{{ url()->current() }}">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="@yield('title', 'Clineva Research Laboratories - Leading Global CRO')">
+        <meta property="og:description" content="@yield('meta_description', 'ISO 9001 & GCP compliant clinical research laboratories specializing in clinical trials, BA/BE studies, and bioanalysis.')">
+        <meta property="og:image" content="{{ asset('image/logo/logo-main.png') }}">
+        <meta name="twitter:card" content="summary_large_image">
+    @endif
 
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />

@@ -38,6 +38,9 @@ Route::get('/blog-standard', [PageController::class, 'blog']);
 Route::get('/blog/{slug}', [PageController::class, 'blogDetails'])->name('blog.details');
 Route::get('/blog-details/{slug?}', [PageController::class, 'blogDetails']);
 
+// Dynamic XML Sitemap
+Route::get('/sitemap.xml', [PageController::class, 'sitemap'])->name('sitemap');
+
 // Admin Authentication & Console
 Route::prefix('admin')->name('admin.')->group(function () {
     // Admin Guest / Login
@@ -48,6 +51,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware('admin')->group(function () {
         Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
         Route::get('/dashboard', [AdminDashboardController::class, 'index']);
+
+        // Blog Posts & SEO Management
+        Route::resource('blogs', \App\Http\Controllers\Admin\BlogPostController::class)->except(['show']);
+        Route::post('blogs/{blog}/toggle', [\App\Http\Controllers\Admin\BlogPostController::class, 'toggleStatus'])->name('blogs.toggle');
+        Route::post('blogs/{blog}/featured', [\App\Http\Controllers\Admin\BlogPostController::class, 'toggleFeatured'])->name('blogs.featured');
 
         // Job Postings Management
         Route::resource('jobs', \App\Http\Controllers\Admin\JobPostingController::class)->except(['show']);
