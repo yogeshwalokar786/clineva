@@ -548,57 +548,59 @@
             @endif
 
             <!-- Lead Featured Story (when viewing All or matching category) -->
-            @php
-                $fSlug = is_object($featuredArticle) ? $featuredArticle->slug : $featuredArticle['slug'];
-                $fTitle = is_object($featuredArticle) ? $featuredArticle->title : $featuredArticle['title'];
-                $fCat = is_object($featuredArticle) ? $featuredArticle->category : $featuredArticle['category'];
-                $fCatName = is_object($featuredArticle) ? $featuredArticle->category_name : $featuredArticle['category_name'];
-                $fCatColor = is_object($featuredArticle) ? $featuredArticle->category_color : $featuredArticle['category_color'];
-                $fImage = is_object($featuredArticle) ? $featuredArticle->featured_image : $featuredArticle['image'];
-                $fExcerpt = is_object($featuredArticle) ? $featuredArticle->excerpt : $featuredArticle['excerpt'];
-                $fDate = is_object($featuredArticle) ? ($featuredArticle->published_at ? $featuredArticle->published_at->format('d M Y') : $featuredArticle->created_at->format('d M Y')) : $featuredArticle['date'];
-                $fRead = is_object($featuredArticle) ? $featuredArticle->read_time : $featuredArticle['read_time'];
-            @endphp
+            @if($featuredArticle)
+                @php
+                    $fSlug = is_object($featuredArticle) ? $featuredArticle->slug : $featuredArticle['slug'];
+                    $fTitle = is_object($featuredArticle) ? $featuredArticle->title : $featuredArticle['title'];
+                    $fCat = is_object($featuredArticle) ? $featuredArticle->category : $featuredArticle['category'];
+                    $fCatName = is_object($featuredArticle) ? $featuredArticle->category_name : $featuredArticle['category_name'];
+                    $fCatColor = is_object($featuredArticle) ? $featuredArticle->category_color : $featuredArticle['category_color'];
+                    $fImage = is_object($featuredArticle) ? $featuredArticle->featured_image : $featuredArticle['image'];
+                    $fExcerpt = is_object($featuredArticle) ? $featuredArticle->excerpt : $featuredArticle['excerpt'];
+                    $fDate = is_object($featuredArticle) ? ($featuredArticle->published_at ? $featuredArticle->published_at->format('d M Y') : $featuredArticle->created_at->format('d M Y')) : $featuredArticle['date'];
+                    $fRead = is_object($featuredArticle) ? $featuredArticle->read_time : $featuredArticle['read_time'];
+                @endphp
 
-            @if(empty($searchQuery) && ($selectedCategory === 'all' || $selectedCategory === $fCat))
-                <div class="featured-lead-box">
-                    <div class="featured-lead-thumb">
-                        <a href="{{ route('blog.details', ['slug' => $fSlug]) }}">
-                            <img src="{{ Str::startsWith($fImage, 'http') ? $fImage : asset($fImage) }}" alt="{{ $fTitle }}" loading="lazy">
-                        </a>
-                        <span class="featured-pill-tag">
-                            <i class="icon-star"></i> Featured Insight
-                        </span>
-                    </div>
-                    <div class="featured-lead-body">
-                        <div class="featured-meta-line">
-                            <span class="badge-cat-tag" style="color: {{ $fCatColor }}; background: {{ $fCatColor }}15;">
-                                {{ $fCatName }}
-                            </span>
-                            <span style="font-size: 12.5px; color: #64748B;">
-                                <i class="icon-clock"></i> {{ $fRead }}
-                            </span>
-                            <span style="font-size: 12.5px; color: #64748B;">
-                                <i class="icon-calendar"></i> {{ $fDate }}
-                            </span>
-                        </div>
-                        <a href="{{ route('blog.details', ['slug' => $fSlug]) }}" class="featured-post-title">
-                            {{ $fTitle }}
-                        </a>
-                        <p class="featured-post-desc">
-                            {{ $fExcerpt }}
-                        </p>
-                        <div class="featured-bottom-row">
-                            <div style="font-size: 13.5px; color: #64748B; display: inline-flex; align-items: center; gap: 6px;">
-                                <i class="icon-calendar"></i> Published {{ $fDate }} &bull; {{ $fRead }}
-                            </div>
-                            <a href="{{ route('blog.details', ['slug' => $fSlug]) }}" class="btn-read-lead">
-                                <span>Read Full Analysis</span>
-                                <i class="icon-arrow-right"></i>
+                @if(empty($searchQuery) && ($selectedCategory === 'all' || $selectedCategory === $fCat))
+                    <div class="featured-lead-box">
+                        <div class="featured-lead-thumb">
+                            <a href="{{ route('blog.details', ['slug' => $fSlug]) }}">
+                                <img src="{{ Str::startsWith($fImage, 'http') ? $fImage : asset($fImage) }}" alt="{{ $fTitle }}" loading="lazy">
                             </a>
+                            <span class="featured-pill-tag">
+                                <i class="icon-star"></i> Featured Insight
+                            </span>
+                        </div>
+                        <div class="featured-lead-body">
+                            <div class="featured-meta-line">
+                                <span class="badge-cat-tag" style="color: {{ $fCatColor }}; background: {{ $fCatColor }}15;">
+                                    {{ $fCatName }}
+                                </span>
+                                <span style="font-size: 12.5px; color: #64748B;">
+                                    <i class="icon-clock"></i> {{ $fRead }}
+                                </span>
+                                <span style="font-size: 12.5px; color: #64748B;">
+                                    <i class="icon-calendar"></i> {{ $fDate }}
+                                </span>
+                            </div>
+                            <a href="{{ route('blog.details', ['slug' => $fSlug]) }}" class="featured-post-title">
+                                {{ $fTitle }}
+                            </a>
+                            <p class="featured-post-desc">
+                                {{ $fExcerpt }}
+                            </p>
+                            <div class="featured-bottom-row">
+                                <div style="font-size: 13.5px; color: #64748B; display: inline-flex; align-items: center; gap: 6px;">
+                                    <i class="icon-calendar"></i> Published {{ $fDate }} &bull; {{ $fRead }}
+                                </div>
+                                <a href="{{ route('blog.details', ['slug' => $fSlug]) }}" class="btn-read-lead">
+                                    <span>Read Full Analysis</span>
+                                    <i class="icon-arrow-right"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
             @endif
 
             <!-- 3-Column Articles Grid -->

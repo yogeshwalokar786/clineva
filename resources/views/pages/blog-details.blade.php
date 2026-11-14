@@ -26,10 +26,10 @@
     $seoRobots = is_object($article) ? ($article->robots ?: 'index, follow') : 'index, follow';
     $jsonLd = is_object($article) ? $article->schema_json_ld : null;
 
-    $prevSlug = is_object($prevArticle) ? $prevArticle->slug : $prevArticle['slug'];
-    $prevTitle = is_object($prevArticle) ? $prevArticle->title : $prevArticle['title'];
-    $nextSlug = is_object($nextArticle) ? $nextArticle->slug : $nextArticle['slug'];
-    $nextTitle = is_object($nextArticle) ? $nextArticle->title : $nextArticle['title'];
+    $prevSlug = is_object($prevArticle) ? $prevArticle->slug : (is_array($prevArticle) ? ($prevArticle['slug'] ?? null) : null);
+    $prevTitle = is_object($prevArticle) ? $prevArticle->title : (is_array($prevArticle) ? ($prevArticle['title'] ?? null) : null);
+    $nextSlug = is_object($nextArticle) ? $nextArticle->slug : (is_array($nextArticle) ? ($nextArticle['slug'] ?? null) : null);
+    $nextTitle = is_object($nextArticle) ? $nextArticle->title : (is_array($nextArticle) ? ($nextArticle['title'] ?? null) : null);
 @endphp
 
 @section('title', $seoTitle)
@@ -351,28 +351,36 @@
 
                     <!-- Previous / Grid / Next Article Navigation -->
                     <div class="list-btn flex justify-content-between align-items-center rg-30 mb-60">
-                        <a href="{{ route('blog.details', ['slug' => $prevSlug]) }}" class="btn-arrow-details previous-details">
-                            <span class="icon">
-                                <i class="icon-chevron-left"></i>
-                            </span>
-                            <span class="text lh-24 fw7">
-                                {{ Str::limit($prevTitle, 55) }}
-                            </span>
-                        </a>
+                        @if($prevSlug)
+                            <a href="{{ route('blog.details', ['slug' => $prevSlug]) }}" class="btn-arrow-details previous-details">
+                                <span class="icon">
+                                    <i class="icon-chevron-left"></i>
+                                </span>
+                                <span class="text lh-24 fw7">
+                                    {{ Str::limit($prevTitle, 55) }}
+                                </span>
+                            </a>
+                        @else
+                            <div></div>
+                        @endif
                         <a href="{{ route('blog') }}" class="btn-grid" title="Back to All Blogs">
                             <span></span>
                             <span></span>
                             <span></span>
                             <span></span>
                         </a>
-                        <a href="{{ route('blog.details', ['slug' => $nextSlug]) }}" class="btn-arrow-details next-details">
-                            <span class="icon">
-                                <i class="icon-chevron-right"></i>
-                            </span>
-                            <span class="text lh-24 fw7">
-                                {{ Str::limit($nextTitle, 55) }}
-                            </span>
-                        </a>
+                        @if($nextSlug)
+                            <a href="{{ route('blog.details', ['slug' => $nextSlug]) }}" class="btn-arrow-details next-details">
+                                <span class="icon">
+                                    <i class="icon-chevron-right"></i>
+                                </span>
+                                <span class="text lh-24 fw7">
+                                    {{ Str::limit($nextTitle, 55) }}
+                                </span>
+                            </a>
+                        @else
+                            <div></div>
+                        @endif
                     </div>
 
                     <!-- Sponsor Consultation CTA Box -->

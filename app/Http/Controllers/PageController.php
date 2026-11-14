@@ -174,60 +174,44 @@ class PageController extends Controller
                 });
             }
 
-            $dbPosts = $query->get();
+            $articles = $query->orderBy('is_featured', 'desc')
+                ->orderBy('published_at', 'desc')
+                ->get();
 
-            if ($dbPosts->isNotEmpty()) {
-                $articles = $dbPosts;
-                $featuredArticle = \App\Models\BlogPost::published()->featured()->first() ?: $dbPosts->first();
-                $allArticles = \App\Models\BlogPost::published()->get();
-                $recentArticles = \App\Models\BlogPost::published()->take(3)->get();
+            $allArticles = \App\Models\BlogPost::published()->get();
+            $featuredArticle = $allArticles->where('is_featured', true)->first() ?: $allArticles->first();
+            $recentArticles = $allArticles->take(3);
 
-                // Live category counts from database
-                $allCount = $allArticles->count();
-                $catCounts = [];
-                foreach ($allArticles as $p) {
-                    $c = $p->category;
-                    $catCounts[$c] = ($catCounts[$c] ?? 0) + 1;
-                }
-
-                $categories = [
-                    ['slug' => 'all', 'name' => 'All Insights', 'count' => $allCount],
-                    ['slug' => 'clinical-trials', 'name' => 'Clinical Trials', 'count' => $catCounts['clinical-trials'] ?? 0],
-                    ['slug' => 'babe-services', 'name' => 'BA/BE Studies', 'count' => $catCounts['babe-services'] ?? 0],
-                    ['slug' => 'regulatory-gcp', 'name' => 'Regulatory & GCP', 'count' => $catCounts['regulatory-gcp'] ?? 0],
-                    ['slug' => 'bioanalytics-pk', 'name' => 'Bioanalytical & PK', 'count' => $catCounts['bioanalytics-pk'] ?? 0],
-                    ['slug' => 'medico-marketing', 'name' => 'Medico-Marketing', 'count' => $catCounts['medico-marketing'] ?? 0],
-                ];
-
-                return view('pages.blog-standard', compact(
-                    'categories',
-                    'featuredArticle',
-                    'articles',
-                    'allArticles',
-                    'selectedCategory',
-                    'searchQuery',
-                    'recentArticles'
-                ));
+            // Live category counts from database
+            $allCount = $allArticles->count();
+            $catCounts = [];
+            foreach ($allArticles as $p) {
+                $c = $p->category;
+                $catCounts[$c] = ($catCounts[$c] ?? 0) + 1;
             }
+
+            $categories = [
+                ['slug' => 'all', 'name' => 'All Insights', 'count' => $allCount],
+                ['slug' => 'clinical-trials', 'name' => 'Clinical Trials', 'count' => $catCounts['clinical-trials'] ?? 0],
+                ['slug' => 'babe-services', 'name' => 'BA/BE Studies', 'count' => $catCounts['babe-services'] ?? 0],
+                ['slug' => 'regulatory-gcp', 'name' => 'Regulatory & GCP', 'count' => $catCounts['regulatory-gcp'] ?? 0],
+                ['slug' => 'bioanalytics-pk', 'name' => 'Bioanalytical & PK', 'count' => $catCounts['bioanalytics-pk'] ?? 0],
+                ['slug' => 'medico-marketing', 'name' => 'Medico-Marketing', 'count' => $catCounts['medico-marketing'] ?? 0],
+            ];
         } catch (\Throwable $e) {
-            // Graceful fallback to static catalog
+            $articles = collect();
+            $allArticles = collect();
+            $featuredArticle = null;
+            $recentArticles = collect();
+            $categories = [
+                ['slug' => 'all', 'name' => 'All Insights', 'count' => 0],
+                ['slug' => 'clinical-trials', 'name' => 'Clinical Trials', 'count' => 0],
+                ['slug' => 'babe-services', 'name' => 'BA/BE Studies', 'count' => 0],
+                ['slug' => 'regulatory-gcp', 'name' => 'Regulatory & GCP', 'count' => 0],
+                ['slug' => 'bioanalytics-pk', 'name' => 'Bioanalytical & PK', 'count' => 0],
+                ['slug' => 'medico-marketing', 'name' => 'Medico-Marketing', 'count' => 0],
+            ];
         }
-
-        // Static fallback to ensure continuous zero-downtime availability
-        $categories = \App\Data\BlogCatalog::categories();
-        $featuredArticle = \App\Data\BlogCatalog::featured();
-        $allArticles = \App\Data\BlogCatalog::all();
-        $articles = \App\Data\BlogCatalog::getByCategory($selectedCategory);
-
-        if (!empty($searchQuery)) {
-            $articles = array_values(array_filter($articles, function ($a) use ($searchQuery) {
-                return stripos($a['title'], $searchQuery) !== false
-                    || stripos($a['excerpt'], $searchQuery) !== false
-                    || stripos($a['category_name'], $searchQuery) !== false;
-            }));
-        }
-
-        $recentArticles = \App\Data\BlogCatalog::recent(3);
 
         return view('pages.blog-standard', compact(
             'categories',
@@ -246,71 +230,63 @@ class PageController extends Controller
 
         try {
             $post = \App\Models\BlogPost::published()->where('slug', $lookupSlug)->first();
-            if ($post) {
-                try {
-                    $post->increment('views_count');
-                } catch (\Throwable $e) {}
+        } catch (\Throwable $e) {
+            $post = null;
+        }
 
-                $allArticles = \App\Models\BlogPost::published()->get();
-                $currentIndex = 0;
-                foreach ($allArticles as $idx => $item) {
-                    if ($item->slug === $post->slug) {
-                        $currentIndex = $idx;
-                        break;
-                    }
+        if (!$post) {
+            abort(404, 'Blog article not found.');
+        }
+
+        try {
+            $post->increment('views_count');
+        } catch (\Throwable $e) {}
+
+        try {
+            $allArticles = \App\Models\BlogPost::published()->get();
+            $currentIndex = 0;
+            foreach ($allArticles as $idx => $item) {
+                if ($item->slug === $post->slug) {
+                    $currentIndex = $idx;
+                    break;
                 }
-                $count = $allArticles->count();
-                $prevArticle = $allArticles[($currentIndex - 1 + $count) % $count];
-                $nextArticle = $allArticles[($currentIndex + 1) % $count];
+            }
+            $count = $allArticles->count();
+            $prevArticle = $count > 1 ? $allArticles[($currentIndex - 1 + $count) % $count] : null;
+            $nextArticle = $count > 1 ? $allArticles[($currentIndex + 1) % $count] : null;
 
+            $relatedArticles = \App\Models\BlogPost::published()
+                ->where('id', '!=', $post->id)
+                ->where('category', $post->category)
+                ->take(2)
+                ->get();
+
+            if ($relatedArticles->count() < 2) {
                 $relatedArticles = \App\Models\BlogPost::published()
                     ->where('id', '!=', $post->id)
-                    ->where('category', $post->category)
                     ->take(2)
                     ->get();
-
-                if ($relatedArticles->count() < 2) {
-                    $relatedArticles = \App\Models\BlogPost::published()
-                        ->where('id', '!=', $post->id)
-                        ->take(2)
-                        ->get();
-                }
-
-                $categories = \App\Data\BlogCatalog::categories();
-                $recentArticles = \App\Models\BlogPost::published()->where('id', '!=', $post->id)->take(3)->get();
-
-                return view('pages.blog-details', [
-                    'article' => $post,
-                    'categories' => $categories,
-                    'recentArticles' => $recentArticles,
-                    'relatedArticles' => $relatedArticles,
-                    'prevArticle' => $prevArticle,
-                    'nextArticle' => $nextArticle,
-                ]);
             }
+
+            $recentArticles = \App\Models\BlogPost::published()->where('id', '!=', $post->id)->take(3)->get();
         } catch (\Throwable $e) {
-            // Fallback to static catalog
+            $allArticles = collect();
+            $prevArticle = null;
+            $nextArticle = null;
+            $relatedArticles = collect();
+            $recentArticles = collect();
         }
 
-        $articleData = \App\Data\BlogCatalog::findBySlug($lookupSlug) ?? \App\Data\BlogCatalog::featured();
-        $categories = \App\Data\BlogCatalog::categories();
-        $recentArticles = \App\Data\BlogCatalog::recent(3);
-        $relatedArticles = \App\Data\BlogCatalog::related($articleData['category'], $articleData['slug'], 2);
-
-        $allArticles = \App\Data\BlogCatalog::all();
-        $currentIndex = 0;
-        foreach ($allArticles as $idx => $item) {
-            if ($item['slug'] === $articleData['slug']) {
-                $currentIndex = $idx;
-                break;
-            }
-        }
-        $count = count($allArticles);
-        $prevArticle = $allArticles[($currentIndex - 1 + $count) % $count];
-        $nextArticle = $allArticles[($currentIndex + 1) % $count];
+        $categories = [
+            ['slug' => 'clinical-trials', 'name' => 'Clinical Trials'],
+            ['slug' => 'babe-services', 'name' => 'BA/BE Studies'],
+            ['slug' => 'regulatory-gcp', 'name' => 'Regulatory & GCP'],
+            ['slug' => 'bioanalytics-pk', 'name' => 'Bioanalytical & PK'],
+            ['slug' => 'medico-marketing', 'name' => 'Medico-Marketing'],
+        ];
 
         return view('pages.blog-details', [
-            'article' => $articleData,
+            'article' => $post,
             'categories' => $categories,
             'recentArticles' => $recentArticles,
             'relatedArticles' => $relatedArticles,
@@ -328,11 +304,8 @@ class PageController extends Controller
 
         try {
             $blogPosts = \App\Models\BlogPost::published()->get();
-            if ($blogPosts->isEmpty()) {
-                $blogPosts = collect(\App\Data\BlogCatalog::all());
-            }
         } catch (\Throwable $e) {
-            $blogPosts = collect(\App\Data\BlogCatalog::all());
+            $blogPosts = collect();
         }
 
         return response()->view('sitemap', [
