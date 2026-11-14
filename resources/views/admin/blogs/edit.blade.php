@@ -5,67 +5,6 @@
 
 @section('content')
 
-<style>
-    .form-section-title {
-        font-size: 16px;
-        font-weight: 800;
-        color: #0F172A;
-        margin-bottom: 6px;
-    }
-    .form-section-sub {
-        font-size: 13px;
-        color: #64748B;
-        margin-bottom: 20px;
-    }
-    .seo-card-box {
-        background: #F8FAFC;
-        border: 1.5px solid #CBD5E1;
-        border-radius: 14px;
-        padding: 24px;
-        margin-top: 10px;
-    }
-    .serp-preview-box {
-        background: #FFFFFF;
-        border: 1px solid #E2E8F0;
-        border-radius: 12px;
-        padding: 18px 22px;
-        margin-bottom: 24px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        max-width: 650px;
-    }
-    .serp-url {
-        font-size: 12.5px;
-        color: #202124;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        margin-bottom: 4px;
-    }
-    .serp-url cite {
-        font-style: normal;
-        color: #4D5156;
-    }
-    .serp-title {
-        font-size: 19px;
-        line-height: 1.35;
-        color: #1A0DAB;
-        font-weight: 500;
-        margin-bottom: 6px;
-        cursor: pointer;
-    }
-    .serp-desc {
-        font-size: 13.5px;
-        line-height: 1.55;
-        color: #4D5156;
-    }
-    .char-count {
-        font-size: 11.5px;
-        color: #64748B;
-        text-align: right;
-        margin-top: 4px;
-    }
-</style>
-
 <form action="{{ route('admin.blogs.update', ['blog' => $blog->id]) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')

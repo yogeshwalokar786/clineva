@@ -1,22 +1,9 @@
 @extends('admin.layout')
 
-@section('title', 'Blog Categories')
+@section('title', 'Blog Categories - Admin Console')
+@section('page_title', 'Blog Categories')
 
 @section('content')
-<style>
-    .cat-grid-layout {
-        display: grid;
-        grid-template-columns: 360px 1fr;
-        gap: 24px;
-        align-items: start;
-    }
-    @media (max-width: 991px) {
-        .cat-grid-layout {
-            grid-template-columns: 1fr;
-        }
-    }
-</style>
-
 <div style="margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
     <div>
         <h1 style="font-size: 24px; font-weight: 800; color: #0F172A; margin: 0 0 4px 0;">Blog Categories</h1>

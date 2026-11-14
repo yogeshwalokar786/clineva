@@ -26,6 +26,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Force HTTPS in production, on reverse proxy (Hostinger/Cloudflare), or when request is secure
+        if (config('app.env') === 'production' || request()->isSecure() || request()->header('X-Forwarded-Proto') === 'https' || (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')) {
+            \Illuminate\Support\Facades\URL::forceScheme('https');
+        }
+
         // One-time automated self-healing database migration for Trevanta branding
         try {
             if (!\Illuminate\Support\Facades\Cache::has('branding_db_fixed_v3')) {
