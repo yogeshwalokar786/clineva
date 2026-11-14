@@ -519,12 +519,8 @@
                             {{ $featuredArticle['excerpt'] }}
                         </p>
                         <div class="featured-bottom-row">
-                            <div class="author-meta-item">
-                                <img src="{{ asset($featuredArticle['author']['avatar']) }}" alt="{{ $featuredArticle['author']['name'] }}">
-                                <div>
-                                    <div style="font-size: 13.5px; font-weight: 700; color: #1E293B;">{{ $featuredArticle['author']['name'] }}</div>
-                                    <div style="font-size: 11.5px; color: #64748B;">{{ $featuredArticle['author']['role'] }}</div>
-                                </div>
+                            <div style="font-size: 13.5px; color: #64748B; display: inline-flex; align-items: center; gap: 6px;">
+                                <i class="icon-calendar"></i> Published {{ $featuredArticle['date'] }} &bull; {{ $featuredArticle['read_time'] }}
                             </div>
                             <a href="{{ route('blog.details', ['slug' => $featuredArticle['slug']]) }}" class="btn-read-lead">
                                 <span>Read Full Analysis</span>
@@ -567,12 +563,11 @@
                                 {{ $post['excerpt'] }}
                             </p>
                             <div class="blog-card-footer">
-                                <div class="card-author-info">
-                                    <img src="{{ asset($post['author']['avatar']) }}" alt="{{ $post['author']['name'] }}">
-                                    <span>{{ $post['author']['name'] }}</span>
-                                </div>
+                                <span style="font-size: 12.5px; color: #64748B; display: inline-flex; align-items: center; gap: 5px;">
+                                    <i class="icon-clock"></i> {{ $post['read_time'] }}
+                                </span>
                                 <a href="{{ route('blog.details', ['slug' => $post['slug']]) }}" class="card-read-action">
-                                    <span>Read</span>
+                                    <span>Read Insight</span>
                                     <i class="icon-arrow-right"></i>
                                 </a>
                             </div>

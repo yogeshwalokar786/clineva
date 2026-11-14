@@ -28,18 +28,6 @@
         gap: 24px;
         flex-wrap: wrap;
     }
-    .page-title.page-details .post-user .image {
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        overflow: hidden;
-        border: 2px solid rgba(255, 255, 255, 0.4);
-    }
-    .page-title.page-details .post-user .image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
     .clinical-takeaways-box {
         background: #F0FDF4;
         border: 1px solid #BBF7D0;
@@ -155,15 +143,6 @@
                 {{ $article['title'] }}
             </h1>
             <div class="post-metas position-relative">
-                <div class="post-user metas-item">
-                    <div class="image">
-                        <img src="{{ asset($article['author']['avatar']) }}" alt="{{ $article['author']['name'] }}">
-                    </div>
-                    <div class="content">
-                        <span class="color-white fw7">{{ $article['author']['name'] }}</span>
-                    </div>
-                </div>
-
                 <div class="post-author metas-item">
                     <div class="icon"><i class="icon-tag"></i></div>
                     <span class="color-white fw7">{{ $article['category_name'] }}</span>
@@ -259,7 +238,7 @@
                             <h4 class="text">
                                 "{{ $article['content']['quote'] }}"
                             </h4>
-                            <span class="name-quote">{{ $article['author']['name'] }} &bull; {{ $article['author']['role'] }}</span>
+                            <span class="name-quote">Clineva Research Laboratories &bull; {{ $article['category_name'] }}</span>
                         </div>
                     @endif
 
@@ -275,41 +254,17 @@
                         </div>
                     @endif
 
-                    <!-- Popular Tags & Social Share -->
-                    <div class="post-tags-share flex align-items-center justify-content-between flex-wrap g-30 mb-50">
-                        <div class="post-tags-wrap flex align-items-center g-10">
-                            <h6>Scientific Topics</h6>
-                            <div class="tabs-list style-radius">
-                                @foreach($article['tags'] as $tag)
-                                    <a href="{{ route('blog', ['q' => $tag]) }}" class="tabs-item">#{{ $tag }}</a>
-                                @endforeach
-                            </div>
+                    <!-- Social Share -->
+                    <div class="post-tags-share flex align-items-center justify-content-between flex-wrap g-20 mb-50">
+                        <div>
+                            <span style="font-size: 15px; font-weight: 700; color: #0F172A;">Share this Article:</span>
                         </div>
                         <div class="post-share-wrap flex align-items-center g-10">
-                            <h6>Share</h6>
                             <ul class="post-social style-border">
                                 <li><a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(url()->current()) }}" target="_blank" class="icon-social" title="Share on LinkedIn"><i class="icon-linkedin2"></i></a></li>
                                 <li><a href="https://twitter.com/intent/tweet?text={{ urlencode($article['title']) }}&url={{ urlencode(url()->current()) }}" target="_blank" class="icon-social" title="Share on X"><i class="icon-twitter"></i></a></li>
                                 <li><a href="mailto:?subject={{ rawurlencode($article['title']) }}&body={{ rawurlencode(url()->current()) }}" class="icon-social" title="Email Article"><i class="icon-envelope"></i></a></li>
                             </ul>
-                        </div>
-                    </div>
-
-                    <!-- Author Biography Signature Box -->
-                    <div class="comment-item mb-50">
-                        <div class="left">
-                            <div class="image-avatar">
-                                <img src="{{ asset($article['author']['avatar']) }}" alt="{{ $article['author']['name'] }}">
-                            </div>
-                        </div>
-                        <div class="comment-content">
-                            <div class="user-comment">
-                                <h6><span class="name">{{ $article['author']['name'] }}</span></h6>
-                                <p class="author">{{ $article['author']['role'] }} &bull; Clineva Research Laboratories</p>
-                            </div>
-                            <div class="text-comment" style="font-size: 14px; line-height: 1.65; color: var(--color-paragraph);">
-                                Contributing expertise across Phase I-IV trial operations, ICH-GCP regulatory intelligence, BA/BE study protocols, and regulatory filings with USFDA, EMA, and CDSCO authorities.
-                            </div>
                         </div>
                     </div>
 
