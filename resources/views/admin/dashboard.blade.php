@@ -278,21 +278,21 @@
 
         <div class="stat-card">
             <div class="stat-info">
-                <div class="stat-label">Clinical Trials</div>
-                <div class="stat-value">{{ $stats['clinical_count'] }}</div>
+                <div class="stat-label">Active Job Openings</div>
+                <div class="stat-value">{{ $stats['active_jobs'] ?? 0 }}</div>
             </div>
             <div class="stat-icon success">
-                <i class="icon-safety"></i>
+                <i class="icon-suitcase"></i>
             </div>
         </div>
 
         <div class="stat-card">
             <div class="stat-info">
-                <div class="stat-label">BA / BE Studies</div>
-                <div class="stat-value">{{ $stats['babe_count'] }}</div>
+                <div class="stat-label">Received Applications</div>
+                <div class="stat-value">{{ $stats['total_applications'] ?? 0 }}</div>
             </div>
             <div class="stat-icon warning">
-                <i class="icon-atom-simple"></i>
+                <i class="icon-file-word"></i>
             </div>
         </div>
 
@@ -309,12 +309,86 @@
 
     <!-- Main Two Column Grid -->
     <div class="dashboard-split">
-        <!-- Left: Services Catalog Overview -->
-        <div class="content-card">
-            <div class="card-head">
-                <div class="card-head-title">Clineva Services Catalog</div>
-                <span class="card-head-badge">{{ count($allServices) }} Active Capabilities</span>
+        <!-- Left: Applications & Services Catalog -->
+        <div>
+            <!-- Recent Candidate Applications -->
+            <div class="content-card" style="margin-bottom: 24px;">
+                <div class="card-head">
+                    <div class="card-head-title">Recent Candidate Applications</div>
+                    <div style="display: flex; gap: 8px;">
+                        <a href="{{ route('admin.jobs.create') }}" class="btn-live-site" style="font-size: 12px; padding: 4px 10px; background: var(--primary); color: #fff; border-color: var(--primary);">
+                            + Post Vacancy
+                        </a>
+                        <a href="{{ route('admin.applications.index') }}" class="btn-live-site" style="font-size: 12px; padding: 4px 10px;">
+                            View All ({{ $stats['total_applications'] ?? 0 }})
+                        </a>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Candidate</th>
+                                <th>Role Applied</th>
+                                <th>Resume</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($recentApplications as $app)
+                                <tr>
+                                    <td>
+                                        <div style="font-weight: 700; color: var(--dark); font-size: 13.5px;">{{ $app->name }}</div>
+                                        <div style="font-size: 12px; color: var(--text-muted);">{{ $app->email }} &bull; {{ $app->phone }}</div>
+                                    </td>
+                                    <td>
+                                        <div style="font-weight: 600; color: #1E293B; font-size: 13px;">{{ $app->role_title }}</div>
+                                    </td>
+                                    <td>
+                                        @if($app->resume_path)
+                                            <a href="{{ route('admin.applications.resume', $app) }}" class="btn-live-site" style="padding: 3px 8px; font-size: 11.5px; color: var(--primary);">
+                                                Download CV
+                                            </a>
+                                        @else
+                                            <span style="font-size: 11.5px; color: #94A3B8;">No CV</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($app->status === 'pending')
+                                            <span style="background: #FEF2F2; color: #991B1B; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 700;">Pending</span>
+                                        @elseif($app->status === 'reviewed')
+                                            <span style="background: #EFF6FF; color: #1D4ED8; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 700;">Reviewed</span>
+                                        @elseif($app->status === 'shortlisted')
+                                            <span style="background: #ECFDF5; color: #065F46; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 700;">Shortlisted</span>
+                                        @else
+                                            <span style="background: #F1F5F9; color: #475569; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 700;">Rejected</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('admin.applications.show', $app) }}" class="btn-live-site" style="padding: 4px 10px; font-size: 12px; color: var(--primary);">
+                                            Review
+                                        </a>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="5" style="text-align: center; padding: 28px; color: var(--text-muted); font-size: 13.5px;">
+                                        No candidate applications received yet.
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
             </div>
+
+            <!-- Services Catalog Overview -->
+            <div class="content-card">
+                <div class="card-head">
+                    <div class="card-head-title">Clineva Services Catalog</div>
+                    <span class="card-head-badge">{{ count($allServices) }} Active Capabilities</span>
+                </div>
             <div class="table-responsive">
                 <table class="admin-table">
                     <thead>
@@ -358,6 +432,7 @@
                     </tbody>
                 </table>
             </div>
+        </div>
         </div>
 
         <!-- Right: System Info & Administrators -->

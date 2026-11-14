@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\JobPosting;
+use App\Models\JobApplication;
 use App\Data\ServicesCatalog;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,12 +23,30 @@ class DashboardController extends Controller
         $medicoServices = ServicesCatalog::getByCategory('medico-marketing');
         $admins = Admin::latest()->get();
 
+        try {
+            $activeJobsCount = JobPosting::where('is_active', true)->count();
+            $totalJobsCount = JobPosting::count();
+            $pendingApplicationsCount = JobApplication::where('status', 'pending')->count();
+            $totalApplicationsCount = JobApplication::count();
+            $recentApplications = JobApplication::latest()->take(5)->get();
+        } catch (\Throwable $e) {
+            $activeJobsCount = 0;
+            $totalJobsCount = 0;
+            $pendingApplicationsCount = 0;
+            $totalApplicationsCount = 0;
+            $recentApplications = collect();
+        }
+
         $stats = [
             'total_services' => count($allServices),
             'clinical_count' => count($clinicalServices),
             'babe_count' => count($babeServices),
             'medico_count' => count($medicoServices),
             'total_admins' => $admins->count(),
+            'active_jobs' => $activeJobsCount,
+            'total_jobs' => $totalJobsCount,
+            'pending_applications' => $pendingApplicationsCount,
+            'total_applications' => $totalApplicationsCount,
         ];
 
         $systemInfo = [
@@ -45,8 +65,8 @@ class DashboardController extends Controller
             'medicoServices',
             'admins',
             'stats',
+            'recentApplications',
             'systemInfo'
         ));
     }
 }
-

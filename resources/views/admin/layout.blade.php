@@ -363,12 +363,34 @@
         </div>
 
         <nav class="sidebar-nav">
-            <div class="nav-section-title">Navigation</div>
+            <div class="nav-section-title">Main Menu</div>
             <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                 <i class="icon-advance"></i>
                 <span>Dashboard</span>
             </a>
 
+            <div class="nav-section-title">Careers Portal</div>
+            <a href="{{ route('admin.jobs.index') }}" class="nav-link {{ request()->routeIs('admin.jobs.*') ? 'active' : '' }}">
+                <i class="icon-suitcase"></i>
+                <span>Job Postings</span>
+            </a>
+
+            <a href="{{ route('admin.applications.index') }}" class="nav-link {{ request()->routeIs('admin.applications.*') ? 'active' : '' }}">
+                <i class="icon-file-word"></i>
+                <span>Applications</span>
+                @php
+                    try {
+                        $pendingAppsCount = \App\Models\JobApplication::where('status', 'pending')->count();
+                    } catch (\Throwable $e) {
+                        $pendingAppsCount = 0;
+                    }
+                @endphp
+                @if($pendingAppsCount > 0)
+                    <span style="margin-left: auto; background: #EF4444; color: #fff; font-size: 11px; padding: 2px 7px; border-radius: 999px; font-weight: 700;">{{ $pendingAppsCount }}</span>
+                @endif
+            </a>
+
+            <div class="nav-section-title">Account</div>
             <form id="sidebarLogoutForm" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>

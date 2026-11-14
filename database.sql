@@ -34,7 +34,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (4, '2026_11_05_000001_create_appointments_table', 2),
 (5, '2026_11_05_000002_create_contacts_table', 2),
 (6, '2026_11_05_000003_create_subscribers_table', 2),
-(7, '2026_11_14_000000_create_admins_table', 3);
+(7, '2026_11_14_000000_create_admins_table', 3),
+(8, '2026_11_14_000001_create_job_postings_table', 4),
+(9, '2026_11_14_000002_create_job_applications_table', 4);
 
 -- --------------------------------------------------------
 -- Table structure for table `admins`
@@ -225,6 +227,56 @@ CREATE TABLE `subscribers` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+-- Table structure for table `job_postings`
+-- --------------------------------------------------------
+DROP TABLE IF EXISTS `job_postings`;
+CREATE TABLE `job_postings` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `category` varchar(150) NOT NULL DEFAULT 'Clinical Operations',
+  `job_type` varchar(100) NOT NULL DEFAULT 'Full-Time',
+  `location` varchar(150) NOT NULL DEFAULT 'Mumbai, Maharashtra',
+  `experience` varchar(100) DEFAULT NULL,
+  `description` text NOT NULL,
+  `requirements` text DEFAULT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `job_postings_slug_unique` (`slug`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO `job_postings` (`id`, `title`, `slug`, `category`, `job_type`, `location`, `experience`, `description`, `requirements`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 'Clinical Research Associate (CRA)', 'clinical-research-associate-cra', 'Clinical Operations', 'Full-Time', 'Mumbai, Maharashtra', '2–4 Years', 'Manage site feasibility, initiation, routine monitoring, SDV, and protocol compliance across Phase I–IV and BA/BE trials.', 'B.Pharm / M.Pharm / MBBS / Life Sciences with ICH-GCP certification.', 1, '2026-11-14 05:00:00', '2026-11-14 05:00:00'),
+(2, 'Medical Writer', 'medical-writer', 'Medical Writing', 'Full-Time', 'Mumbai, Maharashtra / Hybrid', '1–3 Years', 'Author protocols, ICFs, CRFs, investigator brochures, eCTD clinical summaries, and BA/BE Clinical Study Reports (CSRs).', 'Life sciences or medical degree with strong medical synthesis and writing capabilities.', 1, '2026-11-14 05:00:00', '2026-11-14 05:00:00'),
+(3, 'Quality Assurance & GCP/GLP Auditor', 'quality-assurance-gcp-glp-auditor', 'Quality & Audit', 'Full-Time', 'Mumbai, Maharashtra', '3–5 Years', 'Conduct site, TMF, vendor, and BA/BE facility audits to maintain strict ICH-GCP/GLP compliance and inspection readiness.', 'Experienced GCP auditor with deep familiarity with CDSCO, FDA, and EMA clinical guidelines.', 1, '2026-11-14 05:00:00', '2026-11-14 05:00:00');
+
+-- --------------------------------------------------------
+-- Table structure for table `job_applications`
+-- --------------------------------------------------------
+DROP TABLE IF EXISTS `job_applications`;
+CREATE TABLE `job_applications` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `job_posting_id` bigint(20) unsigned DEFAULT NULL,
+  `role_title` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `experience` varchar(100) DEFAULT NULL,
+  `resume_path` varchar(255) DEFAULT NULL,
+  `resume_original_name` varchar(255) DEFAULT NULL,
+  `message` text DEFAULT NULL,
+  `status` varchar(50) NOT NULL DEFAULT 'pending',
+  `admin_notes` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `job_applications_job_posting_id_foreign` (`job_posting_id`),
+  CONSTRAINT `job_applications_job_posting_id_foreign` FOREIGN KEY (`job_posting_id`) REFERENCES `job_postings` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 SET FOREIGN_KEY_CHECKS=1;
