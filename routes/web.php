@@ -54,7 +54,7 @@ Route::get('/cart', [PageController::class, 'cart'])->name('cart');
 Route::get('/checkout', [PageController::class, 'checkout'])->name('checkout');
 
 // Auth
-Route::get('/login', [PageController::class, 'login'])->name('login');
+Route::redirect('/login', '/admin/login')->name('login');
 Route::get('/sign-up', [PageController::class, 'signup'])->name('signup');
 
 // Specialized Clinic Templates
