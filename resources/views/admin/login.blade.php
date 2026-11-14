@@ -265,7 +265,7 @@
                 <label class="form-label" for="email">Admin Email</label>
                 <div class="input-wrap">
                     <i class="icon-envelope input-icon"></i>
-                    <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="admin@clineva.in" required autofocus autocomplete="email">
+                    <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="Enter your email address" required autofocus autocomplete="email">
                 </div>
             </div>
 
@@ -273,7 +273,7 @@
                 <label class="form-label" for="password">Password</label>
                 <div class="input-wrap">
                     <i class="icon-lock input-icon"></i>
-                    <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="••••••••" required>
+                    <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Enter your password" required>
                 </div>
             </div>
 

@@ -16,7 +16,6 @@ class PolicyPageController extends Controller
     public function index()
     {
         try {
-            $this->ensureDefaultPoliciesSeeded();
             $policies = PolicyPage::orderBy('title')->get();
         } catch (\Throwable $e) {
             $policies = collect();
@@ -124,22 +123,5 @@ class PolicyPageController extends Controller
         ]);
 
         return back()->with('success', 'Policy page status updated.');
-    }
-
-    /**
-     * Auto-seed default policies if table is empty.
-     */
-    protected function ensureDefaultPoliciesSeeded(): void
-    {
-        try {
-            if (Schema::hasTable('policy_pages') && PolicyPage::count() === 0) {
-                foreach (['privacy-policy', 'terms-conditions', 'cookie-policy'] as $slug) {
-                    $default = PolicyPage::getDefaultPolicy($slug);
-                    if ($default) {
-                        PolicyPage::create($default);
-                    }
-                }
-            }
-        } catch (\Throwable $e) {}
     }
 }
